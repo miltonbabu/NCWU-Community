@@ -2,6 +2,7 @@ export interface ClassSession {
   id: string;
   subject: string;
   instructor: string;
+  teacher?: string;
   room: string;
   day:
     | "Monday"

@@ -1,5 +1,38 @@
 import { useState, useEffect, useCallback } from 'react';
-import type { CalendarEvent, EventRSVP, EventReminder, EventPhoto, EventCategory } from '@/types/events';
+import type { Event, EventInterest, EventGoing } from '@/types/events';
+
+export interface CalendarEvent {
+  id: string;
+  title: string;
+  date: string;
+  type: string;
+  description?: string;
+}
+
+export interface EventRSVP {
+  id: string;
+  event_id: string;
+  user_id: string;
+  status: string;
+}
+
+export interface EventReminder {
+  id: string;
+  event_id: string;
+  reminder_time: string;
+}
+
+export interface EventPhoto {
+  id: string;
+  event_id: string;
+  url: string;
+}
+
+export interface EventCategory {
+  id: string;
+  name: string;
+  icon?: string;
+}
 
 const RSVP_STORAGE_KEY = 'event_rsvps';
 const REMINDERS_STORAGE_KEY = 'event_reminders';

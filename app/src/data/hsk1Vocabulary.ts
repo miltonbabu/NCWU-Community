@@ -8,6 +8,7 @@ export interface VocabularyWord {
   examplePinyin?: string;
   exampleTranslation?: string;
   notes?: string;
+  difficulty?: string;
 }
 
 export const hsk1Vocabulary: VocabularyWord[] = [

@@ -79,9 +79,8 @@ function buildContextMessages(
 
 export function ChatMain() {
   const {
-    state: { sidebarOpen },
+    state: { sidebarOpen, currentChatId },
     toggleSidebar,
-    currentChatId,
     createChat,
     addMessage,
     editMessage,

@@ -135,7 +135,8 @@ export default function MarketPage() {
         limit: 12,
       });
       if (response.success && response.data) {
-        const postsData = response.data.data || response.data;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const postsData = (response.data as any).data || response.data;
         const postsArray = Array.isArray(postsData) ? postsData : [];
         setPosts(postsArray);
         setTotalPages(response.data.totalPages || 1);

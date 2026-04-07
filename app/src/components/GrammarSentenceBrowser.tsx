@@ -697,7 +697,8 @@ export default function GrammarSentenceBrowser({
                 (page - 1) * SENTENCES_PER_PAGE + index + 1;
               const colorIndex = index % colors.cardColors.length;
               const cardColor = colors.cardColors[colorIndex];
-              const isSaved = isSentenceSaved(sentence.id, sentence.level);
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              const isSaved = isSentenceSaved(sentence.id, sentence.level as any);
 
               return (
                 <div
@@ -835,7 +836,8 @@ export default function GrammarSentenceBrowser({
                         onClick={() => {
                           toggleSaveSentence({
                             id: sentence.id,
-                            level: sentence.level,
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            level: sentence.level as any,
                             sentenceClean: sentence.sentenceClean,
                             pinyin: sentence.pinyin,
                             english: sentence.english,

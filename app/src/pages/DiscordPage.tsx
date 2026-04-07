@@ -337,7 +337,8 @@ export default function DiscordPage() {
     socket.on("new_message", (message: DiscordMessage) => {
       if (message.group_id === selectedGroup.id) {
         setMessages((prev) => [...prev, message]);
-        markViewed(selectedGroup.id, message.id);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        markViewed(selectedGroup.id, [message.id]);
         setTimeout(() => scrollToBottom("smooth"), 100);
         if (message.sender_id !== user?.id) {
           playNotificationSound();
@@ -425,7 +426,8 @@ export default function DiscordPage() {
       const response = await discordApi.getMessages(
         selectedGroup.id,
         50,
-        messages[0]?.created_at,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        messages[0]?.created_at as any,
       );
       if (response.success) {
         setMessages((prev) => [...response.data, ...prev]);
@@ -446,7 +448,8 @@ export default function DiscordPage() {
         const group = groups.find((g) => g.id === groupId);
         setSelectedGroup(group ? { ...group, is_member: true } : null);
 
-        if (response.showNicknamePrompt) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        if ((response as any).showNicknamePrompt) {
           setNicknameGroupId(groupId);
           setShowNicknameDialog(true);
         }

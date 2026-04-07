@@ -349,7 +349,7 @@ function AppContent() {
               </span>
             </button>
 
-            <ScheduleGrid classes={filteredClasses} onShare={handleShare} />
+            <ScheduleGrid scheduleData={filteredClasses} />
           </>
         )}
       </main>

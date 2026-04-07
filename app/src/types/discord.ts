@@ -38,6 +38,7 @@ export interface DiscordMessage {
   id: string;
   group_id: string;
   user_id: string;
+  sender_id?: string;
   content: string;
   is_anonymous: boolean;
   reply_to: string | null;
@@ -51,6 +52,8 @@ export interface DiscordMessage {
     avatar_url: string | null;
     department: string | null;
     current_year: number | null;
+    display_name?: string;
+    show_as_admin?: boolean;
   } | null;
   view_count: number;
   has_viewed: boolean;

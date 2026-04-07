@@ -1,0 +1,1248 @@
+[
+  {
+    "id": 301,
+    "word": "啊",
+    "pinyin": "a",
+    "pos": "助",
+    "english": "ah; oh (exclamation)"
+  },
+  {
+    "id": 302,
+    "word": "爱好",
+    "pinyin": "àihào",
+    "pos": "动、名",
+    "english": "hobby; interest"
+  },
+  {
+    "id": 303,
+    "word": "白色",
+    "pinyin": "báisè",
+    "pos": "名",
+    "english": "white (color)"
+  },
+  {
+    "id": 305,
+    "word": "帮",
+    "pinyin": "bāng",
+    "pos": "动",
+    "english": "to help; assist"
+  },
+  {
+    "id": 306,
+    "word": "帮忙",
+    "pinyin": "bāngmáng",
+    "pos": "动",
+    "english": "help; do a favor"
+  },
+  {
+    "id": 307,
+    "word": "包",
+    "pinyin": "bāo",
+    "pos": "动、名、量",
+    "english": "bag; pack; wrap"
+  },
+  {
+    "id": 308,
+    "word": "本子",
+    "pinyin": "běnzi",
+    "pos": "名",
+    "english": "notebook"
+  },
+  {
+    "id": 309,
+    "word": "比",
+    "pinyin": "bǐ",
+    "pos": "动、介",
+    "english": "than; compare"
+  },
+  {
+    "id": 311,
+    "word": "别1",
+    "pinyin": "bié",
+    "pos": "副",
+    "english": ""
+  },
+  {
+    "id": 312,
+    "word": "不错",
+    "pinyin": "búcuò",
+    "pos": "形",
+    "english": "not bad; pretty good"
+  },
+  {
+    "id": 313,
+    "word": "不好意思",
+    "pinyin": "bù",
+    "pos": "hǎoyìsi",
+    "english": "sorry; embarrassed"
+  },
+  {
+    "id": 314,
+    "word": "长",
+    "pinyin": "cháng",
+    "pos": "形",
+    "english": "long; to grow"
+  },
+  {
+    "id": 315,
+    "word": "车站",
+    "pinyin": "chēzhàn",
+    "pos": "名",
+    "english": "station; bus stop"
+  },
+  {
+    "id": 316,
+    "word": "出",
+    "pinyin": "chū",
+    "pos": "动",
+    "english": "out; exit; produce"
+  },
+  {
+    "id": 317,
+    "word": "出国",
+    "pinyin": "chūguó",
+    "pos": "动",
+    "english": "go abroad"
+  },
+  {
+    "id": 318,
+    "word": "出来",
+    "pinyin": "chūlái",
+    "pos": "动",
+    "english": "come out"
+  },
+  {
+    "id": 319,
+    "word": "出门",
+    "pinyin": "chūmén",
+    "pos": "动",
+    "english": "go out; leave home"
+  },
+  {
+    "id": 320,
+    "word": "出去",
+    "pinyin": "chūqù",
+    "pos": "动",
+    "english": "go out"
+  },
+  {
+    "id": 321,
+    "word": "床",
+    "pinyin": "chuáng",
+    "pos": "名",
+    "english": "bed"
+  },
+  {
+    "id": 322,
+    "word": "词",
+    "pinyin": "cí",
+    "pos": "名",
+    "english": "word; term; lyrics"
+  },
+  {
+    "id": 325,
+    "word": "从小",
+    "pinyin": "cóngxiǎo",
+    "pos": "副",
+    "english": "since childhood"
+  },
+  {
+    "id": 326,
+    "word": "错",
+    "pinyin": "cuò",
+    "pos": "形",
+    "english": "wrong; mistake"
+  },
+  {
+    "id": 327,
+    "word": "打1",
+    "pinyin": "dǎ",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 328,
+    "word": "打车",
+    "pinyin": "dǎchē",
+    "pos": "动",
+    "english": "take a taxi"
+  },
+  {
+    "id": 329,
+    "word": "打开",
+    "pinyin": "dǎkāi",
+    "pos": "动",
+    "english": "open; turn on"
+  },
+  {
+    "id": 331,
+    "word": "但是",
+    "pinyin": "dànshì",
+    "pos": "连",
+    "english": "but; however"
+  },
+  {
+    "id": 332,
+    "word": "得",
+    "pinyin": "de",
+    "pos": "助",
+    "english": "get; obtain; result complement"
+  },
+  {
+    "id": 333,
+    "word": "地",
+    "pinyin": "de",
+    "pos": "助",
+    "english": "earth; ground; land; place (noun); adverbial marker"
+  },
+  {
+    "id": 335,
+    "word": "地铁",
+    "pinyin": "dìtiě",
+    "pos": "名",
+    "english": "subway; metro"
+  },
+  {
+    "id": 337,
+    "word": "懂",
+    "pinyin": "dǒng",
+    "pos": "动",
+    "english": "understand; comprehend"
+  },
+  {
+    "id": 338,
+    "word": "动",
+    "pinyin": "dòng",
+    "pos": "动",
+    "english": "move; touch; action"
+  },
+  {
+    "id": 339,
+    "word": "饭馆",
+    "pinyin": "fànguǎn",
+    "pos": "名",
+    "english": "restaurant"
+  },
+  {
+    "id": 340,
+    "word": "飞",
+    "pinyin": "fēi",
+    "pos": "动",
+    "english": "fly"
+  },
+  {
+    "id": 341,
+    "word": "高",
+    "pinyin": "gāo",
+    "pos": "形、名",
+    "english": "high; tall"
+  },
+  {
+    "id": 342,
+    "word": "高中",
+    "pinyin": "gāozhōng",
+    "pos": "名",
+    "english": "high school; senior high"
+  },
+  {
+    "id": 343,
+    "word": "告诉",
+    "pinyin": "gàosu",
+    "pos": "动",
+    "english": "tell; inform"
+  },
+  {
+    "id": 344,
+    "word": "个子",
+    "pinyin": "gèzi",
+    "pos": "名",
+    "english": "height; stature"
+  },
+  {
+    "id": 346,
+    "word": "公交车",
+    "pinyin": "gōngjiāochē",
+    "pos": "名",
+    "english": "bus; public bus"
+  },
+  {
+    "id": 347,
+    "word": "过",
+    "pinyin": "guò",
+    "pos": "动",
+    "english": "(experiential aspect marker)"
+  },
+  {
+    "id": 348,
+    "word": "过来",
+    "pinyin": "guòlái",
+    "pos": "动",
+    "english": "come over"
+  },
+  {
+    "id": 349,
+    "word": "过年",
+    "pinyin": "guònián",
+    "pos": "动",
+    "english": "celebrate New Year"
+  },
+  {
+    "id": 350,
+    "word": "过去1",
+    "pinyin": "guòqù",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 351,
+    "word": "过",
+    "pinyin": "guo",
+    "pos": "助",
+    "english": "(experiential aspect marker)"
+  },
+  {
+    "id": 352,
+    "word": "还是",
+    "pinyin": "háishi",
+    "pos": "副、连",
+    "english": "or; still; had better"
+  },
+  {
+    "id": 353,
+    "word": "黑色",
+    "pinyin": "hēisè",
+    "pos": "名",
+    "english": "black (color)"
+  },
+  {
+    "id": 354,
+    "word": "红茶",
+    "pinyin": "hóngchá",
+    "pos": "名",
+    "english": "black tea"
+  },
+  {
+    "id": 355,
+    "word": "红色",
+    "pinyin": "hóngsè",
+    "pos": "名",
+    "english": "red (color)"
+  },
+  {
+    "id": 356,
+    "word": "后面",
+    "pinyin": "hòumiàn",
+    "pos": "名",
+    "english": "behind; back side"
+  },
+  {
+    "id": 357,
+    "word": "花1",
+    "pinyin": "huā",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 359,
+    "word": "画",
+    "pinyin": "huà",
+    "pos": "动、名",
+    "english": "painting; drawing; picture; to draw/paint"
+  },
+  {
+    "id": 360,
+    "word": "坏",
+    "pinyin": "huài",
+    "pos": "形",
+    "english": "bad; broken; wicked"
+  },
+  {
+    "id": 361,
+    "word": "回来",
+    "pinyin": "huílái",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 362,
+    "word": "回去",
+    "pinyin": "huíqù",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 363,
+    "word": "机场",
+    "pinyin": "jīchǎng",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 364,
+    "word": "机票",
+    "pinyin": "jīpiào",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 365,
+    "word": "记得",
+    "pinyin": "jìde",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 367,
+    "word": "教",
+    "pinyin": "jiāo",
+    "pos": "动",
+    "english": "teach; religion"
+  },
+  {
+    "id": 368,
+    "word": "教室",
+    "pinyin": "jiàoshì",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 369,
+    "word": "介绍",
+    "pinyin": "jièshào",
+    "pos": "动",
+    "english": "introduce; introduction"
+  },
+  {
+    "id": 370,
+    "word": "进",
+    "pinyin": "jìn",
+    "pos": "动",
+    "english": "enter; advance; submit"
+  },
+  {
+    "id": 371,
+    "word": "近",
+    "pinyin": "jìn",
+    "pos": "形",
+    "english": "near; close; recent; approximately"
+  },
+  {
+    "id": 372,
+    "word": "进来",
+    "pinyin": "jìnlái",
+    "pos": "动",
+    "english": "come in"
+  },
+  {
+    "id": 373,
+    "word": "进去",
+    "pinyin": "jìnqù",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 374,
+    "word": "经常",
+    "pinyin": "jīngcháng",
+    "pos": "副",
+    "english": "often; frequently"
+  },
+  {
+    "id": 375,
+    "word": "酒店",
+    "pinyin": "jiǔdiàn",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 377,
+    "word": "咖啡",
+    "pinyin": "kāfēi",
+    "pos": "名",
+    "english": "coffee"
+  },
+  {
+    "id": 378,
+    "word": "开始",
+    "pinyin": "kāishǐ",
+    "pos": "动、名",
+    "english": "start; begin"
+  },
+  {
+    "id": 379,
+    "word": "开学",
+    "pinyin": "kāixué",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 380,
+    "word": "考",
+    "pinyin": "kǎo",
+    "pos": "动",
+    "english": "test; examine; study"
+  },
+  {
+    "id": 381,
+    "word": "考试",
+    "pinyin": "kǎoshì",
+    "pos": "动、名",
+    "english": "exam; test"
+  },
+  {
+    "id": 382,
+    "word": "可能",
+    "pinyin": "kěnéng",
+    "pos": "形、名、动",
+    "english": "possible; maybe; can"
+  },
+  {
+    "id": 383,
+    "word": "裤子",
+    "pinyin": "kùzi",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 384,
+    "word": "快",
+    "pinyin": "kuài",
+    "pos": "形、副",
+    "english": "fast; quick; soon; sharp"
+  },
+  {
+    "id": 385,
+    "word": "快乐",
+    "pinyin": "kuàilè",
+    "pos": "形",
+    "english": "happy; joyful"
+  },
+  {
+    "id": 386,
+    "word": "快要",
+    "pinyin": "kuàiyào",
+    "pos": "副",
+    "english": ""
+  },
+  {
+    "id": 387,
+    "word": "篮球",
+    "pinyin": "lánqiú",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 388,
+    "word": "累",
+    "pinyin": "lèi",
+    "pos": "形、动",
+    "english": "tired; accumulate; involve"
+  },
+  {
+    "id": 389,
+    "word": "离",
+    "pinyin": "lí",
+    "pos": "动",
+    "english": "leave; away from; apart"
+  },
+  {
+    "id": 390,
+    "word": "里面",
+    "pinyin": "lǐmiàn",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 391,
+    "word": "楼",
+    "pinyin": "lóu",
+    "pos": "名",
+    "english": "building; floor; mansion"
+  },
+  {
+    "id": 392,
+    "word": "路",
+    "pinyin": "lù",
+    "pos": "名",
+    "english": "road; way; route; line; journey"
+  },
+  {
+    "id": 393,
+    "word": "路上",
+    "pinyin": "lùshang",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 394,
+    "word": "旅游",
+    "pinyin": "lǚyóu",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 395,
+    "word": "绿茶",
+    "pinyin": "lǜchá",
+    "pos": "名",
+    "english": "green tea"
+  },
+  {
+    "id": 397,
+    "word": "慢",
+    "pinyin": "màn",
+    "pos": "形",
+    "english": "slow"
+  },
+  {
+    "id": 398,
+    "word": "没意思",
+    "pinyin": "méi",
+    "pos": "yìsi",
+    "english": ""
+  },
+  {
+    "id": 400,
+    "word": "门",
+    "pinyin": "mén",
+    "pos": "名",
+    "english": "door; gate; entrance; way; school of thought; classifier (for guns/courses)"
+  },
+  {
+    "id": 401,
+    "word": "门口",
+    "pinyin": "ménkǒu",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 402,
+    "word": "门票",
+    "pinyin": "ménpiào",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 404,
+    "word": "名",
+    "pinyin": "míng",
+    "pos": "名、量",
+    "english": "name; famous"
+  },
+  {
+    "id": 405,
+    "word": "拿",
+    "pinyin": "ná",
+    "pos": "动",
+    "english": "take; hold; grasp"
+  },
+  {
+    "id": 406,
+    "word": "那么",
+    "pinyin": "nàme",
+    "pos": "代、连",
+    "english": ""
+  },
+  {
+    "id": 407,
+    "word": "那样",
+    "pinyin": "nàyàng",
+    "pos": "代",
+    "english": ""
+  },
+  {
+    "id": 408,
+    "word": "奶茶",
+    "pinyin": "nǎichá",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 409,
+    "word": "奶奶",
+    "pinyin": "nǎinai",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 410,
+    "word": "男孩儿",
+    "pinyin": "nánháir",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 411,
+    "word": "鸟",
+    "pinyin": "niǎo",
+    "pos": "名",
+    "english": "bird"
+  },
+  {
+    "id": 412,
+    "word": "女孩儿",
+    "pinyin": "nǚháir",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 413,
+    "word": "旁边",
+    "pinyin": "pángbiān",
+    "pos": "名",
+    "english": "side; beside; nearby"
+  },
+  {
+    "id": 414,
+    "word": "跑",
+    "pinyin": "pǎo",
+    "pos": "动",
+    "english": "run; run away; flee"
+  },
+  {
+    "id": 415,
+    "word": "跑步",
+    "pinyin": "pǎobù",
+    "pos": "动",
+    "english": "run; jogging"
+  },
+  {
+    "id": 416,
+    "word": "票",
+    "pinyin": "piào",
+    "pos": "名",
+    "english": "ticket; vote; banknote"
+  },
+  {
+    "id": 417,
+    "word": "妻子",
+    "pinyin": "qīzi",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 418,
+    "word": "起来",
+    "pinyin": "qǐlái",
+    "pos": "动",
+    "english": "get up; stand up"
+  },
+  {
+    "id": 419,
+    "word": "前面",
+    "pinyin": "qiánmiàn",
+    "pos": "名",
+    "english": "front; ahead"
+  },
+  {
+    "id": 420,
+    "word": "晴",
+    "pinyin": "qíng",
+    "pos": "形",
+    "english": "fine (weather); sunny"
+  },
+  {
+    "id": 421,
+    "word": "球",
+    "pinyin": "qiú",
+    "pos": "名",
+    "english": "ball; sphere; globe"
+  },
+  {
+    "id": 423,
+    "word": "肉",
+    "pinyin": "ròu",
+    "pos": "名",
+    "english": "meat; flesh"
+  },
+  {
+    "id": 424,
+    "word": "商场",
+    "pinyin": "shāngchǎng",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 425,
+    "word": "上来",
+    "pinyin": "shànglái",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 426,
+    "word": "上面",
+    "pinyin": "shàngmiàn",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 427,
+    "word": "上去",
+    "pinyin": "shàngqù",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 428,
+    "word": "上网",
+    "pinyin": "shàngwǎng",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 429,
+    "word": "身体",
+    "pinyin": "shēntǐ",
+    "pos": "名",
+    "english": "body; health"
+  },
+  {
+    "id": 430,
+    "word": "生日",
+    "pinyin": "shēngrì",
+    "pos": "名",
+    "english": "birthday"
+  },
+  {
+    "id": 432,
+    "word": "事情",
+    "pinyin": "shìqing",
+    "pos": "名",
+    "english": "matter; thing; affair"
+  },
+  {
+    "id": 433,
+    "word": "手",
+    "pinyin": "shǒu",
+    "pos": "名",
+    "english": "hand; person; skill; means"
+  },
+  {
+    "id": 434,
+    "word": "手表",
+    "pinyin": "shǒubiǎo",
+    "pos": "名",
+    "english": "wristwatch"
+  },
+  {
+    "id": 435,
+    "word": "书包",
+    "pinyin": "shūbāo",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 436,
+    "word": "舒服",
+    "pinyin": "shūfu",
+    "pos": "形",
+    "english": "comfortable; feel well"
+  },
+  {
+    "id": 437,
+    "word": "送",
+    "pinyin": "sòng",
+    "pos": "动",
+    "english": "give as gift; deliver; see off; send"
+  },
+  {
+    "id": 438,
+    "word": "虽然",
+    "pinyin": "suīrán",
+    "pos": "连",
+    "english": "although; even though"
+  },
+  {
+    "id": 439,
+    "word": "所以",
+    "pinyin": "suǒyǐ",
+    "pos": "连",
+    "english": "so; therefore"
+  },
+  {
+    "id": 441,
+    "word": "踢",
+    "pinyin": "tī",
+    "pos": "动",
+    "english": "kick"
+  },
+  {
+    "id": 442,
+    "word": "题",
+    "pinyin": "tí",
+    "pos": "名",
+    "english": "topic; subject; question; title; inscribe"
+  },
+  {
+    "id": 444,
+    "word": "跳舞",
+    "pinyin": "tiàowǔ",
+    "pos": "动",
+    "english": "dance"
+  },
+  {
+    "id": 446,
+    "word": "外国",
+    "pinyin": "wàiguó",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 447,
+    "word": "外面",
+    "pinyin": "wàimiàn",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 448,
+    "word": "完",
+    "pinyin": "wán",
+    "pos": "动",
+    "english": "finish; complete; end; used up"
+  },
+  {
+    "id": 449,
+    "word": "万",
+    "pinyin": "wàn",
+    "pos": "数",
+    "english": "ten thousand; all kinds of; absolutely"
+  },
+  {
+    "id": 450,
+    "word": "往",
+    "pinyin": "wǎng",
+    "pos": "动、介",
+    "english": "go; past; towards; previous"
+  },
+  {
+    "id": 451,
+    "word": "网上",
+    "pinyin": "wǎngshang",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 452,
+    "word": "忘",
+    "pinyin": "wàng",
+    "pos": "动",
+    "english": "forget; overlook"
+  },
+  {
+    "id": 453,
+    "word": "位",
+    "pinyin": "wèi",
+    "pos": "量",
+    "english": "position; seat; classifier for people (polite)"
+  },
+  {
+    "id": 454,
+    "word": "为什么",
+    "pinyin": "wèi",
+    "pos": "shénme",
+    "english": "why"
+  },
+  {
+    "id": 455,
+    "word": "希望",
+    "pinyin": "xīwàng",
+    "pos": "动",
+    "english": "hope; wish"
+  },
+  {
+    "id": 456,
+    "word": "洗",
+    "pinyin": "xǐ",
+    "pos": "动",
+    "english": "wash; cleanse; develop (photo); sort out"
+  },
+  {
+    "id": 457,
+    "word": "洗手间",
+    "pinyin": "xǐshǒujiān",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 458,
+    "word": "下来",
+    "pinyin": "xiàlái",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 459,
+    "word": "下面",
+    "pinyin": "xiàmiàn",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 460,
+    "word": "下去",
+    "pinyin": "xiàqù",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 461,
+    "word": "小孩儿",
+    "pinyin": "xiǎoháir",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 462,
+    "word": "小时候",
+    "pinyin": "xiǎoshíhou",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 463,
+    "word": "笑",
+    "pinyin": "xiào",
+    "pos": "动",
+    "english": "laugh; smile"
+  },
+  {
+    "id": 464,
+    "word": "姓",
+    "pinyin": "xìng",
+    "pos": "名、动",
+    "english": "surname; family name; be named"
+  },
+  {
+    "id": 465,
+    "word": "姓名",
+    "pinyin": "xìngmíng",
+    "pos": "名",
+    "english": "name"
+  },
+  {
+    "id": 466,
+    "word": "颜色",
+    "pinyin": "yánsè",
+    "pos": "名",
+    "english": "color"
+  },
+  {
+    "id": 467,
+    "word": "眼睛",
+    "pinyin": "yǎnjing",
+    "pos": "名",
+    "english": "eye"
+  },
+  {
+    "id": 468,
+    "word": "药",
+    "pinyin": "yào",
+    "pos": "名",
+    "english": "medicine"
+  },
+  {
+    "id": 469,
+    "word": "药店",
+    "pinyin": "yàodiàn",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 470,
+    "word": "爷爷",
+    "pinyin": "yéye",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 472,
+    "word": "已经",
+    "pinyin": "yǐjīng",
+    "pos": "副",
+    "english": "already"
+  },
+  {
+    "id": 473,
+    "word": "一起",
+    "pinyin": "yìqǐ",
+    "pos": "副",
+    "english": "together"
+  },
+  {
+    "id": 474,
+    "word": "意思",
+    "pinyin": "yìsi",
+    "pos": "名",
+    "english": "meaning"
+  },
+  {
+    "id": 475,
+    "word": "阴",
+    "pinyin": "yīn",
+    "pos": "形",
+    "english": "yin; cloudy; shady; secret; negative; north of river; implicit"
+  },
+  {
+    "id": 476,
+    "word": "因为",
+    "pinyin": "yīnwèi",
+    "pos": "介、连",
+    "english": "because; due to"
+  },
+  {
+    "id": 477,
+    "word": "游",
+    "pinyin": "yóu",
+    "pos": "动",
+    "english": "swim; travel; roam; tour; wander"
+  },
+  {
+    "id": 478,
+    "word": "游泳",
+    "pinyin": "yóuyǒng",
+    "pos": "动",
+    "english": "swim; swimming"
+  },
+  {
+    "id": 479,
+    "word": "有意思",
+    "pinyin": "yǒu",
+    "pos": "yìsi",
+    "english": "interesting; fun"
+  },
+  {
+    "id": 480,
+    "word": "有时",
+    "pinyin": "yǒushí",
+    "pos": "副",
+    "english": "sometimes"
+  },
+  {
+    "id": 481,
+    "word": "右",
+    "pinyin": "yòu",
+    "pos": "名",
+    "english": "right"
+  },
+  {
+    "id": 482,
+    "word": "右边",
+    "pinyin": "yòubian",
+    "pos": "名",
+    "english": "right side"
+  },
+  {
+    "id": 483,
+    "word": "鱼",
+    "pinyin": "yú",
+    "pos": "名",
+    "english": "fish"
+  },
+  {
+    "id": 484,
+    "word": "远",
+    "pinyin": "yuǎn",
+    "pos": "形",
+    "english": "far; distant; remote; deep; long-term"
+  },
+  {
+    "id": 485,
+    "word": "运动",
+    "pinyin": "yùndòng",
+    "pos": "动、名",
+    "english": "sport; exercise"
+  },
+  {
+    "id": 486,
+    "word": "站1",
+    "pinyin": "zhàn",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 487,
+    "word": "丈夫",
+    "pinyin": "zhàngfu",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 488,
+    "word": "这么",
+    "pinyin": "zhème",
+    "pos": "代",
+    "english": ""
+  },
+  {
+    "id": 489,
+    "word": "这样",
+    "pinyin": "zhèyàng",
+    "pos": "代",
+    "english": "like this; this way"
+  },
+  {
+    "id": 490,
+    "word": "着",
+    "pinyin": "zhe",
+    "pos": "助",
+    "english": "particle indicating continuous action or state; touch; wear; fall asleep (resultative)"
+  },
+  {
+    "id": 493,
+    "word": "准备",
+    "pinyin": "zhǔnbèi",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 494,
+    "word": "自己",
+    "pinyin": "zìjǐ",
+    "pos": "代",
+    "english": "oneself; self"
+  },
+  {
+    "id": 495,
+    "word": "走",
+    "pinyin": "zǒu",
+    "pos": "动",
+    "english": "walk; go; run; leave; visit; move"
+  },
+  {
+    "id": 496,
+    "word": "走路",
+    "pinyin": "zǒulù",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 497,
+    "word": "足球",
+    "pinyin": "zúqiú",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 498,
+    "word": "最",
+    "pinyin": "zuì",
+    "pos": "副",
+    "english": "most; best"
+  },
+  {
+    "id": 499,
+    "word": "左",
+    "pinyin": "zuǒ",
+    "pos": "名",
+    "english": "left; left side; incorrect; unorthodox; radical"
+  },
+  {
+    "id": 500,
+    "word": "左边",
+    "pinyin": "zuǒbian",
+    "pos": "名",
+    "english": "left side"
+  }
+]

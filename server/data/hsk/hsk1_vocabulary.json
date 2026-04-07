@@ -1,0 +1,1997 @@
+[
+  {
+    "id": 1,
+    "word": "爱",
+    "pinyin": "ài",
+    "pos": "动",
+    "english": "to love"
+  },
+  {
+    "id": 2,
+    "word": "八",
+    "pinyin": "bā",
+    "pos": "数",
+    "english": "eight"
+  },
+  {
+    "id": 3,
+    "word": "爸爸",
+    "pinyin": "bàba",
+    "pos": "名",
+    "english": "dad; father"
+  },
+  {
+    "id": 4,
+    "word": "吧",
+    "pinyin": "ba",
+    "pos": "助",
+    "english": "(particle indicating suggestion)"
+  },
+  {
+    "id": 5,
+    "word": "白天",
+    "pinyin": "báitiān",
+    "pos": "名",
+    "english": "daytime; daytime"
+  },
+  {
+    "id": 6,
+    "word": "百",
+    "pinyin": "bǎi",
+    "pos": "数",
+    "english": "hundred"
+  },
+  {
+    "id": 8,
+    "word": "包子",
+    "pinyin": "bāozi",
+    "pos": "名",
+    "english": "steamed bun"
+  },
+  {
+    "id": 9,
+    "word": "杯子",
+    "pinyin": "bēizi",
+    "pos": "名",
+    "english": "cup"
+  },
+  {
+    "id": 10,
+    "word": "本1",
+    "pinyin": "běn",
+    "pos": "量",
+    "english": "Book 1"
+  },
+  {
+    "id": 11,
+    "word": "边",
+    "pinyin": "biān",
+    "pos": "名、后缀",
+    "english": "side; edge"
+  },
+  {
+    "id": 12,
+    "word": "病",
+    "pinyin": "bìng",
+    "pos": "名、动",
+    "english": "illness; disease; sick"
+  },
+  {
+    "id": 13,
+    "word": "不",
+    "pinyin": "bù",
+    "pos": "副",
+    "english": "no; not"
+  },
+  {
+    "id": 14,
+    "word": "不客气",
+    "pinyin": "bú",
+    "pos": "kèqi",
+    "english": "you're welcome"
+  },
+  {
+    "id": 15,
+    "word": "不要",
+    "pinyin": "búyào",
+    "pos": "副",
+    "english": "don't want; do not"
+  },
+  {
+    "id": 16,
+    "word": "菜",
+    "pinyin": "cài",
+    "pos": "名",
+    "english": "dish; vegetable; cuisine"
+  },
+  {
+    "id": 17,
+    "word": "茶",
+    "pinyin": "chá",
+    "pos": "名",
+    "english": "tea"
+  },
+  {
+    "id": 18,
+    "word": "唱",
+    "pinyin": "chàng",
+    "pos": "动",
+    "english": "to sing"
+  },
+  {
+    "id": 19,
+    "word": "超市",
+    "pinyin": "chāoshì",
+    "pos": "名",
+    "english": "supermarket"
+  },
+  {
+    "id": 20,
+    "word": "车",
+    "pinyin": "chē",
+    "pos": "名",
+    "english": "car; vehicle"
+  },
+  {
+    "id": 21,
+    "word": "吃",
+    "pinyin": "chī",
+    "pos": "动",
+    "english": "eat"
+  },
+  {
+    "id": 22,
+    "word": "出租车",
+    "pinyin": "chūzūchē",
+    "pos": "名",
+    "english": "taxi"
+  },
+  {
+    "id": 23,
+    "word": "穿",
+    "pinyin": "chuān",
+    "pos": "动",
+    "english": "to wear"
+  },
+  {
+    "id": 24,
+    "word": "打电话",
+    "pinyin": "dǎ",
+    "pos": "diànhuà",
+    "english": "to make a phone call"
+  },
+  {
+    "id": 25,
+    "word": "大",
+    "pinyin": "dà",
+    "pos": "形",
+    "english": "big; large"
+  },
+  {
+    "id": 26,
+    "word": "大家",
+    "pinyin": "dàjiā",
+    "pos": "代",
+    "english": "everyone; all"
+  },
+  {
+    "id": 27,
+    "word": "大学",
+    "pinyin": "dàxué",
+    "pos": "名",
+    "english": "university"
+  },
+  {
+    "id": 28,
+    "word": "大学生",
+    "pinyin": "dàxuéshēng",
+    "pos": "名",
+    "english": "university student"
+  },
+  {
+    "id": 29,
+    "word": "到",
+    "pinyin": "dào",
+    "pos": "动",
+    "english": "to arrive; to reach"
+  },
+  {
+    "id": 30,
+    "word": "的",
+    "pinyin": "de",
+    "pos": "助",
+    "english": "possessive particle; target marker"
+  },
+  {
+    "id": 31,
+    "word": "第",
+    "pinyin": "dì",
+    "pos": "前缀",
+    "english": "ordinal prefix"
+  },
+  {
+    "id": 32,
+    "word": "弟弟",
+    "pinyin": "dìdi",
+    "pos": "名",
+    "english": "younger brother"
+  },
+  {
+    "id": 34,
+    "word": "店",
+    "pinyin": "diàn",
+    "pos": "名",
+    "english": "shop; store"
+  },
+  {
+    "id": 35,
+    "word": "电话",
+    "pinyin": "diànhuà",
+    "pos": "名",
+    "english": "telephone; phone"
+  },
+  {
+    "id": 36,
+    "word": "电脑",
+    "pinyin": "diànnǎo",
+    "pos": "名",
+    "english": "computer"
+  },
+  {
+    "id": 37,
+    "word": "电视",
+    "pinyin": "diànshì",
+    "pos": "名",
+    "english": "TV; television"
+  },
+  {
+    "id": 38,
+    "word": "电影",
+    "pinyin": "diànyǐng",
+    "pos": "名",
+    "english": "movie; film"
+  },
+  {
+    "id": 39,
+    "word": "电影院",
+    "pinyin": "diànyǐngyuàn",
+    "pos": "名",
+    "english": "cinema; movie theater"
+  },
+  {
+    "id": 40,
+    "word": "东西",
+    "pinyin": "dōngxi",
+    "pos": "名",
+    "english": "thing; east-west"
+  },
+  {
+    "id": 41,
+    "word": "都",
+    "pinyin": "dōu",
+    "pos": "副",
+    "english": "all; both; already"
+  },
+  {
+    "id": 42,
+    "word": "读",
+    "pinyin": "dú",
+    "pos": "动",
+    "english": "to read"
+  },
+  {
+    "id": 43,
+    "word": "读书",
+    "pinyin": "dúshū",
+    "pos": "动",
+    "english": "to study; read books"
+  },
+  {
+    "id": 45,
+    "word": "对不起",
+    "pinyin": "duìbuqǐ",
+    "pos": "动",
+    "english": "sorry; excuse me"
+  },
+  {
+    "id": 47,
+    "word": "多少",
+    "pinyin": "duōshao",
+    "pos": "代",
+    "english": "how many; how much"
+  },
+  {
+    "id": 48,
+    "word": "儿子",
+    "pinyin": "érzi",
+    "pos": "名",
+    "english": "son"
+  },
+  {
+    "id": 49,
+    "word": "二",
+    "pinyin": "èr",
+    "pos": "数",
+    "english": "two"
+  },
+  {
+    "id": 50,
+    "word": "饭",
+    "pinyin": "fàn",
+    "pos": "名",
+    "english": "meal; rice"
+  },
+  {
+    "id": 51,
+    "word": "饭店",
+    "pinyin": "fàndiàn",
+    "pos": "名",
+    "english": "restaurant; hotel"
+  },
+  {
+    "id": 52,
+    "word": "房间",
+    "pinyin": "fángjiān",
+    "pos": "名",
+    "english": "room"
+  },
+  {
+    "id": 53,
+    "word": "非常",
+    "pinyin": "fēicháng",
+    "pos": "副",
+    "english": "very; extremely"
+  },
+  {
+    "id": 54,
+    "word": "飞机",
+    "pinyin": "fēijī",
+    "pos": "名",
+    "english": "airplane"
+  },
+  {
+    "id": 56,
+    "word": "分钟",
+    "pinyin": "fēnzhōng",
+    "pos": "量",
+    "english": "minute"
+  },
+  {
+    "id": 57,
+    "word": "高兴",
+    "pinyin": "gāoxìng",
+    "pos": "形",
+    "english": "happy; glad"
+  },
+  {
+    "id": 58,
+    "word": "歌",
+    "pinyin": "gē",
+    "pos": "名",
+    "english": "song"
+  },
+  {
+    "id": 59,
+    "word": "哥哥",
+    "pinyin": "gēge",
+    "pos": "名",
+    "english": "older brother"
+  },
+  {
+    "id": 60,
+    "word": "个",
+    "pinyin": "gè",
+    "pos": "量",
+    "english": "general classifier"
+  },
+  {
+    "id": 62,
+    "word": "公司",
+    "pinyin": "gōngsī",
+    "pos": "名",
+    "english": "company"
+  },
+  {
+    "id": 63,
+    "word": "工作",
+    "pinyin": "gōngzuò",
+    "pos": "动、名",
+    "english": "work; job; to work"
+  },
+  {
+    "id": 64,
+    "word": "狗",
+    "pinyin": "gǒu",
+    "pos": "名",
+    "english": "dog"
+  },
+  {
+    "id": 65,
+    "word": "贵",
+    "pinyin": "guì",
+    "pos": "形",
+    "english": "expensive; noble; valuable"
+  },
+  {
+    "id": 66,
+    "word": "国",
+    "pinyin": "guó",
+    "pos": "名",
+    "english": "country; nation; state"
+  },
+  {
+    "id": 67,
+    "word": "还",
+    "pinyin": "hái",
+    "pos": "副",
+    "english": "still; also; return; even more"
+  },
+  {
+    "id": 68,
+    "word": "孩子",
+    "pinyin": "háizi",
+    "pos": "名",
+    "english": "child; kid"
+  },
+  {
+    "id": 69,
+    "word": "汉语",
+    "pinyin": "Hànyǔ",
+    "pos": "名",
+    "english": "Chinese language"
+  },
+  {
+    "id": 70,
+    "word": "汉字",
+    "pinyin": "Hànzì",
+    "pos": "名",
+    "english": "Chinese character"
+  },
+  {
+    "id": 72,
+    "word": "好吃",
+    "pinyin": "hǎochī",
+    "pos": "形",
+    "english": "delicious; tasty"
+  },
+  {
+    "id": 73,
+    "word": "好看",
+    "pinyin": "hǎokàn",
+    "pos": "形",
+    "english": "good-looking; nice to watch"
+  },
+  {
+    "id": 74,
+    "word": "好听",
+    "pinyin": "hǎotīng",
+    "pos": "形",
+    "english": "pleasant to hear"
+  },
+  {
+    "id": 75,
+    "word": "好玩儿",
+    "pinyin": "hǎowánr",
+    "pos": "形",
+    "english": "fun; interesting"
+  },
+  {
+    "id": 76,
+    "word": "号",
+    "pinyin": "hào",
+    "pos": "名、量",
+    "english": "number; size; date; signal"
+  },
+  {
+    "id": 77,
+    "word": "喝",
+    "pinyin": "hē",
+    "pos": "动",
+    "english": "drink"
+  },
+  {
+    "id": 78,
+    "word": "和1",
+    "pinyin": "hé",
+    "pos": "介、连",
+    "english": "and 1"
+  },
+  {
+    "id": 79,
+    "word": "很",
+    "pinyin": "hěn",
+    "pos": "副",
+    "english": "very"
+  },
+  {
+    "id": 80,
+    "word": "后",
+    "pinyin": "hòu",
+    "pos": "名",
+    "english": "back; behind; after; later; offspring"
+  },
+  {
+    "id": 82,
+    "word": "会1",
+    "pinyin": "huì",
+    "pos": "动",
+    "english": "Meeting 1"
+  },
+  {
+    "id": 83,
+    "word": "火车",
+    "pinyin": "huǒchē",
+    "pos": "名",
+    "english": "train"
+  },
+  {
+    "id": 84,
+    "word": "鸡蛋",
+    "pinyin": "jīdàn",
+    "pos": "名",
+    "english": "egg"
+  },
+  {
+    "id": 85,
+    "word": "几",
+    "pinyin": "jǐ",
+    "pos": "代、数",
+    "english": "how many; a few; almost"
+  },
+  {
+    "id": 87,
+    "word": "家人",
+    "pinyin": "jiārén",
+    "pos": "名",
+    "english": "family members"
+  },
+  {
+    "id": 88,
+    "word": "见",
+    "pinyin": "jiàn",
+    "pos": "动",
+    "english": "see; meet; appear; opinion"
+  },
+  {
+    "id": 89,
+    "word": "件",
+    "pinyin": "jiàn",
+    "pos": "量",
+    "english": "item; piece (classifier)"
+  },
+  {
+    "id": 90,
+    "word": "饺子",
+    "pinyin": "jiǎozi",
+    "pos": "名",
+    "english": "dumpling"
+  },
+  {
+    "id": 92,
+    "word": "姐姐",
+    "pinyin": "jiějie",
+    "pos": "名",
+    "english": "older sister"
+  },
+  {
+    "id": 93,
+    "word": "今年",
+    "pinyin": "jīnnián",
+    "pos": "名",
+    "english": "this year"
+  },
+  {
+    "id": 94,
+    "word": "今天",
+    "pinyin": "jīntiān",
+    "pos": "名",
+    "english": "today"
+  },
+  {
+    "id": 95,
+    "word": "九",
+    "pinyin": "jiǔ",
+    "pos": "数",
+    "english": "nine"
+  },
+  {
+    "id": 96,
+    "word": "觉得",
+    "pinyin": "juéde",
+    "pos": "动",
+    "english": "feel; think"
+  },
+  {
+    "id": 97,
+    "word": "开",
+    "pinyin": "kāi",
+    "pos": "动",
+    "english": "open; start; drive; operate"
+  },
+  {
+    "id": 98,
+    "word": "开车",
+    "pinyin": "kāichē",
+    "pos": "动",
+    "english": "to drive"
+  },
+  {
+    "id": 99,
+    "word": "看",
+    "pinyin": "kàn",
+    "pos": "动",
+    "english": "look at; see; watch; visit; depend on; take care of"
+  },
+  {
+    "id": 100,
+    "word": "看病",
+    "pinyin": "kànbìng",
+    "pos": "动",
+    "english": "to see a doctor"
+  },
+  {
+    "id": 101,
+    "word": "看见",
+    "pinyin": "kànjiàn",
+    "pos": "动",
+    "english": "see; catch sight of"
+  },
+  {
+    "id": 102,
+    "word": "可以",
+    "pinyin": "kěyǐ",
+    "pos": "动、形",
+    "english": "can; may; OK"
+  },
+  {
+    "id": 103,
+    "word": "课",
+    "pinyin": "kè",
+    "pos": "名",
+    "english": "class; course; lesson"
+  },
+  {
+    "id": 104,
+    "word": "口",
+    "pinyin": "kǒu",
+    "pos": "名、量",
+    "english": "mouth; opening; classifier for people/families"
+  },
+  {
+    "id": 105,
+    "word": "块",
+    "pinyin": "kuài",
+    "pos": "量",
+    "english": "piece; lump; yuan (currency); classifier"
+  },
+  {
+    "id": 106,
+    "word": "来",
+    "pinyin": "lái",
+    "pos": "动",
+    "english": "come; future (particle); about to"
+  },
+  {
+    "id": 107,
+    "word": "老师",
+    "pinyin": "lǎoshī",
+    "pos": "名",
+    "english": "teacher"
+  },
+  {
+    "id": 108,
+    "word": "了",
+    "pinyin": "le",
+    "pos": "助",
+    "english": "(particle for completed action or change of state)"
+  },
+  {
+    "id": 109,
+    "word": "冷",
+    "pinyin": "lěng",
+    "pos": "形",
+    "english": "cold; unenthusiastic; lonely"
+  },
+  {
+    "id": 110,
+    "word": "里",
+    "pinyin": "lǐ",
+    "pos": "名",
+    "english": "inside; interior; mile; village"
+  },
+  {
+    "id": 111,
+    "word": "两1",
+    "pinyin": "liǎng",
+    "pos": "数",
+    "english": "Two 1"
+  },
+  {
+    "id": 112,
+    "word": "零",
+    "pinyin": "líng",
+    "pos": "数",
+    "english": "zero; fragmentary; nil"
+  },
+  {
+    "id": 113,
+    "word": "六",
+    "pinyin": "liù",
+    "pos": "数",
+    "english": "six"
+  },
+  {
+    "id": 114,
+    "word": "妈妈",
+    "pinyin": "māma",
+    "pos": "名",
+    "english": "mom; mother"
+  },
+  {
+    "id": 115,
+    "word": "吗",
+    "pinyin": "ma",
+    "pos": "助",
+    "english": "(question particle)"
+  },
+  {
+    "id": 116,
+    "word": "买",
+    "pinyin": "mǎi",
+    "pos": "动",
+    "english": "buy; purchase"
+  },
+  {
+    "id": 117,
+    "word": "卖",
+    "pinyin": "mài",
+    "pos": "动",
+    "english": "sell"
+  },
+  {
+    "id": 118,
+    "word": "忙",
+    "pinyin": "máng",
+    "pos": "形、动",
+    "english": "busy"
+  },
+  {
+    "id": 119,
+    "word": "猫",
+    "pinyin": "māo",
+    "pos": "名",
+    "english": "cat"
+  },
+  {
+    "id": 120,
+    "word": "没关系",
+    "pinyin": "méi",
+    "pos": "guānxi",
+    "english": "it doesn't matter; never mind"
+  },
+  {
+    "id": 121,
+    "word": "没事",
+    "pinyin": "méishì",
+    "pos": "动",
+    "english": "it's okay; no problem"
+  },
+  {
+    "id": 122,
+    "word": "没有",
+    "pinyin": "méiyǒu",
+    "pos": "动、副",
+    "english": "not have; didn't; there isn't/aren't"
+  },
+  {
+    "id": 123,
+    "word": "妹妹",
+    "pinyin": "mèimei",
+    "pos": "名",
+    "english": "younger sister"
+  },
+  {
+    "id": 124,
+    "word": "们",
+    "pinyin": "men",
+    "pos": "后缀",
+    "english": "(plural suffix for pronouns/nouns)"
+  },
+  {
+    "id": 125,
+    "word": "米饭",
+    "pinyin": "mǐfàn",
+    "pos": "名",
+    "english": "rice (cooked)"
+  },
+  {
+    "id": 126,
+    "word": "面包",
+    "pinyin": "miànbāo",
+    "pos": "名",
+    "english": "bread"
+  },
+  {
+    "id": 127,
+    "word": "面条儿",
+    "pinyin": "miàntiáor",
+    "pos": "名",
+    "english": "noodles"
+  },
+  {
+    "id": 128,
+    "word": "明年",
+    "pinyin": "míngnián",
+    "pos": "名",
+    "english": "next year"
+  },
+  {
+    "id": 129,
+    "word": "明天",
+    "pinyin": "míngtiān",
+    "pos": "名",
+    "english": "tomorrow"
+  },
+  {
+    "id": 130,
+    "word": "名字",
+    "pinyin": "míngzi",
+    "pos": "名",
+    "english": "name"
+  },
+  {
+    "id": 131,
+    "word": "哪",
+    "pinyin": "nǎ",
+    "pos": "代",
+    "english": "which; where (interrogative)"
+  },
+  {
+    "id": 132,
+    "word": "哪个",
+    "pinyin": "nǎge",
+    "pos": "代",
+    "english": "which one"
+  },
+  {
+    "id": 133,
+    "word": "哪里",
+    "pinyin": "nǎlǐ",
+    "pos": "代",
+    "english": "where"
+  },
+  {
+    "id": 134,
+    "word": "哪儿",
+    "pinyin": "nǎr",
+    "pos": "代",
+    "english": "where"
+  },
+  {
+    "id": 135,
+    "word": "哪些",
+    "pinyin": "nǎxiē",
+    "pos": "代",
+    "english": "which ones"
+  },
+  {
+    "id": 137,
+    "word": "那边",
+    "pinyin": "nàbiān",
+    "pos": "代",
+    "english": "over there"
+  },
+  {
+    "id": 138,
+    "word": "那个",
+    "pinyin": "nàge",
+    "pos": "代",
+    "english": "that one"
+  },
+  {
+    "id": 139,
+    "word": "那里",
+    "pinyin": "nàlǐ",
+    "pos": "代",
+    "english": "there"
+  },
+  {
+    "id": 140,
+    "word": "那儿",
+    "pinyin": "nàr",
+    "pos": "代",
+    "english": "there"
+  },
+  {
+    "id": 141,
+    "word": "那些",
+    "pinyin": "nàxiē",
+    "pos": "代",
+    "english": "those"
+  },
+  {
+    "id": 142,
+    "word": "男",
+    "pinyin": "nán",
+    "pos": "形",
+    "english": "male; man; son"
+  },
+  {
+    "id": 143,
+    "word": "男朋友",
+    "pinyin": "nánpéngyou",
+    "pos": "名",
+    "english": "boyfriend"
+  },
+  {
+    "id": 144,
+    "word": "呢",
+    "pinyin": "ne",
+    "pos": "助",
+    "english": "(question particle); (particle for topic continuation)"
+  },
+  {
+    "id": 145,
+    "word": "能",
+    "pinyin": "néng",
+    "pos": "动",
+    "english": "can; able to; capability; energy"
+  },
+  {
+    "id": 146,
+    "word": "你",
+    "pinyin": "nǐ",
+    "pos": "代",
+    "english": "you"
+  },
+  {
+    "id": 147,
+    "word": "你好",
+    "pinyin": "nǐ",
+    "pos": "hǎo",
+    "english": "hello; hi"
+  },
+  {
+    "id": 148,
+    "word": "你们",
+    "pinyin": "nǐmen",
+    "pos": "代",
+    "english": "you (plural)"
+  },
+  {
+    "id": 149,
+    "word": "年",
+    "pinyin": "nián",
+    "pos": "名、量",
+    "english": "year; age; annual"
+  },
+  {
+    "id": 150,
+    "word": "您",
+    "pinyin": "nín",
+    "pos": "代",
+    "english": "you (polite form)"
+  },
+  {
+    "id": 151,
+    "word": "牛奶",
+    "pinyin": "niúnǎi",
+    "pos": "名",
+    "english": "milk"
+  },
+  {
+    "id": 152,
+    "word": "女",
+    "pinyin": "nǚ",
+    "pos": "形",
+    "english": "female; woman; daughter"
+  },
+  {
+    "id": 153,
+    "word": "女儿",
+    "pinyin": "nǚ’ér",
+    "pos": "名",
+    "english": "daughter"
+  },
+  {
+    "id": 154,
+    "word": "女朋友",
+    "pinyin": "nǚpéngyou",
+    "pos": "名",
+    "english": "girlfriend"
+  },
+  {
+    "id": 155,
+    "word": "女士",
+    "pinyin": "nǚshì",
+    "pos": "名",
+    "english": "lady; Ms."
+  },
+  {
+    "id": 156,
+    "word": "朋友",
+    "pinyin": "péngyou",
+    "pos": "名",
+    "english": "friend"
+  },
+  {
+    "id": 157,
+    "word": "便宜",
+    "pinyin": "piányi",
+    "pos": "形",
+    "english": "cheap; inexpensive"
+  },
+  {
+    "id": 158,
+    "word": "漂亮",
+    "pinyin": "piàoliang",
+    "pos": "形",
+    "english": "beautiful; pretty"
+  },
+  {
+    "id": 159,
+    "word": "苹果",
+    "pinyin": "píngguǒ",
+    "pos": "名",
+    "english": "apple"
+  },
+  {
+    "id": 160,
+    "word": "七",
+    "pinyin": "qī",
+    "pos": "数",
+    "english": "seven"
+  },
+  {
+    "id": 161,
+    "word": "起床",
+    "pinyin": "qǐchuáng",
+    "pos": "动",
+    "english": "get up; wake up"
+  },
+  {
+    "id": 162,
+    "word": "千",
+    "pinyin": "qiān",
+    "pos": "数",
+    "english": "thousand"
+  },
+  {
+    "id": 163,
+    "word": "前",
+    "pinyin": "qián",
+    "pos": "名",
+    "english": "front; before; ago; previous"
+  },
+  {
+    "id": 164,
+    "word": "钱",
+    "pinyin": "qián",
+    "pos": "名",
+    "english": "money"
+  },
+  {
+    "id": 165,
+    "word": "请",
+    "pinyin": "qǐng",
+    "pos": "动",
+    "english": "please; invite; ask"
+  },
+  {
+    "id": 166,
+    "word": "请问",
+    "pinyin": "qǐngwèn",
+    "pos": "动",
+    "english": "may I ask; excuse me"
+  },
+  {
+    "id": 167,
+    "word": "去",
+    "pinyin": "qù",
+    "pos": "动",
+    "english": "go; remove; past (year)"
+  },
+  {
+    "id": 168,
+    "word": "去年",
+    "pinyin": "qùnián",
+    "pos": "名",
+    "english": "last year"
+  },
+  {
+    "id": 169,
+    "word": "热",
+    "pinyin": "rè",
+    "pos": "形",
+    "english": "hot; heat; feverish; warm up; popular"
+  },
+  {
+    "id": 170,
+    "word": "人",
+    "pinyin": "rén",
+    "pos": "名",
+    "english": "person; people; human; others"
+  },
+  {
+    "id": 171,
+    "word": "认识",
+    "pinyin": "rènshi",
+    "pos": "动",
+    "english": "to know; recognize"
+  },
+  {
+    "id": 173,
+    "word": "三",
+    "pinyin": "sān",
+    "pos": "数",
+    "english": "three"
+  },
+  {
+    "id": 174,
+    "word": "商店",
+    "pinyin": "shāngdiàn",
+    "pos": "名",
+    "english": "shop; store"
+  },
+  {
+    "id": 175,
+    "word": "上",
+    "pinyin": "shàng",
+    "pos": "名、动",
+    "english": "up; on; above; to attend"
+  },
+  {
+    "id": 176,
+    "word": "上班",
+    "pinyin": "shàngbān",
+    "pos": "动",
+    "english": "to go to work"
+  },
+  {
+    "id": 177,
+    "word": "上课",
+    "pinyin": "shàngkè",
+    "pos": "动",
+    "english": "to attend class"
+  },
+  {
+    "id": 178,
+    "word": "上午",
+    "pinyin": "shàngwǔ",
+    "pos": "名",
+    "english": "morning; forenoon"
+  },
+  {
+    "id": 179,
+    "word": "上学",
+    "pinyin": "shàngxué",
+    "pos": "动",
+    "english": "to go to school"
+  },
+  {
+    "id": 180,
+    "word": "少",
+    "pinyin": "shǎo",
+    "pos": "形、动",
+    "english": "few; little; lack"
+  },
+  {
+    "id": 181,
+    "word": "谁",
+    "pinyin": "shéi/shuí",
+    "pos": "代",
+    "english": "who"
+  },
+  {
+    "id": 182,
+    "word": "什么",
+    "pinyin": "shénme",
+    "pos": "代",
+    "english": "what"
+  },
+  {
+    "id": 183,
+    "word": "生病",
+    "pinyin": "shēngbìng",
+    "pos": "动",
+    "english": "to fall ill; sick"
+  },
+  {
+    "id": 184,
+    "word": "十",
+    "pinyin": "shí",
+    "pos": "数",
+    "english": "ten"
+  },
+  {
+    "id": 185,
+    "word": "时候",
+    "pinyin": "shíhou",
+    "pos": "名",
+    "english": "time; when"
+  },
+  {
+    "id": 186,
+    "word": "时间",
+    "pinyin": "shíjiān",
+    "pos": "名",
+    "english": "time"
+  },
+  {
+    "id": 187,
+    "word": "事",
+    "pinyin": "shì",
+    "pos": "名",
+    "english": "matter; thing; affair; job; trouble; accident"
+  },
+  {
+    "id": 188,
+    "word": "是",
+    "pinyin": "shì",
+    "pos": "动",
+    "english": "be; yes; correct; right"
+  },
+  {
+    "id": 189,
+    "word": "手机",
+    "pinyin": "shǒujī",
+    "pos": "名",
+    "english": "mobile phone; cell phone"
+  },
+  {
+    "id": 190,
+    "word": "书",
+    "pinyin": "shū",
+    "pos": "名",
+    "english": "book"
+  },
+  {
+    "id": 191,
+    "word": "书店",
+    "pinyin": "shūdiàn",
+    "pos": "名",
+    "english": "bookstore"
+  },
+  {
+    "id": 192,
+    "word": "水",
+    "pinyin": "shuǐ",
+    "pos": "名",
+    "english": "water; river; liquid; extra charges"
+  },
+  {
+    "id": 193,
+    "word": "水果",
+    "pinyin": "shuǐguǒ",
+    "pos": "名",
+    "english": "fruit"
+  },
+  {
+    "id": 194,
+    "word": "睡",
+    "pinyin": "shuì",
+    "pos": "动",
+    "english": "sleep"
+  },
+  {
+    "id": 195,
+    "word": "睡觉",
+    "pinyin": "shuìjiào",
+    "pos": "动",
+    "english": "sleep"
+  },
+  {
+    "id": 196,
+    "word": "说",
+    "pinyin": "shuō",
+    "pos": "动",
+    "english": "speak; say; explain; scold; it is said"
+  },
+  {
+    "id": 197,
+    "word": "说话",
+    "pinyin": "shuōhuà",
+    "pos": "动",
+    "english": "to speak; talk"
+  },
+  {
+    "id": 198,
+    "word": "四",
+    "pinyin": "sì",
+    "pos": "数",
+    "english": "four"
+  },
+  {
+    "id": 199,
+    "word": "岁",
+    "pinyin": "suì",
+    "pos": "量",
+    "english": "years old (age)"
+  },
+  {
+    "id": 200,
+    "word": "他",
+    "pinyin": "tā",
+    "pos": "代",
+    "english": "he; him"
+  },
+  {
+    "id": 201,
+    "word": "它",
+    "pinyin": "tā",
+    "pos": "代",
+    "english": "it"
+  },
+  {
+    "id": 202,
+    "word": "她",
+    "pinyin": "tā",
+    "pos": "代",
+    "english": "she; her"
+  },
+  {
+    "id": 203,
+    "word": "他们",
+    "pinyin": "tāmen",
+    "pos": "代",
+    "english": "they (male/mixed)"
+  },
+  {
+    "id": 204,
+    "word": "它们",
+    "pinyin": "tāmen",
+    "pos": "代",
+    "english": "they (things/animals)"
+  },
+  {
+    "id": 205,
+    "word": "她们",
+    "pinyin": "tāmen",
+    "pos": "代",
+    "english": "they (female)"
+  },
+  {
+    "id": 206,
+    "word": "太",
+    "pinyin": "tài",
+    "pos": "副",
+    "english": "too; very; most"
+  },
+  {
+    "id": 207,
+    "word": "天",
+    "pinyin": "tiān",
+    "pos": "名、量",
+    "english": "day; sky; heaven"
+  },
+  {
+    "id": 208,
+    "word": "天气",
+    "pinyin": "tiānqì",
+    "pos": "名",
+    "english": "weather"
+  },
+  {
+    "id": 209,
+    "word": "听",
+    "pinyin": "tīng",
+    "pos": "动",
+    "english": "listen; hear; obey; allow; manage"
+  },
+  {
+    "id": 210,
+    "word": "听见",
+    "pinyin": "tīngjiàn",
+    "pos": "动",
+    "english": "to hear; perceive by ear"
+  },
+  {
+    "id": 211,
+    "word": "同学",
+    "pinyin": "tóngxué",
+    "pos": "名",
+    "english": "classmate; schoolmate"
+  },
+  {
+    "id": 212,
+    "word": "外",
+    "pinyin": "wài",
+    "pos": "名",
+    "english": "outside; external; foreign; in addition to"
+  },
+  {
+    "id": 213,
+    "word": "外边",
+    "pinyin": "wàibian",
+    "pos": "名",
+    "english": "outside"
+  },
+  {
+    "id": 214,
+    "word": "玩",
+    "pinyin": "wán",
+    "pos": "动",
+    "english": "play; amuse oneself; toy with; neglect"
+  },
+  {
+    "id": 215,
+    "word": "晚",
+    "pinyin": "wǎn",
+    "pos": "形",
+    "english": "late; evening; night"
+  },
+  {
+    "id": 216,
+    "word": "晚饭",
+    "pinyin": "wǎnfàn",
+    "pos": "名",
+    "english": "dinner"
+  },
+  {
+    "id": 217,
+    "word": "晚上",
+    "pinyin": "wǎnshang",
+    "pos": "名",
+    "english": "evening; night"
+  },
+  {
+    "id": 218,
+    "word": "喂1",
+    "pinyin": "wèi",
+    "pos": "叹",
+    "english": "Hey 1"
+  },
+  {
+    "id": 219,
+    "word": "问",
+    "pinyin": "wèn",
+    "pos": "动",
+    "english": "ask; inquire; question"
+  },
+  {
+    "id": 220,
+    "word": "问题",
+    "pinyin": "wèntí",
+    "pos": "名",
+    "english": "question; problem; issue"
+  },
+  {
+    "id": 221,
+    "word": "我",
+    "pinyin": "wǒ",
+    "pos": "代",
+    "english": "I; me; my; we (archaic)"
+  },
+  {
+    "id": 222,
+    "word": "我们",
+    "pinyin": "wǒmen",
+    "pos": "代",
+    "english": "we; us"
+  },
+  {
+    "id": 223,
+    "word": "五",
+    "pinyin": "wǔ",
+    "pos": "数",
+    "english": "five"
+  },
+  {
+    "id": 224,
+    "word": "午饭",
+    "pinyin": "wǔfàn",
+    "pos": "名",
+    "english": "lunch"
+  },
+  {
+    "id": 225,
+    "word": "喜欢",
+    "pinyin": "xǐhuan",
+    "pos": "动",
+    "english": "to like; be fond of"
+  },
+  {
+    "id": 226,
+    "word": "下",
+    "pinyin": "xià",
+    "pos": "名、动、量",
+    "english": "down; below; next; under; go down; unload; give birth"
+  },
+  {
+    "id": 227,
+    "word": "下雨",
+    "pinyin": "xià",
+    "pos": "yǔ",
+    "english": "to rain"
+  },
+  {
+    "id": 228,
+    "word": "下班",
+    "pinyin": "xiàbān",
+    "pos": "动",
+    "english": "get off work"
+  },
+  {
+    "id": 229,
+    "word": "下课",
+    "pinyin": "xiàkè",
+    "pos": "动",
+    "english": "class is over; finish class"
+  },
+  {
+    "id": 230,
+    "word": "下午",
+    "pinyin": "xiàwǔ",
+    "pos": "名",
+    "english": "afternoon"
+  },
+  {
+    "id": 231,
+    "word": "先生",
+    "pinyin": "xiānsheng",
+    "pos": "名",
+    "english": "Mr.; sir; gentleman"
+  },
+  {
+    "id": 232,
+    "word": "现在",
+    "pinyin": "xiànzài",
+    "pos": "名",
+    "english": "now; current"
+  },
+  {
+    "id": 233,
+    "word": "想",
+    "pinyin": "xiǎng",
+    "pos": "动",
+    "english": "think; want; miss; consider"
+  },
+  {
+    "id": 234,
+    "word": "小",
+    "pinyin": "xiǎo",
+    "pos": "形、前缀",
+    "english": "small; little; young; slightly"
+  },
+  {
+    "id": 235,
+    "word": "小朋友",
+    "pinyin": "xiǎopéngyǒu",
+    "pos": "名",
+    "english": "child; kid"
+  },
+  {
+    "id": 236,
+    "word": "小时",
+    "pinyin": "xiǎoshí",
+    "pos": "名",
+    "english": "hour"
+  },
+  {
+    "id": 237,
+    "word": "小学",
+    "pinyin": "xiǎoxué",
+    "pos": "名",
+    "english": "primary school"
+  },
+  {
+    "id": 238,
+    "word": "小学生",
+    "pinyin": "xiǎoxuéshēng",
+    "pos": "名",
+    "english": "primary school student"
+  },
+  {
+    "id": 239,
+    "word": "些",
+    "pinyin": "xiē",
+    "pos": "量",
+    "english": "some; a few; somewhat"
+  },
+  {
+    "id": 240,
+    "word": "写",
+    "pinyin": "xiě",
+    "pos": "动",
+    "english": "write; compose; depict"
+  },
+  {
+    "id": 241,
+    "word": "谢谢",
+    "pinyin": "xièxie",
+    "pos": "动",
+    "english": "thank you"
+  },
+  {
+    "id": 242,
+    "word": "新",
+    "pinyin": "xīn",
+    "pos": "形",
+    "english": "new; fresh"
+  },
+  {
+    "id": 243,
+    "word": "星期",
+    "pinyin": "xīngqī",
+    "pos": "名",
+    "english": "week"
+  },
+  {
+    "id": 244,
+    "word": "星期日",
+    "pinyin": "xīngqīrì",
+    "pos": "名",
+    "english": "Sunday"
+  },
+  {
+    "id": 245,
+    "word": "星期天",
+    "pinyin": "xīngqītiān",
+    "pos": "名",
+    "english": "Sunday"
+  },
+  {
+    "id": 246,
+    "word": "休息",
+    "pinyin": "xiūxi",
+    "pos": "动",
+    "english": "to rest; have a break"
+  },
+  {
+    "id": 247,
+    "word": "学",
+    "pinyin": "xué",
+    "pos": "动",
+    "english": "to learn; study"
+  },
+  {
+    "id": 248,
+    "word": "学生",
+    "pinyin": "xuéshēng",
+    "pos": "名",
+    "english": "student"
+  },
+  {
+    "id": 249,
+    "word": "学习",
+    "pinyin": "xuéxí",
+    "pos": "动",
+    "english": "to study; learn"
+  },
+  {
+    "id": 250,
+    "word": "学校",
+    "pinyin": "xuéxiào",
+    "pos": "名",
+    "english": "school"
+  },
+  {
+    "id": 251,
+    "word": "雪",
+    "pinyin": "xuě",
+    "pos": "名",
+    "english": "snow; wipe out; resent"
+  },
+  {
+    "id": 252,
+    "word": "要",
+    "pinyin": "yào",
+    "pos": "动",
+    "english": "want; need; ask for; will; important; summary"
+  },
+  {
+    "id": 253,
+    "word": "也",
+    "pinyin": "yě",
+    "pos": "副",
+    "english": "also; too; either"
+  },
+  {
+    "id": 254,
+    "word": "一",
+    "pinyin": "yī",
+    "pos": "数",
+    "english": "one; a; once; whole; same; either"
+  },
+  {
+    "id": 255,
+    "word": "衣服",
+    "pinyin": "yīfu",
+    "pos": "名",
+    "english": "clothes; clothing"
+  },
+  {
+    "id": 256,
+    "word": "医生",
+    "pinyin": "yīshēng",
+    "pos": "名",
+    "english": "doctor"
+  },
+  {
+    "id": 257,
+    "word": "医院",
+    "pinyin": "yīyuàn",
+    "pos": "名",
+    "english": "hospital"
+  },
+  {
+    "id": 258,
+    "word": "一半",
+    "pinyin": "yíbàn",
+    "pos": "数",
+    "english": "half"
+  },
+  {
+    "id": 260,
+    "word": "椅子",
+    "pinyin": "yǐzi",
+    "pos": "名",
+    "english": "chair"
+  },
+  {
+    "id": 261,
+    "word": "一点儿",
+    "pinyin": "yìdiǎnr",
+    "pos": "数量",
+    "english": "a little; a few"
+  },
+  {
+    "id": 262,
+    "word": "一些",
+    "pinyin": "yìxiē",
+    "pos": "数量",
+    "english": "some"
+  },
+  {
+    "id": 263,
+    "word": "有",
+    "pinyin": "yǒu",
+    "pos": "动",
+    "english": "have; there is/are; exist"
+  },
+  {
+    "id": 264,
+    "word": "有的",
+    "pinyin": "yǒude",
+    "pos": "代",
+    "english": "some; certain"
+  },
+  {
+    "id": 265,
+    "word": "有点儿",
+    "pinyin": "yǒudiǎnr",
+    "pos": "副",
+    "english": "a little; somewhat"
+  },
+  {
+    "id": 267,
+    "word": "雨",
+    "pinyin": "yǔ",
+    "pos": "名",
+    "english": "rain; rainfall"
+  },
+  {
+    "id": 268,
+    "word": "元",
+    "pinyin": "yuán",
+    "pos": "量",
+    "english": "yuan (currency unit); first; fundamental; era; unit (measure)"
+  },
+  {
+    "id": 269,
+    "word": "月",
+    "pinyin": "yuè",
+    "pos": "名",
+    "english": "month; moon"
+  },
+  {
+    "id": 270,
+    "word": "再",
+    "pinyin": "zài",
+    "pos": "副",
+    "english": "again; once more"
+  },
+  {
+    "id": 271,
+    "word": "在",
+    "pinyin": "zài",
+    "pos": "动、介、副",
+    "english": "at; in; on (indicating location/action in progress)"
+  },
+  {
+    "id": 272,
+    "word": "再见",
+    "pinyin": "zàijiàn",
+    "pos": "动",
+    "english": "goodbye; see you later"
+  },
+  {
+    "id": 273,
+    "word": "早",
+    "pinyin": "zǎo",
+    "pos": "形",
+    "english": "early; morning; good morning"
+  },
+  {
+    "id": 274,
+    "word": "早饭",
+    "pinyin": "zǎofàn",
+    "pos": "名",
+    "english": "breakfast"
+  },
+  {
+    "id": 275,
+    "word": "早上",
+    "pinyin": "zǎoshang",
+    "pos": "名",
+    "english": "morning; early morning"
+  },
+  {
+    "id": 276,
+    "word": "怎么",
+    "pinyin": "zěnme",
+    "pos": "代",
+    "english": "how"
+  },
+  {
+    "id": 277,
+    "word": "怎么样",
+    "pinyin": "zěnmeyàng",
+    "pos": "代",
+    "english": "how about; what about"
+  },
+  {
+    "id": 278,
+    "word": "找",
+    "pinyin": "zhǎo",
+    "pos": "动",
+    "english": "look for; seek; give change"
+  },
+  {
+    "id": 279,
+    "word": "这",
+    "pinyin": "zhè",
+    "pos": "代",
+    "english": "this; these"
+  },
+  {
+    "id": 280,
+    "word": "这边",
+    "pinyin": "zhèbiān",
+    "pos": "代",
+    "english": "this side; here"
+  },
+  {
+    "id": 281,
+    "word": "这个",
+    "pinyin": "zhège",
+    "pos": "代",
+    "english": "this one"
+  },
+  {
+    "id": 282,
+    "word": "这里",
+    "pinyin": "zhèlǐ",
+    "pos": "代",
+    "english": "here"
+  },
+  {
+    "id": 283,
+    "word": "这儿",
+    "pinyin": "zhèr",
+    "pos": "代",
+    "english": "here"
+  },
+  {
+    "id": 284,
+    "word": "这些",
+    "pinyin": "zhèxiē",
+    "pos": "代",
+    "english": "these"
+  },
+  {
+    "id": 286,
+    "word": "正在",
+    "pinyin": "zhèngzài",
+    "pos": "副",
+    "english": "in progress; currently doing"
+  },
+  {
+    "id": 287,
+    "word": "只",
+    "pinyin": "zhī",
+    "pos": "量",
+    "english": "only; just; single; classifier (animals)"
+  },
+  {
+    "id": 288,
+    "word": "知道",
+    "pinyin": "zhīdào",
+    "pos": "动",
+    "english": "to know; realize"
+  },
+  {
+    "id": 289,
+    "word": "中国",
+    "pinyin": "Zhōngguó",
+    "pos": "名",
+    "english": "China"
+  },
+  {
+    "id": 290,
+    "word": "中文",
+    "pinyin": "Zhōngwén",
+    "pos": "名",
+    "english": "Chinese language"
+  },
+  {
+    "id": 291,
+    "word": "中午",
+    "pinyin": "zhōngwǔ",
+    "pos": "名",
+    "english": "noon; midday"
+  },
+  {
+    "id": 292,
+    "word": "中学",
+    "pinyin": "zhōngxué",
+    "pos": "名",
+    "english": "middle school; secondary school"
+  },
+  {
+    "id": 293,
+    "word": "中学生",
+    "pinyin": "zhōngxuéshēng",
+    "pos": "名",
+    "english": "middle school student"
+  },
+  {
+    "id": 294,
+    "word": "住",
+    "pinyin": "zhù",
+    "pos": "动",
+    "english": "live; stay; stop; firm"
+  },
+  {
+    "id": 295,
+    "word": "桌子",
+    "pinyin": "zhuōzi",
+    "pos": "名",
+    "english": "table; desk"
+  },
+  {
+    "id": 296,
+    "word": "字",
+    "pinyin": "zì",
+    "pos": "名",
+    "english": "character; word; script; letter"
+  },
+  {
+    "id": 297,
+    "word": "昨天",
+    "pinyin": "zuótiān",
+    "pos": "名",
+    "english": "yesterday"
+  },
+  {
+    "id": 298,
+    "word": "坐",
+    "pinyin": "zuò",
+    "pos": "动",
+    "english": "sit; take (transportation)"
+  },
+  {
+    "id": 299,
+    "word": "做",
+    "pinyin": "zuò",
+    "pos": "动",
+    "english": "do; make; act as; cook; write; play; be; become; work as"
+  },
+  {
+    "id": 300,
+    "word": "做饭",
+    "pinyin": "zuò",
+    "pos": "fàn",
+    "english": "to cook; prepare food"
+  }
+]

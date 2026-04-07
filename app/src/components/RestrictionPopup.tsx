@@ -17,6 +17,7 @@ import { toast } from "sonner";
 interface RestrictionPopupProps {
   isOpen: boolean;
   onClose: () => void;
+  feature?: string;
   restriction: {
     id: string;
     reason: string;

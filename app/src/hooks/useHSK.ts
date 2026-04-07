@@ -3,6 +3,30 @@ import { useAuth } from '@/contexts/AuthContext';
 import { hskApi } from '@/lib/api';
 import type { HSKLevel, HSKProgress } from '@/types/hsk';
 
+export interface HSKQuiz {
+  id: string;
+  level: HSKLevel;
+  questions: Array<{
+    id: string;
+    word_id: number;
+    word: string;
+    pinyin: string;
+    english: string;
+    question: string;
+    options: string[];
+    correct_answer: number;
+  }>;
+}
+
+export interface HSKQuizResult {
+  id: string;
+  quiz_id: string;
+  score: number;
+  total_questions: number;
+  correct_answers: number;
+  completed_at: string;
+}
+
 function getUserStorageKey(baseKey: string): string {
   const userId = localStorage.getItem('auth_user') ? JSON.parse(localStorage.getItem('auth_user')!).id : 'guest';
   return `${baseKey}_${userId}`;

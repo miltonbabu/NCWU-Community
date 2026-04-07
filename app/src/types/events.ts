@@ -14,6 +14,8 @@ export interface Event {
   is_active: number;
   interest_count?: number;
   user_interested?: boolean;
+  going_count?: number;
+  user_going?: boolean;
 }
 
 export interface EventInterest {

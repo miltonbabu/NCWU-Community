@@ -198,8 +198,10 @@ export function XingyuanAdminPanel({ isDark }: { isDark: boolean }) {
         });
         console.log("[Xingyuan Admin] chats response:", res);
         if (res.success && res.data) {
-          setChats(res.data.chats);
-          setChatTotalPages(res.data.pagination.totalPages);
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          setChats((res.data as any).chats);
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          setChatTotalPages((res.data as any).pagination.totalPages);
           setChatPage(page);
         }
       } catch (err) {

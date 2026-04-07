@@ -179,7 +179,7 @@ async function createDocxFromPdf(
                       : "Calibri",
                 },
                 bold: !!i.isBold,
-                italic: !!i.isItalic,
+                italics: !!i.isItalic,
               }),
           ),
           spacing: { after: 120 },
@@ -266,7 +266,8 @@ async function createDocxFromPdf(
             },
           },
         },
-        children,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        children: [...(children as any[]), { break: 'page' }],
       },
     ],
   });

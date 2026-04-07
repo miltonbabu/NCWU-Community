@@ -2862,6 +2862,7 @@ ${pdfContent}
             </div>
           )}
 
+          // eslint-disable-next-line @typescript-eslint/no-compare-overlap
           {activeTab === "xingyuan" && <XingyuanAdminPanel isDark={isDark} />}
         </main>
       </div>

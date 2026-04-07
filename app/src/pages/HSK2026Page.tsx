@@ -922,8 +922,10 @@ export default function HSK2026Page() {
 
           if (learnedRes.success && learnedRes.data) {
             console.log("Raw learned words data:", learnedRes.data);
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const learnedData = learnedRes.data as any[];
             const learnedIds = new Set<number>(
-              learnedRes.data.map((w: any) => {
+              learnedData.map((w: any) => {
                 console.log("Processing learned word:", w);
                 return w.word_id;
               }),
@@ -937,7 +939,7 @@ export default function HSK2026Page() {
               typeof firstId,
             );
             setLearnedWords(learnedIds);
-            const learnedData: HSKWord[] = learnedRes.data.map((w: any) => ({
+            const learnedWordsData: HSKWord[] = learnedData.map((w: any) => ({
               id: w.word_id,
               word: w.word,
               pinyin: w.pinyin,
@@ -954,12 +956,14 @@ export default function HSK2026Page() {
           }
 
           if (savedRes.success && savedRes.data) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const savedDataArr = savedRes.data as any[];
             const savedIds = new Set<number>(
-              savedRes.data.map((w: any) => w.word_id),
+              savedDataArr.map((w: any) => w.word_id),
             );
             console.log("Loaded saved IDs:", Array.from(savedIds));
             setSavedWords(savedIds);
-            const savedData: HSKWord[] = savedRes.data.map((w: any) => ({
+            const savedWordsData: HSKWord[] = savedDataArr.map((w: any) => ({
               id: w.word_id,
               word: w.word,
               pinyin: w.pinyin,
@@ -1045,12 +1049,15 @@ export default function HSK2026Page() {
 
     setIsGlobalSearching(true);
     try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const response = await hskApi.searchAllWords(
         globalSearchQuery,
         globalSearchLevel ? parseInt(globalSearchLevel) : undefined,
       );
-      if (response && response.length > 0) {
-        setGlobalSearchResults(response);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      if (response && (response as any).length > 0) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        setGlobalSearchResults(response as any);
       } else {
         setGlobalSearchResults([]);
       }
@@ -1067,7 +1074,8 @@ export default function HSK2026Page() {
     try {
       const response = await hskApi.getVocabulary(level);
       if (response.success && response.data) {
-        setVocabulary(response.data);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        setVocabulary(response.data as any);
       }
     } catch (error) {
       toast.error("Failed to load vocabulary");
@@ -1147,7 +1155,8 @@ export default function HSK2026Page() {
         if (response.success) {
           setLearnedWords((prev) => {
             const newSet = new Set(prev);
-            if (response.action === "added") {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            if ((response as any).action === "added") {
               newSet.add(wordId);
               toast.success("Word marked as learned!");
               // Add to learnedWordsData
@@ -1224,7 +1233,8 @@ export default function HSK2026Page() {
         if (response.success) {
           setSavedWords((prev) => {
             const newSet = new Set(prev);
-            if (response.action === "added") {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            if ((response as any).action === "added") {
               newSet.add(wordId);
               toast.success("Word saved to favorites!");
               // Add to savedWordsData
@@ -1554,7 +1564,8 @@ export default function HSK2026Page() {
                     );
                     console.log(
                       "Current vocabulary length:",
-                      vocabulary.length,
+                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                      (vocabulary as any)?.length || 0,
                     );
 
                     // Always load all vocabulary to ensure we have all words
@@ -1563,7 +1574,8 @@ export default function HSK2026Page() {
                       const response = await hskApi.getVocabulary("all");
                       console.log("Loaded vocabulary:", response);
                       if (response.success && response.data) {
-                        setVocabulary(response.data);
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        setVocabulary(response.data as any);
                         console.log(
                           "Vocabulary set, length:",
                           response.data.length,
@@ -1598,10 +1610,9 @@ export default function HSK2026Page() {
                     );
                     console.log(
                       "Current vocabulary length:",
-                      vocabulary.length,
+                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                      (vocabulary as any)?.length || 0,
                     );
-
-                    // Always load all vocabulary to ensure we have all words
                     setIsLoading(true);
                     try {
                       const response = await hskApi.getVocabulary("all");
@@ -1651,7 +1662,7 @@ export default function HSK2026Page() {
               </Button>
 
               <div className="mb-6">
-              <h2
+                <h2
                   className={`text-lg font-semibold mb-4 ${
                     isDark ? "text-white" : "text-slate-900"
                   }`}
@@ -2685,7 +2696,9 @@ export default function HSK2026Page() {
                 : "bg-white border border-slate-200"
             } rounded-2xl shadow-2xl`}
           >
-            <div className={`p-6 border-b ${isDark ? "border-slate-700" : "border-slate-200"}`}>
+            <div
+              className={`p-6 border-b ${isDark ? "border-slate-700" : "border-slate-200"}`}
+            >
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-3">
                   <div className="p-2 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600">
@@ -2699,7 +2712,9 @@ export default function HSK2026Page() {
                     >
                       Global Search
                     </h2>
-                    <p className={`text-sm ${isDark ? "text-slate-400" : "text-slate-500"}`}>
+                    <p
+                      className={`text-sm ${isDark ? "text-slate-400" : "text-slate-500"}`}
+                    >
                       Search across all HSK levels 1-9
                     </p>
                   </div>

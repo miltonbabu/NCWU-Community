@@ -1,4 +1,3 @@
-import initSqlJs, { Database } from "sql.js";
 import path from "path";
 import fs from "fs";
 
@@ -7,9 +6,10 @@ const __dirname = path.resolve();
 const dataDir = path.join(__dirname, "data");
 const dbPath = path.join(dataDir, "ncwu_auth.db");
 
-let db: Database;
+let db: any = null;
 
 export async function initializeDatabase() {
+  const { default: initSqlJs } = await import("sql.js");
   const SQL = await initSqlJs();
 
   if (!fs.existsSync(dataDir)) {

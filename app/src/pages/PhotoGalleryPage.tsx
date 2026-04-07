@@ -53,11 +53,15 @@ import { formatDistanceToNow } from "date-fns";
 import { Link, useSearchParams } from "react-router-dom";
 import { getImageAspectRatio, getMasonryHeightClass } from "@/lib/utils";
 
-interface GalleryPost extends Post {
+interface GalleryPost extends Omit<Post, "user_id"> {
   author_name?: string;
   author_avatar?: string | null;
   author_department?: string | null;
   user_id?: string;
+  likes_count?: number;
+  comments_count?: number;
+  views_count?: number;
+  comments?: { author_name?: string; author_avatar?: string | null; content: string }[];
 }
 
 interface ImagePreview {

@@ -63,7 +63,8 @@ export function MarkdownRenderer({ content }: MarkdownRendererProps) {
 function renderMath(latex: string, display: boolean): string {
   try {
     return katex.renderToString(latex, {
-      display,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      display: (display as any) || false,
       throwOnError: false,
       strict: false,
       trust: true,

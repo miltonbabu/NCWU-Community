@@ -28,7 +28,7 @@ export async function processPDF(file: File): Promise<ProcessedDocument> {
     canvas.height = viewport.height;
     const ctx = canvas.getContext("2d")!;
 
-    await page.render({ canvasContext: ctx, viewport }).promise;
+    await page.render({ canvas: ctx, viewport }).promise;
     images.push(canvas.toDataURL("image/jpeg", 0.85));
   }
 

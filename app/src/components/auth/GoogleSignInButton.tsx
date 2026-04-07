@@ -4,11 +4,13 @@ import { useTranslation } from "react-i18next";
 interface GoogleSignInButtonProps {
   onClick: () => Promise<void>;
   disabled?: boolean;
+  isLoading?: boolean;
 }
 
 export function GoogleSignInButton({
   onClick,
   disabled = false,
+  isLoading: externalIsLoading,
 }: GoogleSignInButtonProps) {
   const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
@@ -26,10 +28,10 @@ export function GoogleSignInButton({
     <button
       type="button"
       onClick={handleClick}
-      disabled={disabled || isLoading}
+      disabled={disabled || isLoading || externalIsLoading}
       className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
     >
-      {isLoading ? (
+      {isLoading || externalIsLoading ? (
         <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
           <circle
             className="opacity-25"

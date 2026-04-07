@@ -1,0 +1,3355 @@
+[
+  {
+    "id": 501,
+    "word": "阿姨",
+    "pinyin": "āyí",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 502,
+    "word": "矮",
+    "pinyin": "ǎi",
+    "pos": "形",
+    "english": ""
+  },
+  {
+    "id": 503,
+    "word": "爱人",
+    "pinyin": "àiren",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 504,
+    "word": "安静",
+    "pinyin": "ānjìng",
+    "pos": "形",
+    "english": ""
+  },
+  {
+    "id": 505,
+    "word": "安全",
+    "pinyin": "ānquán",
+    "pos": "形",
+    "english": ""
+  },
+  {
+    "id": 506,
+    "word": "把",
+    "pinyin": "bǎ",
+    "pos": "量、介",
+    "english": "ba-construction (disposal marker)"
+  },
+  {
+    "id": 507,
+    "word": "搬",
+    "pinyin": "bān",
+    "pos": "动",
+    "english": "move; carry"
+  },
+  {
+    "id": 508,
+    "word": "班级",
+    "pinyin": "bānjí",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 509,
+    "word": "搬家",
+    "pinyin": "bānjiā",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 510,
+    "word": "办",
+    "pinyin": "bàn",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 511,
+    "word": "办法",
+    "pinyin": "bànfǎ",
+    "pos": "名",
+    "english": "method; way; measure"
+  },
+  {
+    "id": 512,
+    "word": "办公室",
+    "pinyin": "bàngōngshì",
+    "pos": "名",
+    "english": "office"
+  },
+  {
+    "id": 513,
+    "word": "半天",
+    "pinyin": "bàntiān",
+    "pos": "数量",
+    "english": ""
+  },
+  {
+    "id": 514,
+    "word": "帮助",
+    "pinyin": "bāngzhù",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 515,
+    "word": "饱",
+    "pinyin": "bǎo",
+    "pos": "形",
+    "english": ""
+  },
+  {
+    "id": 516,
+    "word": "报纸",
+    "pinyin": "bàozhǐ",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 517,
+    "word": "北",
+    "pinyin": "běi",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 518,
+    "word": "北方",
+    "pinyin": "běifāng",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 519,
+    "word": "被",
+    "pinyin": "bèi",
+    "pos": "介",
+    "english": "by (passive marker)"
+  },
+  {
+    "id": 520,
+    "word": "笔记",
+    "pinyin": "bǐjì",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 521,
+    "word": "比较",
+    "pinyin": "bǐjiào",
+    "pos": "动、介、副",
+    "english": "compare; relatively"
+  },
+  {
+    "id": 522,
+    "word": "笔记本",
+    "pinyin": "bǐjìběn",
+    "pos": "名",
+    "english": "notebook; laptop"
+  },
+  {
+    "id": 523,
+    "word": "比如",
+    "pinyin": "bǐrú",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 524,
+    "word": "比赛",
+    "pinyin": "bǐsài",
+    "pos": "动、名",
+    "english": ""
+  },
+  {
+    "id": 525,
+    "word": "必须",
+    "pinyin": "bìxū",
+    "pos": "副",
+    "english": "must; have to"
+  },
+  {
+    "id": 526,
+    "word": "变",
+    "pinyin": "biàn",
+    "pos": "动",
+    "english": "change; become"
+  },
+  {
+    "id": 527,
+    "word": "遍",
+    "pinyin": "biàn",
+    "pos": "量",
+    "english": "time (for actions); all over"
+  },
+  {
+    "id": 528,
+    "word": "变成",
+    "pinyin": "biànchéng",
+    "pos": "动",
+    "english": "become; turn into"
+  },
+  {
+    "id": 529,
+    "word": "变化",
+    "pinyin": "biànhuà",
+    "pos": "动、名",
+    "english": ""
+  },
+  {
+    "id": 530,
+    "word": "表演",
+    "pinyin": "biǎoyǎn",
+    "pos": "动",
+    "english": "perform; performance"
+  },
+  {
+    "id": 531,
+    "word": "别的",
+    "pinyin": "biéde",
+    "pos": "代",
+    "english": ""
+  },
+  {
+    "id": 532,
+    "word": "别人",
+    "pinyin": "biérén",
+    "pos": "代",
+    "english": ""
+  },
+  {
+    "id": 533,
+    "word": "宾馆",
+    "pinyin": "bīnguǎn",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 535,
+    "word": "冰激凌",
+    "pinyin": "bīngjīlíng",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 536,
+    "word": "冰箱",
+    "pinyin": "bīngxiāng",
+    "pos": "名",
+    "english": "refrigerator; fridge"
+  },
+  {
+    "id": 537,
+    "word": "病人",
+    "pinyin": "bìngrén",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 538,
+    "word": "不但",
+    "pinyin": "búdàn",
+    "pos": "连",
+    "english": "not only"
+  },
+  {
+    "id": 539,
+    "word": "不见",
+    "pinyin": "bújiàn",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 540,
+    "word": "不用",
+    "pinyin": "búyòng",
+    "pos": "副",
+    "english": ""
+  },
+  {
+    "id": 541,
+    "word": "不同",
+    "pinyin": "bù",
+    "pos": "tóng",
+    "english": "different; differ"
+  },
+  {
+    "id": 542,
+    "word": "不久",
+    "pinyin": "bùjiǔ",
+    "pos": "形",
+    "english": ""
+  },
+  {
+    "id": 543,
+    "word": "不行",
+    "pinyin": "bùxíng",
+    "pos": "动、形",
+    "english": ""
+  },
+  {
+    "id": 544,
+    "word": "才1",
+    "pinyin": "cái",
+    "pos": "副",
+    "english": ""
+  },
+  {
+    "id": 545,
+    "word": "菜单",
+    "pinyin": "càidān",
+    "pos": "名",
+    "english": "menu"
+  },
+  {
+    "id": 546,
+    "word": "参加",
+    "pinyin": "cānjiā",
+    "pos": "动",
+    "english": "join; participate; attend"
+  },
+  {
+    "id": 547,
+    "word": "草",
+    "pinyin": "cǎo",
+    "pos": "名",
+    "english": "grass; draft"
+  },
+  {
+    "id": 548,
+    "word": "草地",
+    "pinyin": "cǎodì",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 549,
+    "word": "层",
+    "pinyin": "céng",
+    "pos": "量",
+    "english": ""
+  },
+  {
+    "id": 550,
+    "word": "查",
+    "pinyin": "chá",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 551,
+    "word": "差",
+    "pinyin": "chà",
+    "pos": "形、动",
+    "english": "difference; poor quality; lack"
+  },
+  {
+    "id": 552,
+    "word": "差不多",
+    "pinyin": "chàbuduō",
+    "pos": "形、副",
+    "english": "almost; about the same"
+  },
+  {
+    "id": 553,
+    "word": "尝",
+    "pinyin": "cháng",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 554,
+    "word": "常",
+    "pinyin": "cháng",
+    "pos": "副",
+    "english": ""
+  },
+  {
+    "id": 555,
+    "word": "常见",
+    "pinyin": "cháng",
+    "pos": "jiàn",
+    "english": "common; frequently seen"
+  },
+  {
+    "id": 556,
+    "word": "常用",
+    "pinyin": "cháng",
+    "pos": "yòng",
+    "english": ""
+  },
+  {
+    "id": 557,
+    "word": "常常",
+    "pinyin": "chángcháng",
+    "pos": "副",
+    "english": ""
+  },
+  {
+    "id": 558,
+    "word": "衬衫",
+    "pinyin": "chènshān",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 559,
+    "word": "成绩",
+    "pinyin": "chéngjì",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 560,
+    "word": "城市",
+    "pinyin": "chéngshì",
+    "pos": "名",
+    "english": "city; urban area"
+  },
+  {
+    "id": 561,
+    "word": "迟到",
+    "pinyin": "chídào",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 562,
+    "word": "出发",
+    "pinyin": "chūfā",
+    "pos": "动",
+    "english": "set out; depart"
+  },
+  {
+    "id": 563,
+    "word": "出生",
+    "pinyin": "chūshēng",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 564,
+    "word": "出院",
+    "pinyin": "chūyuàn",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 565,
+    "word": "初中",
+    "pinyin": "chūzhōng",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 566,
+    "word": "除了",
+    "pinyin": "chúle",
+    "pos": "介",
+    "english": ""
+  },
+  {
+    "id": 567,
+    "word": "船",
+    "pinyin": "chuán",
+    "pos": "名",
+    "english": "ship; boat"
+  },
+  {
+    "id": 568,
+    "word": "春天",
+    "pinyin": "chūntiān",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 569,
+    "word": "词典",
+    "pinyin": "cídiǎn",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 570,
+    "word": "聪明",
+    "pinyin": "cōngmíng",
+    "pos": "形",
+    "english": "clever; smart"
+  },
+  {
+    "id": 571,
+    "word": "打扫",
+    "pinyin": "dǎsǎo",
+    "pos": "动",
+    "english": "clean; sweep"
+  },
+  {
+    "id": 572,
+    "word": "打算",
+    "pinyin": "dǎsuàn",
+    "pos": "动、名",
+    "english": "plan; intend"
+  },
+  {
+    "id": 574,
+    "word": "大人",
+    "pinyin": "dàren",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 575,
+    "word": "大小",
+    "pinyin": "dàxiǎo",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 576,
+    "word": "大熊猫",
+    "pinyin": "dàxióngmāo",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 577,
+    "word": "大衣",
+    "pinyin": "dàyī",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 579,
+    "word": "担心",
+    "pinyin": "dānxīn",
+    "pos": "动",
+    "english": "worry; be concerned"
+  },
+  {
+    "id": 580,
+    "word": "蛋糕",
+    "pinyin": "dàngāo",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 581,
+    "word": "当然",
+    "pinyin": "dāngrán",
+    "pos": "副",
+    "english": "of course; certainly"
+  },
+  {
+    "id": 582,
+    "word": "到处",
+    "pinyin": "dàochù",
+    "pos": "副",
+    "english": ""
+  },
+  {
+    "id": 583,
+    "word": "得",
+    "pinyin": "dé",
+    "pos": "动",
+    "english": "get; obtain; result complement"
+  },
+  {
+    "id": 584,
+    "word": "得到",
+    "pinyin": "dédào",
+    "pos": "动",
+    "english": "obtain; gain; get"
+  },
+  {
+    "id": 585,
+    "word": "得分",
+    "pinyin": "défēn",
+    "pos": "动、名",
+    "english": ""
+  },
+  {
+    "id": 586,
+    "word": "的话",
+    "pinyin": "dehuà",
+    "pos": "助",
+    "english": ""
+  },
+  {
+    "id": 587,
+    "word": "得",
+    "pinyin": "děi",
+    "pos": "动",
+    "english": "get; obtain; result complement"
+  },
+  {
+    "id": 588,
+    "word": "灯",
+    "pinyin": "dēng",
+    "pos": "名",
+    "english": "lamp; light; traffic light"
+  },
+  {
+    "id": 589,
+    "word": "地",
+    "pinyin": "dì",
+    "pos": "名",
+    "english": "earth; ground; land; place (noun); adverbial marker"
+  },
+  {
+    "id": 590,
+    "word": "地点",
+    "pinyin": "dìdiǎn",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 591,
+    "word": "地方",
+    "pinyin": "dìfang",
+    "pos": "名",
+    "english": "place; location"
+  },
+  {
+    "id": 592,
+    "word": "地图",
+    "pinyin": "dìtú",
+    "pos": "名",
+    "english": "map"
+  },
+  {
+    "id": 594,
+    "word": "电梯",
+    "pinyin": "diàntī",
+    "pos": "名",
+    "english": "elevator; lift"
+  },
+  {
+    "id": 595,
+    "word": "电子书",
+    "pinyin": "diànzǐshū",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 596,
+    "word": "丢",
+    "pinyin": "diū",
+    "pos": "动",
+    "english": "lose; throw away"
+  },
+  {
+    "id": 597,
+    "word": "东",
+    "pinyin": "dōng",
+    "pos": "名",
+    "english": "east"
+  },
+  {
+    "id": 598,
+    "word": "东北",
+    "pinyin": "dōngběi",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 599,
+    "word": "东方",
+    "pinyin": "dōngfāng",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 600,
+    "word": "东南",
+    "pinyin": "dōngnán",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 601,
+    "word": "冬天",
+    "pinyin": "dōngtiān",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 602,
+    "word": "懂得",
+    "pinyin": "dǒngde",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 603,
+    "word": "动物",
+    "pinyin": "dòngwù",
+    "pos": "名",
+    "english": "animal"
+  },
+  {
+    "id": 604,
+    "word": "动物园",
+    "pinyin": "dòngwùyuán",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 605,
+    "word": "短",
+    "pinyin": "duǎn",
+    "pos": "形",
+    "english": "short"
+  },
+  {
+    "id": 606,
+    "word": "短裤",
+    "pinyin": "duǎnkù",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 607,
+    "word": "段",
+    "pinyin": "duàn",
+    "pos": "量",
+    "english": "section; paragraph; segment (classifier)"
+  },
+  {
+    "id": 608,
+    "word": "锻炼",
+    "pinyin": "duànliàn",
+    "pos": "动",
+    "english": "exercise; work out"
+  },
+  {
+    "id": 609,
+    "word": "对话",
+    "pinyin": "duìhuà",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 610,
+    "word": "饿",
+    "pinyin": "è",
+    "pos": "形",
+    "english": "hungry"
+  },
+  {
+    "id": 611,
+    "word": "而且",
+    "pinyin": "érqiě",
+    "pos": "连",
+    "english": "moreover; and also"
+  },
+  {
+    "id": 612,
+    "word": "耳朵",
+    "pinyin": "ěrduo",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 613,
+    "word": "耳机",
+    "pinyin": "ěrjī",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 614,
+    "word": "发",
+    "pinyin": "fā",
+    "pos": "动",
+    "english": "send; emit; develop; hair (noun)"
+  },
+  {
+    "id": 615,
+    "word": "发烧",
+    "pinyin": "fāshāo",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 616,
+    "word": "发生",
+    "pinyin": "fāshēng",
+    "pos": "动",
+    "english": "happen; occur"
+  },
+  {
+    "id": 617,
+    "word": "发现",
+    "pinyin": "fāxiàn",
+    "pos": "动",
+    "english": "discover; find; notice"
+  },
+  {
+    "id": 618,
+    "word": "发展",
+    "pinyin": "fāzhǎn",
+    "pos": "动",
+    "english": "develop; expand"
+  },
+  {
+    "id": 619,
+    "word": "方便",
+    "pinyin": "fāngbiàn",
+    "pos": "形",
+    "english": "convenient"
+  },
+  {
+    "id": 620,
+    "word": "方便面",
+    "pinyin": "fāngbiànmiàn",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 621,
+    "word": "方法",
+    "pinyin": "fāngfǎ",
+    "pos": "名",
+    "english": "method; way"
+  },
+  {
+    "id": 622,
+    "word": "方向",
+    "pinyin": "fāngxiàng",
+    "pos": "名",
+    "english": "direction"
+  },
+  {
+    "id": 623,
+    "word": "房子",
+    "pinyin": "fángzi",
+    "pos": "名",
+    "english": "house; room"
+  },
+  {
+    "id": 624,
+    "word": "放",
+    "pinyin": "fàng",
+    "pos": "动",
+    "english": "put; place; release; let go"
+  },
+  {
+    "id": 625,
+    "word": "放假",
+    "pinyin": "fàngjià",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 626,
+    "word": "放心",
+    "pinyin": "fàngxīn",
+    "pos": "动",
+    "english": "set one's mind at rest"
+  },
+  {
+    "id": 627,
+    "word": "放学",
+    "pinyin": "fàngxué",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 628,
+    "word": "分开",
+    "pinyin": "fēnkāi",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 629,
+    "word": "风",
+    "pinyin": "fēng",
+    "pos": "名",
+    "english": "wind; style; custom"
+  },
+  {
+    "id": 631,
+    "word": "夫妻",
+    "pinyin": "fūqī",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 632,
+    "word": "服务",
+    "pinyin": "fúwù",
+    "pos": "动",
+    "english": "service; serve"
+  },
+  {
+    "id": 633,
+    "word": "附近",
+    "pinyin": "fùjìn",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 634,
+    "word": "复习",
+    "pinyin": "fùxí",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 635,
+    "word": "该1",
+    "pinyin": "gāi",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 636,
+    "word": "干净",
+    "pinyin": "gānjìng",
+    "pos": "形",
+    "english": "clean"
+  },
+  {
+    "id": 637,
+    "word": "感兴趣",
+    "pinyin": "gǎn",
+    "pos": "xìngqù",
+    "english": ""
+  },
+  {
+    "id": 638,
+    "word": "感到",
+    "pinyin": "gǎndào",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 639,
+    "word": "感冒",
+    "pinyin": "gǎnmào",
+    "pos": "名、动",
+    "english": "catch cold; cold"
+  },
+  {
+    "id": 640,
+    "word": "干",
+    "pinyin": "gàn",
+    "pos": "动",
+    "english": "do; dry; work"
+  },
+  {
+    "id": 641,
+    "word": "刚",
+    "pinyin": "gāng",
+    "pos": "副",
+    "english": "just; firm; hard"
+  },
+  {
+    "id": 642,
+    "word": "刚才",
+    "pinyin": "gāngcái",
+    "pos": "名",
+    "english": "just now"
+  },
+  {
+    "id": 643,
+    "word": "刚刚",
+    "pinyin": "gānggāng",
+    "pos": "副",
+    "english": ""
+  },
+  {
+    "id": 644,
+    "word": "高铁",
+    "pinyin": "gāotiě",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 646,
+    "word": "更",
+    "pinyin": "gèng",
+    "pos": "副",
+    "english": "more; further; change; watch (noun)"
+  },
+  {
+    "id": 647,
+    "word": "公斤",
+    "pinyin": "gōngjīn",
+    "pos": "量",
+    "english": ""
+  },
+  {
+    "id": 648,
+    "word": "公园",
+    "pinyin": "gōngyuán",
+    "pos": "名",
+    "english": "park"
+  },
+  {
+    "id": 649,
+    "word": "工作日",
+    "pinyin": "gōngzuòrì",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 650,
+    "word": "故事",
+    "pinyin": "gùshi",
+    "pos": "名",
+    "english": "story"
+  },
+  {
+    "id": 651,
+    "word": "刮",
+    "pinyin": "guā",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 653,
+    "word": "关机",
+    "pinyin": "guānjī",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 655,
+    "word": "关心",
+    "pinyin": "guānxīn",
+    "pos": "动",
+    "english": "care about; concern"
+  },
+  {
+    "id": 656,
+    "word": "关于",
+    "pinyin": "guānyú",
+    "pos": "介",
+    "english": "about; regarding"
+  },
+  {
+    "id": 657,
+    "word": "关注",
+    "pinyin": "guānzhù",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 658,
+    "word": "国家",
+    "pinyin": "guójiā",
+    "pos": "名",
+    "english": "country; nation"
+  },
+  {
+    "id": 659,
+    "word": "过节",
+    "pinyin": "guòjié",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 660,
+    "word": "过去2",
+    "pinyin": "guòqù",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 661,
+    "word": "海",
+    "pinyin": "hǎi",
+    "pos": "名",
+    "english": "sea; ocean"
+  },
+  {
+    "id": 662,
+    "word": "害怕",
+    "pinyin": "hàipà",
+    "pos": "动",
+    "english": "be afraid; fear"
+  },
+  {
+    "id": 663,
+    "word": "好多",
+    "pinyin": "hǎoduō",
+    "pos": "数",
+    "english": ""
+  },
+  {
+    "id": 664,
+    "word": "好久",
+    "pinyin": "hǎojiǔ",
+    "pos": "形",
+    "english": ""
+  },
+  {
+    "id": 665,
+    "word": "好像",
+    "pinyin": "hǎoxiàng",
+    "pos": "动、副",
+    "english": ""
+  },
+  {
+    "id": 666,
+    "word": "号码",
+    "pinyin": "hàomǎ",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 667,
+    "word": "河",
+    "pinyin": "hé",
+    "pos": "名",
+    "english": "river"
+  },
+  {
+    "id": 668,
+    "word": "合适",
+    "pinyin": "héshì",
+    "pos": "形",
+    "english": ""
+  },
+  {
+    "id": 669,
+    "word": "黑板",
+    "pinyin": "hēibǎn",
+    "pos": "名",
+    "english": "blackboard"
+  },
+  {
+    "id": 670,
+    "word": "红绿灯",
+    "pinyin": "hóng-lǜdēng",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 671,
+    "word": "后来",
+    "pinyin": "hòulái",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 672,
+    "word": "后年",
+    "pinyin": "hòunián",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 673,
+    "word": "后天",
+    "pinyin": "hòutiān",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 674,
+    "word": "护照",
+    "pinyin": "hùzhào",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 675,
+    "word": "花园",
+    "pinyin": "huāyuán",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 676,
+    "word": "画家",
+    "pinyin": "huàjiā",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 677,
+    "word": "欢迎",
+    "pinyin": "huānyíng",
+    "pos": "动",
+    "english": "welcome"
+  },
+  {
+    "id": 678,
+    "word": "还",
+    "pinyin": "huán",
+    "pos": "动",
+    "english": "still; also; return; even more"
+  },
+  {
+    "id": 679,
+    "word": "环境",
+    "pinyin": "huánjìng",
+    "pos": "名",
+    "english": "environment"
+  },
+  {
+    "id": 680,
+    "word": "换",
+    "pinyin": "huàn",
+    "pos": "动",
+    "english": "exchange; change"
+  },
+  {
+    "id": 681,
+    "word": "黄色",
+    "pinyin": "huángsè",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 682,
+    "word": "回答",
+    "pinyin": "huídá",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 683,
+    "word": "会2",
+    "pinyin": "huì",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 684,
+    "word": "会议",
+    "pinyin": "huìyì",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 686,
+    "word": "或者",
+    "pinyin": "huòzhě",
+    "pos": "连",
+    "english": "or; either"
+  },
+  {
+    "id": 687,
+    "word": "鸡",
+    "pinyin": "jī",
+    "pos": "名",
+    "english": "chicken"
+  },
+  {
+    "id": 688,
+    "word": "几乎",
+    "pinyin": "jīhū",
+    "pos": "副",
+    "english": "almost; nearly"
+  },
+  {
+    "id": 689,
+    "word": "机会",
+    "pinyin": "jīhuì",
+    "pos": "名",
+    "english": "opportunity; chance"
+  },
+  {
+    "id": 690,
+    "word": "极",
+    "pinyin": "jí",
+    "pos": "副",
+    "english": "extreme; pole; very"
+  },
+  {
+    "id": 691,
+    "word": "急",
+    "pinyin": "jí",
+    "pos": "形、动",
+    "english": "urgent; anxious; angry"
+  },
+  {
+    "id": 692,
+    "word": "记",
+    "pinyin": "jì",
+    "pos": "动",
+    "english": "remember; note; mark; record"
+  },
+  {
+    "id": 693,
+    "word": "季",
+    "pinyin": "jì",
+    "pos": "名",
+    "english": "season"
+  },
+  {
+    "id": 694,
+    "word": "季节",
+    "pinyin": "jìjié",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 695,
+    "word": "加",
+    "pinyin": "jiā",
+    "pos": "动",
+    "english": "add; increase; plus"
+  },
+  {
+    "id": 696,
+    "word": "假期",
+    "pinyin": "jiàqī",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 697,
+    "word": "坚持",
+    "pinyin": "jiānchí",
+    "pos": "动",
+    "english": "persist; insist"
+  },
+  {
+    "id": 698,
+    "word": "检查",
+    "pinyin": "jiǎnchá",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 699,
+    "word": "简单",
+    "pinyin": "jiǎndān",
+    "pos": "形",
+    "english": "simple; easy"
+  },
+  {
+    "id": 700,
+    "word": "检票",
+    "pinyin": "jiǎnpiào",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 701,
+    "word": "健康",
+    "pinyin": "jiànkāng",
+    "pos": "形",
+    "english": "health; healthy"
+  },
+  {
+    "id": 702,
+    "word": "见面",
+    "pinyin": "jiànmiàn",
+    "pos": "动",
+    "english": "meet; see each other"
+  },
+  {
+    "id": 703,
+    "word": "讲",
+    "pinyin": "jiǎng",
+    "pos": "动",
+    "english": "speak"
+  },
+  {
+    "id": 704,
+    "word": "角",
+    "pinyin": "jiǎo",
+    "pos": "量",
+    "english": "horn; corner; angle; role; yuan (currency unit)"
+  },
+  {
+    "id": 705,
+    "word": "脚",
+    "pinyin": "jiǎo",
+    "pos": "名",
+    "english": "foot; base"
+  },
+  {
+    "id": 706,
+    "word": "接",
+    "pinyin": "jiē",
+    "pos": "动",
+    "english": "receive; pick up; connect; answer (phone)"
+  },
+  {
+    "id": 707,
+    "word": "街",
+    "pinyin": "jiē",
+    "pos": "名",
+    "english": "street; road"
+  },
+  {
+    "id": 709,
+    "word": "结婚",
+    "pinyin": "jiéhūn",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 710,
+    "word": "节目",
+    "pinyin": "jiémù",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 711,
+    "word": "节日",
+    "pinyin": "jiérì",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 712,
+    "word": "结束",
+    "pinyin": "jiéshù",
+    "pos": "动",
+    "english": "end; finish"
+  },
+  {
+    "id": 713,
+    "word": "解决",
+    "pinyin": "jiějué",
+    "pos": "动",
+    "english": "solve; resolve"
+  },
+  {
+    "id": 714,
+    "word": "姐妹",
+    "pinyin": "jiěmèi",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 715,
+    "word": "借",
+    "pinyin": "jiè",
+    "pos": "动",
+    "english": "borrow; lend; use as pretext"
+  },
+  {
+    "id": 716,
+    "word": "斤",
+    "pinyin": "jīn",
+    "pos": "量",
+    "english": "jin (500g weight unit)"
+  },
+  {
+    "id": 717,
+    "word": "经过",
+    "pinyin": "jīngguò",
+    "pos": "动、名",
+    "english": "pass through; via"
+  },
+  {
+    "id": 718,
+    "word": "经理",
+    "pinyin": "jīnglǐ",
+    "pos": "名",
+    "english": "manager"
+  },
+  {
+    "id": 719,
+    "word": "久",
+    "pinyin": "jiǔ",
+    "pos": "形",
+    "english": "long time; lasting"
+  },
+  {
+    "id": 720,
+    "word": "酒",
+    "pinyin": "jiǔ",
+    "pos": "名",
+    "english": "wine; liquor; alcohol"
+  },
+  {
+    "id": 721,
+    "word": "旧",
+    "pinyin": "jiù",
+    "pos": "形",
+    "english": "old; worn out; former"
+  },
+  {
+    "id": 722,
+    "word": "句",
+    "pinyin": "jù",
+    "pos": "量",
+    "english": ""
+  },
+  {
+    "id": 723,
+    "word": "句子",
+    "pinyin": "jùzi",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 724,
+    "word": "决定",
+    "pinyin": "juédìng",
+    "pos": "动、名",
+    "english": "decide; decision"
+  },
+  {
+    "id": 725,
+    "word": "卡",
+    "pinyin": "kǎ",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 726,
+    "word": "开花",
+    "pinyin": "kāihuā",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 727,
+    "word": "开会",
+    "pinyin": "kāihuì",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 728,
+    "word": "开机",
+    "pinyin": "kāijī",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 729,
+    "word": "开心",
+    "pinyin": "kāixīn",
+    "pos": "形",
+    "english": ""
+  },
+  {
+    "id": 730,
+    "word": "看来",
+    "pinyin": "kànlái",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 732,
+    "word": "渴",
+    "pinyin": "kě",
+    "pos": "形",
+    "english": "thirsty"
+  },
+  {
+    "id": 733,
+    "word": "可爱",
+    "pinyin": "kě’ài",
+    "pos": "形",
+    "english": "cute"
+  },
+  {
+    "id": 734,
+    "word": "可是",
+    "pinyin": "kěshì",
+    "pos": "连",
+    "english": "but"
+  },
+  {
+    "id": 736,
+    "word": "课本",
+    "pinyin": "kèběn",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 737,
+    "word": "客人",
+    "pinyin": "kèrén",
+    "pos": "名",
+    "english": "guest"
+  },
+  {
+    "id": 738,
+    "word": "课文",
+    "pinyin": "kèwén",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 739,
+    "word": "空调",
+    "pinyin": "kōngtiáo",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 740,
+    "word": "哭",
+    "pinyin": "kū",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 741,
+    "word": "筷子",
+    "pinyin": "kuàizi",
+    "pos": "名",
+    "english": "chopsticks"
+  },
+  {
+    "id": 742,
+    "word": "矿泉水",
+    "pinyin": "kuàngquánshuǐ",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 743,
+    "word": "来自",
+    "pinyin": "láizì",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 744,
+    "word": "蓝",
+    "pinyin": "lán",
+    "pos": "形",
+    "english": "blue (color)"
+  },
+  {
+    "id": 746,
+    "word": "老人",
+    "pinyin": "lǎorén",
+    "pos": "名",
+    "english": "old person"
+  },
+  {
+    "id": 747,
+    "word": "离开",
+    "pinyin": "líkāi",
+    "pos": "动",
+    "english": "leave"
+  },
+  {
+    "id": 748,
+    "word": "礼物",
+    "pinyin": "lǐwù",
+    "pos": "名",
+    "english": "gift"
+  },
+  {
+    "id": 749,
+    "word": "历史",
+    "pinyin": "lìshǐ",
+    "pos": "名",
+    "english": "history"
+  },
+  {
+    "id": 750,
+    "word": "脸",
+    "pinyin": "liǎn",
+    "pos": "名",
+    "english": "face; expression"
+  },
+  {
+    "id": 751,
+    "word": "练",
+    "pinyin": "liàn",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 752,
+    "word": "练习",
+    "pinyin": "liànxí",
+    "pos": "动、名",
+    "english": ""
+  },
+  {
+    "id": 753,
+    "word": "凉快",
+    "pinyin": "liángkuai",
+    "pos": "形",
+    "english": ""
+  },
+  {
+    "id": 754,
+    "word": "辆",
+    "pinyin": "liàng",
+    "pos": "量",
+    "english": ""
+  },
+  {
+    "id": 755,
+    "word": "聊",
+    "pinyin": "liáo",
+    "pos": "动",
+    "english": "chat; slightly; at least"
+  },
+  {
+    "id": 756,
+    "word": "聊天儿",
+    "pinyin": "liáotiānr",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 757,
+    "word": "了解",
+    "pinyin": "liǎojiě",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 758,
+    "word": "邻居",
+    "pinyin": "línjū",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 759,
+    "word": "留学",
+    "pinyin": "liúxué",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 760,
+    "word": "留学生",
+    "pinyin": "liúxuéshēng",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 761,
+    "word": "楼梯",
+    "pinyin": "lóutī",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 762,
+    "word": "路边",
+    "pinyin": "lùbiān",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 763,
+    "word": "路口",
+    "pinyin": "lùkǒu",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 764,
+    "word": "马",
+    "pinyin": "mǎ",
+    "pos": "名",
+    "english": "horse"
+  },
+  {
+    "id": 765,
+    "word": "马路",
+    "pinyin": "mǎlù",
+    "pos": "名",
+    "english": "road; street"
+  },
+  {
+    "id": 766,
+    "word": "马上",
+    "pinyin": "mǎshàng",
+    "pos": "副",
+    "english": "immediately"
+  },
+  {
+    "id": 767,
+    "word": "满意",
+    "pinyin": "mǎnyì",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 769,
+    "word": "米",
+    "pinyin": "mǐ",
+    "pos": "量",
+    "english": "rice (grain); meter"
+  },
+  {
+    "id": 770,
+    "word": "面前",
+    "pinyin": "miànqián",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 771,
+    "word": "明白",
+    "pinyin": "míngbai",
+    "pos": "形、动",
+    "english": "understand; clear"
+  },
+  {
+    "id": 772,
+    "word": "名单",
+    "pinyin": "míngdān",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 773,
+    "word": "名人",
+    "pinyin": "míngrén",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 774,
+    "word": "南",
+    "pinyin": "nán",
+    "pos": "名",
+    "english": "south"
+  },
+  {
+    "id": 776,
+    "word": "南方",
+    "pinyin": "nánfāng",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 777,
+    "word": "难过",
+    "pinyin": "nánguò",
+    "pos": "形",
+    "english": ""
+  },
+  {
+    "id": 778,
+    "word": "难看",
+    "pinyin": "nánkàn",
+    "pos": "形",
+    "english": ""
+  },
+  {
+    "id": 779,
+    "word": "男人",
+    "pinyin": "nánrén",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 780,
+    "word": "男生",
+    "pinyin": "nánshēng",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 781,
+    "word": "难题",
+    "pinyin": "nántí",
+    "pos": "名",
+    "english": "difficult problem"
+  },
+  {
+    "id": 782,
+    "word": "难听",
+    "pinyin": "nántīng",
+    "pos": "形",
+    "english": ""
+  },
+  {
+    "id": 783,
+    "word": "年级",
+    "pinyin": "niánjí",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 784,
+    "word": "年轻",
+    "pinyin": "niánqīng",
+    "pos": "形",
+    "english": "young"
+  },
+  {
+    "id": 786,
+    "word": "努力",
+    "pinyin": "nǔlì",
+    "pos": "动、形",
+    "english": "make effort; strive hard"
+  },
+  {
+    "id": 787,
+    "word": "女人",
+    "pinyin": "nǚrén",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 788,
+    "word": "女生",
+    "pinyin": "nǚshēng",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 789,
+    "word": "爬",
+    "pinyin": "pá",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 791,
+    "word": "拍照",
+    "pinyin": "pāizhào",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 792,
+    "word": "盘子",
+    "pinyin": "pánzi",
+    "pos": "名",
+    "english": "plate; dish"
+  },
+  {
+    "id": 793,
+    "word": "胖",
+    "pinyin": "pàng",
+    "pos": "形",
+    "english": "fat"
+  },
+  {
+    "id": 794,
+    "word": "啤酒",
+    "pinyin": "píjiǔ",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 795,
+    "word": "平时",
+    "pinyin": "píngshí",
+    "pos": "名",
+    "english": "usually; ordinarily"
+  },
+  {
+    "id": 796,
+    "word": "瓶子",
+    "pinyin": "píngzi",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 797,
+    "word": "骑",
+    "pinyin": "qí",
+    "pos": "动",
+    "english": "ride (horse/bicycle)"
+  },
+  {
+    "id": 798,
+    "word": "奇怪",
+    "pinyin": "qíguài",
+    "pos": "形",
+    "english": ""
+  },
+  {
+    "id": 799,
+    "word": "其实",
+    "pinyin": "qíshí",
+    "pos": "副",
+    "english": "actually; in fact"
+  },
+  {
+    "id": 800,
+    "word": "其他",
+    "pinyin": "qítā",
+    "pos": "代",
+    "english": ""
+  },
+  {
+    "id": 802,
+    "word": "起飞",
+    "pinyin": "qǐfēi",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 803,
+    "word": "汽车",
+    "pinyin": "qìchē",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 804,
+    "word": "铅笔",
+    "pinyin": "qiānbǐ",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 805,
+    "word": "前年",
+    "pinyin": "qiánnián",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 806,
+    "word": "前天",
+    "pinyin": "qiántiān",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 807,
+    "word": "清楚",
+    "pinyin": "qīngchu",
+    "pos": "形、动",
+    "english": ""
+  },
+  {
+    "id": 808,
+    "word": "请假",
+    "pinyin": "qǐngjià",
+    "pos": "动",
+    "english": "ask for leave"
+  },
+  {
+    "id": 809,
+    "word": "请客",
+    "pinyin": "qǐngkè",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 810,
+    "word": "秋天",
+    "pinyin": "qiūtiān",
+    "pos": "名",
+    "english": "autumn; fall"
+  },
+  {
+    "id": 811,
+    "word": "球场",
+    "pinyin": "qiúchǎng",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 812,
+    "word": "裙子",
+    "pinyin": "qúnzi",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 813,
+    "word": "然后",
+    "pinyin": "ránhòu",
+    "pos": "连",
+    "english": "then"
+  },
+  {
+    "id": 814,
+    "word": "热情",
+    "pinyin": "rèqíng",
+    "pos": "形",
+    "english": ""
+  },
+  {
+    "id": 815,
+    "word": "认得",
+    "pinyin": "rènde",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 816,
+    "word": "认为",
+    "pinyin": "rènwéi",
+    "pos": "动",
+    "english": "think; consider"
+  },
+  {
+    "id": 817,
+    "word": "认真",
+    "pinyin": "rènzhēn",
+    "pos": "形",
+    "english": "serious; conscientious"
+  },
+  {
+    "id": 818,
+    "word": "容易",
+    "pinyin": "róngyì",
+    "pos": "形",
+    "english": "easy; likely"
+  },
+  {
+    "id": 819,
+    "word": "如果",
+    "pinyin": "rúguǒ",
+    "pos": "连",
+    "english": "if"
+  },
+  {
+    "id": 820,
+    "word": "伞",
+    "pinyin": "sǎn",
+    "pos": "名",
+    "english": "umbrella; parasol"
+  },
+  {
+    "id": 821,
+    "word": "扫",
+    "pinyin": "sǎo",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 822,
+    "word": "沙发",
+    "pinyin": "shāfā",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 823,
+    "word": "山",
+    "pinyin": "shān",
+    "pos": "名",
+    "english": "mountain; hill; mound"
+  },
+  {
+    "id": 824,
+    "word": "上衣",
+    "pinyin": "shàngyī",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 825,
+    "word": "勺子",
+    "pinyin": "sháozi",
+    "pos": "名",
+    "english": "spoon"
+  },
+  {
+    "id": 826,
+    "word": "身边",
+    "pinyin": "shēnbiān",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 827,
+    "word": "身高",
+    "pinyin": "shēngāo",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 828,
+    "word": "声",
+    "pinyin": "shēng",
+    "pos": "名、量",
+    "english": "voice; sound; noise"
+  },
+  {
+    "id": 829,
+    "word": "生活",
+    "pinyin": "shēnghuó",
+    "pos": "名、动",
+    "english": "life"
+  },
+  {
+    "id": 830,
+    "word": "生气",
+    "pinyin": "shēngqì",
+    "pos": "动",
+    "english": "angry; vitality"
+  },
+  {
+    "id": 831,
+    "word": "声音",
+    "pinyin": "shēngyīn",
+    "pos": "名",
+    "english": "sound"
+  },
+  {
+    "id": 832,
+    "word": "市",
+    "pinyin": "shì",
+    "pos": "名",
+    "english": "city; market"
+  },
+  {
+    "id": 833,
+    "word": "试",
+    "pinyin": "shì",
+    "pos": "动",
+    "english": "try; test"
+  },
+  {
+    "id": 834,
+    "word": "室",
+    "pinyin": "shì",
+    "pos": "名",
+    "english": "room; chamber; office"
+  },
+  {
+    "id": 835,
+    "word": "世界",
+    "pinyin": "shìjiè",
+    "pos": "名",
+    "english": "world"
+  },
+  {
+    "id": 836,
+    "word": "收",
+    "pinyin": "shōu",
+    "pos": "动",
+    "english": "receive; accept; collect; put away; harvest"
+  },
+  {
+    "id": 837,
+    "word": "收到",
+    "pinyin": "shōudào",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 838,
+    "word": "受",
+    "pinyin": "shòu",
+    "pos": "动",
+    "english": "receive; accept; suffer; stand; bear"
+  },
+  {
+    "id": 839,
+    "word": "瘦",
+    "pinyin": "shòu",
+    "pos": "形",
+    "english": "thin; lean; narrow; tight"
+  },
+  {
+    "id": 840,
+    "word": "受到",
+    "pinyin": "shòudào",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 841,
+    "word": "叔叔",
+    "pinyin": "shūshu",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 842,
+    "word": "树",
+    "pinyin": "shù",
+    "pos": "名",
+    "english": "tree; plant; establish; set up"
+  },
+  {
+    "id": 843,
+    "word": "数学",
+    "pinyin": "shùxué",
+    "pos": "名",
+    "english": "mathematics"
+  },
+  {
+    "id": 844,
+    "word": "刷",
+    "pinyin": "shuā",
+    "pos": "动",
+    "english": "brush; scrub; clean with brush; flash (card)"
+  },
+  {
+    "id": 845,
+    "word": "双",
+    "pinyin": "shuāng",
+    "pos": "量",
+    "english": "pair; double; both"
+  },
+  {
+    "id": 846,
+    "word": "水平",
+    "pinyin": "shuǐpíng",
+    "pos": "名",
+    "english": "level; standard"
+  },
+  {
+    "id": 847,
+    "word": "司机",
+    "pinyin": "sījī",
+    "pos": "名",
+    "english": "driver"
+  },
+  {
+    "id": 848,
+    "word": "四季",
+    "pinyin": "sìjì",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 849,
+    "word": "太阳",
+    "pinyin": "tàiyáng",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 850,
+    "word": "糖",
+    "pinyin": "táng",
+    "pos": "名",
+    "english": "sugar; candy"
+  },
+  {
+    "id": 851,
+    "word": "特别",
+    "pinyin": "tèbié",
+    "pos": "形、副",
+    "english": "especially; special; particularly"
+  },
+  {
+    "id": 852,
+    "word": "提高",
+    "pinyin": "tígāo",
+    "pos": "动",
+    "english": "improve; raise"
+  },
+  {
+    "id": 853,
+    "word": "体育",
+    "pinyin": "tǐyù",
+    "pos": "名",
+    "english": "sports; physical education"
+  },
+  {
+    "id": 854,
+    "word": "体育馆",
+    "pinyin": "tǐyùguǎn",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 855,
+    "word": "甜",
+    "pinyin": "tián",
+    "pos": "形",
+    "english": "sweet"
+  },
+  {
+    "id": 856,
+    "word": "跳",
+    "pinyin": "tiào",
+    "pos": "动",
+    "english": "jump; leap; skip; bounce"
+  },
+  {
+    "id": 857,
+    "word": "听说",
+    "pinyin": "tīngshuō",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 859,
+    "word": "同事",
+    "pinyin": "tóngshì",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 860,
+    "word": "同意",
+    "pinyin": "tóngyì",
+    "pos": "动",
+    "english": "agree"
+  },
+  {
+    "id": 861,
+    "word": "头发",
+    "pinyin": "tóufa",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 862,
+    "word": "突然",
+    "pinyin": "tūrán",
+    "pos": "形",
+    "english": "sudden; suddenly"
+  },
+  {
+    "id": 863,
+    "word": "图书馆",
+    "pinyin": "túshūguǎn",
+    "pos": "名",
+    "english": "library"
+  },
+  {
+    "id": 864,
+    "word": "腿",
+    "pinyin": "tuǐ",
+    "pos": "名",
+    "english": "leg"
+  },
+  {
+    "id": 865,
+    "word": "外地",
+    "pinyin": "wàidì",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 866,
+    "word": "外卖",
+    "pinyin": "wàimài",
+    "pos": "动、名",
+    "english": ""
+  },
+  {
+    "id": 867,
+    "word": "外语",
+    "pinyin": "wàiyǔ",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 868,
+    "word": "完成",
+    "pinyin": "wánchéng",
+    "pos": "动",
+    "english": "complete; finish"
+  },
+  {
+    "id": 869,
+    "word": "碗",
+    "pinyin": "wǎn",
+    "pos": "名",
+    "english": "bowl"
+  },
+  {
+    "id": 870,
+    "word": "晚点",
+    "pinyin": "wǎndiǎn",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 871,
+    "word": "晚会",
+    "pinyin": "wǎnhuì",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 872,
+    "word": "网球",
+    "pinyin": "wǎngqiú",
+    "pos": "名",
+    "english": "tennis"
+  },
+  {
+    "id": 873,
+    "word": "网站",
+    "pinyin": "wǎngzhàn",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 874,
+    "word": "忘记",
+    "pinyin": "wàngjì",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 875,
+    "word": "为",
+    "pinyin": "wèi",
+    "pos": "介",
+    "english": "act as; for; because of; be; become"
+  },
+  {
+    "id": 876,
+    "word": "为了",
+    "pinyin": "wèile",
+    "pos": "介",
+    "english": "in order to"
+  },
+  {
+    "id": 877,
+    "word": "卫生间",
+    "pinyin": "wèishēngjiān",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 878,
+    "word": "文化",
+    "pinyin": "wénhuà",
+    "pos": "名",
+    "english": "culture"
+  },
+  {
+    "id": 879,
+    "word": "屋子",
+    "pinyin": "wūzi",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 880,
+    "word": "西",
+    "pinyin": "xī",
+    "pos": "名",
+    "english": "west"
+  },
+  {
+    "id": 881,
+    "word": "西北",
+    "pinyin": "xīběi",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 882,
+    "word": "西方",
+    "pinyin": "xīfāng",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 883,
+    "word": "西瓜",
+    "pinyin": "xīguā",
+    "pos": "名",
+    "english": "watermelon"
+  },
+  {
+    "id": 884,
+    "word": "西南",
+    "pinyin": "xīnán",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 885,
+    "word": "习惯",
+    "pinyin": "xíguàn",
+    "pos": "动、名",
+    "english": "habit; custom"
+  },
+  {
+    "id": 886,
+    "word": "喜爱",
+    "pinyin": "xǐ’ài",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 887,
+    "word": "洗衣机",
+    "pinyin": "xǐyījī",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 888,
+    "word": "洗澡",
+    "pinyin": "xǐzǎo",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 889,
+    "word": "夏天",
+    "pinyin": "xiàtiān",
+    "pos": "名",
+    "english": "summer"
+  },
+  {
+    "id": 890,
+    "word": "先",
+    "pinyin": "xiān",
+    "pos": "副",
+    "english": "first; earlier"
+  },
+  {
+    "id": 891,
+    "word": "香蕉",
+    "pinyin": "xiāngjiāo",
+    "pos": "名",
+    "english": "banana"
+  },
+  {
+    "id": 892,
+    "word": "相信",
+    "pinyin": "xiāngxìn",
+    "pos": "动",
+    "english": "believe"
+  },
+  {
+    "id": 893,
+    "word": "箱子",
+    "pinyin": "xiāngzi",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 894,
+    "word": "向",
+    "pinyin": "xiàng",
+    "pos": "动、介",
+    "english": "towards; face; past; direction"
+  },
+  {
+    "id": 896,
+    "word": "相机",
+    "pinyin": "xiàngjī",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 897,
+    "word": "小区",
+    "pinyin": "xiǎoqū",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 898,
+    "word": "小心",
+    "pinyin": "xiǎoxīn",
+    "pos": "动、形",
+    "english": "careful; be careful"
+  },
+  {
+    "id": 899,
+    "word": "校园",
+    "pinyin": "xiàoyuán",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 900,
+    "word": "校长",
+    "pinyin": "xiàozhǎng",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 901,
+    "word": "鞋",
+    "pinyin": "xié",
+    "pos": "名",
+    "english": "shoe; footwear"
+  },
+  {
+    "id": 902,
+    "word": "心里",
+    "pinyin": "xīnlǐ",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 903,
+    "word": "新年",
+    "pinyin": "xīnnián",
+    "pos": "名",
+    "english": "New Year"
+  },
+  {
+    "id": 904,
+    "word": "新闻",
+    "pinyin": "xīnwén",
+    "pos": "名",
+    "english": "news"
+  },
+  {
+    "id": 905,
+    "word": "新鲜",
+    "pinyin": "xīnxiān",
+    "pos": "形",
+    "english": ""
+  },
+  {
+    "id": 906,
+    "word": "信",
+    "pinyin": "xìn",
+    "pos": "动、名",
+    "english": "letter; believe; trust; faith; mail; news"
+  },
+  {
+    "id": 907,
+    "word": "信用卡",
+    "pinyin": "xìnyòngkǎ",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 908,
+    "word": "行",
+    "pinyin": "xíng",
+    "pos": "动、形",
+    "english": "walk; go; row; line; profession; OK; behavior; capable"
+  },
+  {
+    "id": 909,
+    "word": "行李",
+    "pinyin": "xíngli",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 910,
+    "word": "兴趣",
+    "pinyin": "xìngqù",
+    "pos": "名",
+    "english": "interest"
+  },
+  {
+    "id": 911,
+    "word": "休假",
+    "pinyin": "xiūjià",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 912,
+    "word": "需要",
+    "pinyin": "xūyào",
+    "pos": "动、名",
+    "english": ""
+  },
+  {
+    "id": 913,
+    "word": "选",
+    "pinyin": "xuǎn",
+    "pos": "动",
+    "english": "choose; select; elect; pick out"
+  },
+  {
+    "id": 914,
+    "word": "选择",
+    "pinyin": "xuǎnzé",
+    "pos": "动",
+    "english": "choose; choice"
+  },
+  {
+    "id": 915,
+    "word": "学期",
+    "pinyin": "xuéqī",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 916,
+    "word": "牙",
+    "pinyin": "yá",
+    "pos": "名",
+    "english": "tooth; tusk"
+  },
+  {
+    "id": 917,
+    "word": "牙刷",
+    "pinyin": "yáshuā",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 918,
+    "word": "羊",
+    "pinyin": "yáng",
+    "pos": "名",
+    "english": "sheep; goat"
+  },
+  {
+    "id": 919,
+    "word": "养",
+    "pinyin": "yǎng",
+    "pos": "动",
+    "english": "raise; keep; support; nurture; cultivate (health)"
+  },
+  {
+    "id": 920,
+    "word": "要求",
+    "pinyin": "yāoqiú",
+    "pos": "动、名",
+    "english": "require; request"
+  },
+  {
+    "id": 921,
+    "word": "页",
+    "pinyin": "yè",
+    "pos": "量",
+    "english": "page; leaf"
+  },
+  {
+    "id": 922,
+    "word": "一定",
+    "pinyin": "yídìng",
+    "pos": "形、副",
+    "english": "certainly; surely; must"
+  },
+  {
+    "id": 923,
+    "word": "一共",
+    "pinyin": "yígòng",
+    "pos": "副",
+    "english": "altogether; total"
+  },
+  {
+    "id": 924,
+    "word": "一块儿",
+    "pinyin": "yíkuàir",
+    "pos": "名、副",
+    "english": ""
+  },
+  {
+    "id": 925,
+    "word": "一样",
+    "pinyin": "yíyàng",
+    "pos": "形",
+    "english": "same"
+  },
+  {
+    "id": 926,
+    "word": "以后",
+    "pinyin": "yǐhòu",
+    "pos": "名",
+    "english": "after"
+  },
+  {
+    "id": 927,
+    "word": "以前",
+    "pinyin": "yǐqián",
+    "pos": "名",
+    "english": "before; previously"
+  },
+  {
+    "id": 928,
+    "word": "以上",
+    "pinyin": "yǐshàng",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 929,
+    "word": "以外",
+    "pinyin": "yǐwài",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 930,
+    "word": "以为",
+    "pinyin": "yǐwéi",
+    "pos": "动",
+    "english": "think; assume"
+  },
+  {
+    "id": 931,
+    "word": "以下",
+    "pinyin": "yǐxià",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 932,
+    "word": "一般",
+    "pinyin": "yìbān",
+    "pos": "形",
+    "english": "general; ordinary"
+  },
+  {
+    "id": 933,
+    "word": "一边",
+    "pinyin": "yìbiān",
+    "pos": "副",
+    "english": "one side; at the same time"
+  },
+  {
+    "id": 934,
+    "word": "一直",
+    "pinyin": "yìzhí",
+    "pos": "副",
+    "english": "always; continuously; straight"
+  },
+  {
+    "id": 935,
+    "word": "音乐",
+    "pinyin": "yīnyuè",
+    "pos": "名",
+    "english": "music"
+  },
+  {
+    "id": 936,
+    "word": "银行",
+    "pinyin": "yínháng",
+    "pos": "名",
+    "english": "bank"
+  },
+  {
+    "id": 937,
+    "word": "银行卡",
+    "pinyin": "yínhángkǎ",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 938,
+    "word": "饮料",
+    "pinyin": "yǐnliào",
+    "pos": "名",
+    "english": "drink; beverage"
+  },
+  {
+    "id": 939,
+    "word": "应该",
+    "pinyin": "yīnggāi",
+    "pos": "动",
+    "english": "should"
+  },
+  {
+    "id": 940,
+    "word": "影响",
+    "pinyin": "yǐngxiǎng",
+    "pos": "动、名",
+    "english": "influence; affect"
+  },
+  {
+    "id": 941,
+    "word": "用",
+    "pinyin": "yòng",
+    "pos": "动",
+    "english": "use; need; expense; with (means)"
+  },
+  {
+    "id": 942,
+    "word": "邮件",
+    "pinyin": "yóujiàn",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 943,
+    "word": "游客",
+    "pinyin": "yóukè",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 944,
+    "word": "游戏",
+    "pinyin": "yóuxì",
+    "pos": "名",
+    "english": "game"
+  },
+  {
+    "id": 945,
+    "word": "邮箱",
+    "pinyin": "yóuxiāng",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 946,
+    "word": "有关",
+    "pinyin": "yǒuguān",
+    "pos": "动、介",
+    "english": "related to; concerning"
+  },
+  {
+    "id": 947,
+    "word": "有名",
+    "pinyin": "yǒumíng",
+    "pos": "形",
+    "english": "famous; well-known"
+  },
+  {
+    "id": 948,
+    "word": "有用",
+    "pinyin": "yǒuyòng",
+    "pos": "形",
+    "english": "useful"
+  },
+  {
+    "id": 949,
+    "word": "又",
+    "pinyin": "yòu",
+    "pos": "副",
+    "english": "again; both...and; moreover; but"
+  },
+  {
+    "id": 950,
+    "word": "羽毛球",
+    "pinyin": "yǔmáoqiú",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 951,
+    "word": "语言",
+    "pinyin": "yǔyán",
+    "pos": "名",
+    "english": "language"
+  },
+  {
+    "id": 952,
+    "word": "雨衣",
+    "pinyin": "yǔyī",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 953,
+    "word": "遇到",
+    "pinyin": "yùdào",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 954,
+    "word": "遇见",
+    "pinyin": "yùjiàn",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 955,
+    "word": "园",
+    "pinyin": "yuán",
+    "pos": "名",
+    "english": "garden; park; orchard; venue"
+  },
+  {
+    "id": 956,
+    "word": "员",
+    "pinyin": "yuán",
+    "pos": "后缀",
+    "english": "member; personnel; clerk (bank/post office)"
+  },
+  {
+    "id": 957,
+    "word": "愿意",
+    "pinyin": "yuànyì",
+    "pos": "动",
+    "english": "willing; ready"
+  },
+  {
+    "id": 958,
+    "word": "越",
+    "pinyin": "yuè",
+    "pos": "副",
+    "english": "cross over; exceed; more and more; the more...the more"
+  },
+  {
+    "id": 959,
+    "word": "月亮",
+    "pinyin": "yuèliang",
+    "pos": "名",
+    "english": "moon"
+  },
+  {
+    "id": 960,
+    "word": "运动会",
+    "pinyin": "yùndònghuì",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 961,
+    "word": "运动员",
+    "pinyin": "yùndòngyuán",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 962,
+    "word": "咱们",
+    "pinyin": "zánmen",
+    "pos": "代",
+    "english": "we; us"
+  },
+  {
+    "id": 963,
+    "word": "脏",
+    "pinyin": "zāng",
+    "pos": "形",
+    "english": "dirty; filthy"
+  },
+  {
+    "id": 964,
+    "word": "怎么办",
+    "pinyin": "zěnme",
+    "pos": "bàn",
+    "english": ""
+  },
+  {
+    "id": 965,
+    "word": "怎样",
+    "pinyin": "zěnyàng",
+    "pos": "代",
+    "english": ""
+  },
+  {
+    "id": 966,
+    "word": "站2",
+    "pinyin": "zhàn",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 967,
+    "word": "张",
+    "pinyin": "zhāng",
+    "pos": "动、量",
+    "english": "open; spread; display; sheet (classifier); measure word for flat objects"
+  },
+  {
+    "id": 968,
+    "word": "长",
+    "pinyin": "zhǎng",
+    "pos": "动、后缀",
+    "english": "long; to grow"
+  },
+  {
+    "id": 969,
+    "word": "着急",
+    "pinyin": "zháojí",
+    "pos": "形",
+    "english": ""
+  },
+  {
+    "id": 970,
+    "word": "照",
+    "pinyin": "zhào",
+    "pos": "动",
+    "english": "shine on; reflect; according to; photograph; take care of; license"
+  },
+  {
+    "id": 971,
+    "word": "照顾",
+    "pinyin": "zhàogù",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 972,
+    "word": "照片",
+    "pinyin": "zhàopiàn",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 973,
+    "word": "照相",
+    "pinyin": "zhàoxiàng",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 974,
+    "word": "直到",
+    "pinyin": "zhídào",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 975,
+    "word": "只",
+    "pinyin": "zhǐ",
+    "pos": "副",
+    "english": "only; just; single; classifier (animals)"
+  },
+  {
+    "id": 976,
+    "word": "纸",
+    "pinyin": "zhǐ",
+    "pos": "名",
+    "english": "paper"
+  },
+  {
+    "id": 977,
+    "word": "只能",
+    "pinyin": "zhǐ",
+    "pos": "néng",
+    "english": ""
+  },
+  {
+    "id": 978,
+    "word": "只是",
+    "pinyin": "zhǐshì",
+    "pos": "副、连",
+    "english": ""
+  },
+  {
+    "id": 979,
+    "word": "只要",
+    "pinyin": "zhǐyào",
+    "pos": "连",
+    "english": ""
+  },
+  {
+    "id": 980,
+    "word": "只有",
+    "pinyin": "zhǐyǒu",
+    "pos": "连",
+    "english": "only have; only there is"
+  },
+  {
+    "id": 981,
+    "word": "中",
+    "pinyin": "zhōng",
+    "pos": "名",
+    "english": "center; middle; hit; China; medium; in; during; fit"
+  },
+  {
+    "id": 982,
+    "word": "中间",
+    "pinyin": "zhōngjiān",
+    "pos": "名",
+    "english": "middle; center; between"
+  },
+  {
+    "id": 983,
+    "word": "终于",
+    "pinyin": "zhōngyú",
+    "pos": "副",
+    "english": ""
+  },
+  {
+    "id": 984,
+    "word": "种",
+    "pinyin": "zhǒng",
+    "pos": "量",
+    "english": "kind; type; seed; plant (verb); classifier"
+  },
+  {
+    "id": 985,
+    "word": "重要",
+    "pinyin": "zhòngyào",
+    "pos": "形",
+    "english": "important"
+  },
+  {
+    "id": 986,
+    "word": "周末",
+    "pinyin": "zhōumò",
+    "pos": "名",
+    "english": ""
+  },
+  {
+    "id": 987,
+    "word": "主要",
+    "pinyin": "zhǔyào",
+    "pos": "形",
+    "english": "main; major; primary"
+  },
+  {
+    "id": 988,
+    "word": "注意",
+    "pinyin": "zhùyì",
+    "pos": "动",
+    "english": "pay attention to; notice"
+  },
+  {
+    "id": 989,
+    "word": "住院",
+    "pinyin": "zhùyuàn",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 990,
+    "word": "字典",
+    "pinyin": "zìdiǎn",
+    "pos": "名",
+    "english": "dictionary"
+  },
+  {
+    "id": 991,
+    "word": "自行车",
+    "pinyin": "zìxíngchē",
+    "pos": "名",
+    "english": "bicycle; bike"
+  },
+  {
+    "id": 992,
+    "word": "子",
+    "pinyin": "zi",
+    "pos": "后缀",
+    "english": "child; son; seed; egg; small thing; noun suffix; nominalizer (zi)"
+  },
+  {
+    "id": 994,
+    "word": "总是",
+    "pinyin": "zǒngshì",
+    "pos": "副",
+    "english": ""
+  },
+  {
+    "id": 995,
+    "word": "嘴",
+    "pinyin": "zuǐ",
+    "pos": "名",
+    "english": "mouth; nozzle; spout"
+  },
+  {
+    "id": 996,
+    "word": "最好",
+    "pinyin": "zuìhǎo",
+    "pos": "副",
+    "english": ""
+  },
+  {
+    "id": 997,
+    "word": "最后",
+    "pinyin": "zuìhòu",
+    "pos": "名",
+    "english": "final; last"
+  },
+  {
+    "id": 998,
+    "word": "最近",
+    "pinyin": "zuìjìn",
+    "pos": "名",
+    "english": "recently; lately"
+  },
+  {
+    "id": 999,
+    "word": "做客",
+    "pinyin": "zuòkè",
+    "pos": "动",
+    "english": ""
+  },
+  {
+    "id": 1000,
+    "word": "作业",
+    "pinyin": "zuòyè",
+    "pos": "名",
+    "english": "homework; assignment"
+  }
+]

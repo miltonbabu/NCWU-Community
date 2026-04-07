@@ -157,9 +157,12 @@ function ProfilePageContent() {
     async function loadHSKExtra() {
       try {
         const [quizRes, bookmarkRes, wordListRes] = await Promise.all([
-          socialApi.get("/hsk/quiz-results").catch(() => ({ data: [] })),
-          socialApi.get("/hsk/bookmarks").catch(() => ({ data: [] })),
-          socialApi.get("/hsk/word-lists").catch(() => ({ data: [] })),
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (socialApi as any).get("/hsk/quiz-results").catch(() => ({ data: [] })),
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (socialApi as any).get("/hsk/bookmarks").catch(() => ({ data: [] })),
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (socialApi as any).get("/hsk/word-lists").catch(() => ({ data: [] })),
         ]);
         if (quizRes?.data?.success) setQuizResults(quizRes.data.data || []);
         if (bookmarkRes?.data?.success)
