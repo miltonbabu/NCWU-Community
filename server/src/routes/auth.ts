@@ -354,7 +354,7 @@ router.post(
 
       const isValidPassword = await comparePassword(
         password,
-        user.password_hash,
+        user.password_hash || "",
       );
 
       if (!isValidPassword) {

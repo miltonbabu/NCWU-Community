@@ -12,6 +12,8 @@ declare global {
   }
 }
 
+export type AuthRequest = Request & { user?: User; userId?: string };
+
 export function authenticate(req: Request, res: Response, next: NextFunction) {
   const token = extractTokenFromHeader(req.headers.authorization);
   

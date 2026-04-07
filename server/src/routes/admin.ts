@@ -1496,7 +1496,7 @@ async function logAdminAction(
   targetId: string | null,
   details: Record<string, unknown>,
   ipAddress: string | null,
-): void {
+): Promise<void> {
   const logId = uuidv4();
   await run(
     `INSERT INTO admin_audit_logs (id, admin_id, action, target_type, target_id, details, ip_address)

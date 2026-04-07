@@ -530,7 +530,7 @@ router.get("/events/:id", async (req: Request, res: Response) => {
         user_interested: userInterested,
         user_going: userGoing,
       },
-    } as ApiResponse<typeof event>);
+    } as unknown as ApiResponse<typeof event>);
   } catch (error) {
     console.error("Error fetching event:", error);
     res.status(500).json({
