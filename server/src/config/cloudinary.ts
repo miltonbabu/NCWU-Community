@@ -27,8 +27,14 @@ interface TransformationOptions {
   quality?: number;
 }
 
+interface UploadedFile {
+  buffer: Buffer;
+  mimetype: string;
+  originalname: string;
+}
+
 export const uploadToCloudinary = async (
-  file: Express.Multer.File,
+  file: UploadedFile,
   folder: string = "ncwu",
   transformation?: TransformationOptions
 ): Promise<UploadApiResponse> => {

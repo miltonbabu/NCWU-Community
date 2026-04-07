@@ -6,15 +6,18 @@ const isProduction = process.env.NODE_ENV === "production";
 
 const _impl = isProduction ? postgresqlAdapter : sqliteAdapter;
 
-function run(sql: string, params: unknown[] = []): any {
+async function run(sql: string, params: unknown[] = []): Promise<any> {
   return _impl.run(sql, params);
 }
 
-function get<T = any>(sql: string, params: unknown[] = []): T | undefined {
+async function get<T = any>(
+  sql: string,
+  params: unknown[] = [],
+): Promise<T | undefined> {
   return _impl.get<T>(sql, params);
 }
 
-function all<T = any>(sql: string, params: unknown[] = []): T[] {
+async function all<T = any>(sql: string, params: unknown[] = []): Promise<T[]> {
   return _impl.all<T>(sql, params);
 }
 
