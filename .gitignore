@@ -64,7 +64,7 @@ coverage/
 # Database files
 *.sqlite
 *.db
-data/
+/data/
 
 # Server build output
 server/dist/
