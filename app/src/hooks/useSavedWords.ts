@@ -41,16 +41,18 @@ export function useSavedWords() {
         const response = await hskApi.getSavedWords();
         if (response?.success && response.data) {
           const words = Array.isArray(response.data) ? response.data : [];
-          const formattedWords: SavedWord[] = words.map((w: any) => ({
-            id: w.id || `${w.level}-${w.word_id}`,
-            wordId: w.word_id,
-            level: w.level,
-            chinese: w.word,
-            pinyin: w.pinyin,
-            english: w.english,
-            partOfSpeech: w.pos || "",
-            savedAt: w.created_at || new Date().toISOString(),
-          }));
+          const formattedWords: SavedWord[] = words.map(
+            (w: Record<string, unknown>) => ({
+              id: w.id || `${w.level}-${w.word_id}`,
+              wordId: w.word_id,
+              level: w.level,
+              chinese: w.word,
+              pinyin: w.pinyin,
+              english: w.english,
+              partOfSpeech: w.pos || "",
+              savedAt: w.created_at || new Date().toISOString(),
+            }),
+          );
           setSavedWords(formattedWords);
         }
       } catch (err) {
@@ -190,10 +192,10 @@ export function useSavedWords() {
       try {
         await hskApi.clearData();
       } catch (err) {
-        console.error('Error clearing saved words:', err);
+        console.error("Error clearing saved words:", err);
       }
     }
-    
+
     const storageKey = getUserStorageKey(SAVED_WORDS_KEY);
     localStorage.removeItem(storageKey);
   }, [isAuthenticated, user]);

@@ -90,7 +90,7 @@ export function useSchedulePreferences() {
 
   const removeCustomNote = useCallback((classId: string) => {
     setPreferences((prev) => {
-      const { [classId]: _, ...rest } = prev.customNotes;
+      const { [classId]: _removed2, ...rest } = prev.customNotes;
       return {
         ...prev,
         customNotes: rest,

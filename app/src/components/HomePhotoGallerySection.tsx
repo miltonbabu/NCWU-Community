@@ -28,16 +28,20 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 interface GalleryPost extends Post {
   author_name?: string;
   author_avatar?: string | null;
-  comments?: any[];
+  comments?: {
+    author_name?: string;
+    author_avatar?: string | null;
+    content: string;
+  }[];
 }
 
 interface HomePhotoGallerySectionProps {
   isDark: boolean;
 }
 
-const safeParseArray = (value: any): string[] => {
+const safeParseArray = (value: unknown): string[] => {
   if (!value) return [];
-  if (Array.isArray(value)) return value;
+  if (Array.isArray(value)) return value as string[];
   if (typeof value === "string") {
     try {
       const parsed = JSON.parse(value);
@@ -51,10 +55,10 @@ const safeParseArray = (value: any): string[] => {
 
 const CollageImage = ({
   images,
-  isDark,
+  _isDark,
 }: {
   images: string[];
-  isDark: boolean;
+  _isDark?: boolean;
 }) => {
   const count = images.length;
 
@@ -261,7 +265,7 @@ export default function HomePhotoGallerySection({
           setPosts((prev) =>
             prev.map((p) =>
               p.id === selectedPostForComment.id
-                ? { ...p, comments_count: (p.comments_count || 0) + 1 }
+                ? { ...p, comments_count: ((p as any).comments_count || 0) + 1 }
                 : p,
             ),
           );
@@ -422,7 +426,7 @@ export default function HomePhotoGallerySection({
                           className={`w-4 h-4 ${isLiked ? "fill-current" : ""}`}
                         />
                       )}
-                      {post.likes_count || 0}
+                      {(post as any).likes_count || post.like_count || 0}
                     </button>
                     <button
                       onClick={(e) => handleOpenComment(post, e)}
