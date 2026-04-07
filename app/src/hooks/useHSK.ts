@@ -54,7 +54,8 @@ export function useHSKProgress() {
         const response = await hskApi.getProgress();
         if (response.success && response.data) {
           const progressMap: Record<number, HSKProgress> = {};
-          (response.data as any[]).forEach((item: any) => {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (response.data as any[]).forEach((item: Record<string, unknown>) => {
             progressMap[item.level] = {
               level: item.level,
               wordsLearned: item.words_learned,
@@ -632,6 +633,7 @@ export function useWordListHistory() {
         setError(null);
         const response = await hskApi.getWordLists();
         if (response.success && response.data) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           setWordListHistory(response.data as any[]);
         }
       } catch (err) {
