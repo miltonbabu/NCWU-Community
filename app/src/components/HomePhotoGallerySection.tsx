@@ -437,7 +437,7 @@ export default function HomePhotoGallerySection({
                       }`}
                     >
                       <MessageSquare className="w-4 h-4" />
-                      {post.comments_count || 0}
+                      {(post as any).comments_count || post.comment_count || 0}
                     </button>
                   </div>
                 </div>

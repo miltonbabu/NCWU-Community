@@ -58,6 +58,7 @@ export function useSchedulePreferences() {
 
   const removeReminder = useCallback((classId: string) => {
     setPreferences((prev) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { [classId]: _, ...rest } = prev.reminders;
       return {
         ...prev,
@@ -90,6 +91,7 @@ export function useSchedulePreferences() {
 
   const removeCustomNote = useCallback((classId: string) => {
     setPreferences((prev) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { [classId]: _removed2, ...rest } = prev.customNotes;
       return {
         ...prev,
