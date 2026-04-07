@@ -27,12 +27,12 @@ async function get<T = any>(
   params: unknown[] = [],
 ): Promise<T | undefined> {
   const impl = await getImpl();
-  return impl.get<T>(sql, params);
+  return impl.get(sql, params) as Promise<T | undefined>;
 }
 
 async function all<T = any>(sql: string, params: unknown[] = []): Promise<T[]> {
   const impl = await getImpl();
-  return impl.all<T>(sql, params);
+  return impl.all(sql, params) as Promise<T[]>;
 }
 
 async function initializeDatabase(): Promise<void> {
