@@ -296,6 +296,7 @@ export interface UpdatePostRequest {
   target_departments?: string[];
   target_years?: number[];
   is_emergency?: boolean;
+  anonymity_level?: AnonymityLevel;
 }
 
 export interface CreateCommentRequest {
