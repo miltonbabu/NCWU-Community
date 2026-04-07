@@ -130,7 +130,7 @@ export default function RandomVocabularyQuiz({
       const wrongAnswers = otherWords
         .sort(() => Math.random() - 0.5)
         .slice(0, 3)
-        .map((w) => w.english);
+        .map((w: any) => w.english);
 
       // Combine correct and wrong answers, then shuffle
       const allOptions = [word.english, ...wrongAnswers].sort(

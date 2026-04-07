@@ -367,7 +367,7 @@ export function SharePopup({
             )}
           </button>
 
-          {navigator.share && (
+          {typeof navigator !== "undefined" && navigator.share && (
             <button
               onClick={handleNativeShare}
               className={`

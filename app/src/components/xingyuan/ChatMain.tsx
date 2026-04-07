@@ -2,7 +2,6 @@ import { useRef, useEffect, useState, useCallback } from "react";
 import { useXingyuanChat } from "../../contexts/ChatContext";
 import { useAuth } from "../../contexts/AuthContext";
 import { sendGLMMessage, type GLMMessage } from "../../lib/glm-api";
-import { Button } from "../ui/button";
 import { ScrollArea } from "../ui/scroll-area";
 import { ChatMessage } from "./ChatMessage";
 import { ChatInput } from "./ChatInput";

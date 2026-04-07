@@ -176,7 +176,7 @@ export function XingyuanAdminPanel({ isDark }: { isDark: boolean }) {
       setDebugInfo(
         `Stats response: success=${res.success}, hasData=${!!res.data}, keys=${res.data ? Object.keys(res.data).join(",") : "null"}`,
       );
-      if (res.success && res.data) setStats(res.data);
+      if (res.success && res.data) setStats(res.data as any);
     } catch (err) {
       console.error("[Xingyuan Admin] loadStats error:", err);
       setDebugInfo(

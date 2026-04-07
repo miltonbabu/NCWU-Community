@@ -6,7 +6,6 @@ import {
   Square,
   Brain,
   Atom,
-  ImagePlus,
   X,
   Loader2,
   AlertTriangle,
@@ -53,6 +52,7 @@ interface ChatInputProps {
 
 interface ImageItem {
   url: string;
+  type?: string;
   uploading: boolean;
   preview?: string;
 }
