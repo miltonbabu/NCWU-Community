@@ -1470,7 +1470,7 @@ export function ensureLanguageExchangeTables() {
   console.log("Language exchange tables ensured.");
 }
 
-export function getDb(): Database {
+export function getDb(): any {
   return db;
 }
 

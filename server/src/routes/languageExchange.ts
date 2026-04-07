@@ -1004,7 +1004,7 @@ router.post(
           .json({ success: false, message: "Unauthorized" });
       }
 
-      if (!user.is_admin && isFeatureRestricted(user.id, "language_exchange")) {
+      if (!user.is_admin && await isFeatureRestricted(user.id, "language_exchange")) {
         return res.status(403).json({
           success: false,
           message:

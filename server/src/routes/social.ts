@@ -1603,7 +1603,7 @@ router.post(
       const { id } = req.params;
       const user = req.user!;
 
-      if (!user.is_admin && isFeatureRestricted(user.id, "social_comment")) {
+      if (!user.is_admin && await isFeatureRestricted(user.id, "social_comment")) {
         return res.status(403).json({
           success: false,
           message: "You are restricted from commenting. Please contact admin.",

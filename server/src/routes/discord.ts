@@ -721,7 +721,7 @@ router.post(
           .json({ success: false, message: "Unauthorized" });
       }
 
-      if (!user.is_admin && isFeatureRestricted(user.id, "discord")) {
+      if (!user.is_admin && await isFeatureRestricted(user.id, "discord")) {
         return res.status(403).json({
           success: false,
           message:

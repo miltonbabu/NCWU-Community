@@ -747,24 +747,7 @@ export interface UserRestriction {
 export async function checkUserRestriction(
   userId: string,
 ): Promise<UserRestriction> {
-  const activeFlag = await get<{
-    id: string;
-    user_id: string;
-    flag_type: string;
-    reason: string;
-    source: string;
-    source_id: string | null;
-    content_preview: string | null;
-    detected_words: string;
-    restriction_type: string;
-    restriction_days: number;
-    restricted_features: string;
-    restricted_at: string;
-    restriction_ends_at: string | null;
-    is_active: number;
-    created_at: string;
-    admin_id: string | null;
-  }>(
+  const activeFlag = await get<any>(
     `SELECT * FROM user_flags
      WHERE user_id = ? AND is_active = 1
      AND (restriction_ends_at IS NULL OR restriction_ends_at > datetime('now'))
@@ -790,8 +773,8 @@ export async function checkUserRestriction(
   };
 }
 
-export function isFeatureRestricted(userId: string, feature: string): boolean {
-  const restriction = checkUserRestriction(userId);
+export async function isFeatureRestricted(userId: string, feature: string): Promise<boolean> {
+  const restriction = await checkUserRestriction(userId);
 
   if (!restriction.is_restricted) {
     return false;
