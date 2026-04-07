@@ -14,41 +14,41 @@ declare global {
 
 export type AuthRequest = Request & { user?: User; userId?: string };
 
-export function authenticate(req: Request, res: Response, next: NextFunction) {
+export async function authenticate(req: Request, res: Response, next: NextFunction) {
   const token = extractTokenFromHeader(req.headers.authorization);
-  
+
   if (!token) {
     return res.status(401).json({
       success: false,
       message: 'Access denied. No token provided.',
     });
   }
-  
+
   const decoded = verifyToken(token);
-  
+
   if (!decoded) {
     return res.status(401).json({
       success: false,
       message: 'Invalid or expired token.',
     });
   }
-  
-  const user = get<User>('SELECT * FROM users WHERE id = ?', [decoded.userId]);
-  
+
+  const user = await get<User>('SELECT * FROM users WHERE id = ?', [decoded.userId]);
+
   if (!user) {
     return res.status(401).json({
       success: false,
       message: 'User not found.',
     });
   }
-  
+
   if (user.is_banned) {
     return res.status(403).json({
       success: false,
       message: 'Your account has been banned. Please contact administrator.',
     });
   }
-  
+
   req.user = user;
   req.userId = user.id;
   next();

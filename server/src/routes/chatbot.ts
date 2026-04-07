@@ -4,7 +4,7 @@ import {
   fallbackResponse,
   defaultSuggestions,
   type KnowledgeEntry,
-} from "../data/chatbotKnowledge.js";
+} from "../data/chatbotKnowledge";
 
 const router = express.Router();
 

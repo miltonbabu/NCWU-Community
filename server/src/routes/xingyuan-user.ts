@@ -129,7 +129,7 @@ router.post("/chat/sync", async (req: Request, res: Response) => {
             ],
           );
 
-          recordUsageStats(userId, ipAddress, tokenCount, hasImages, false);
+          await recordUsageStats(userId, ipAddress, tokenCount, hasImages, false);
         }
       }
     }
@@ -184,7 +184,7 @@ router.post("/message/add", async (req: Request, res: Response) => {
       chatId,
     ]);
 
-    recordUsageStats(userId, ipAddress, tokenCount, hasImages, false);
+    await recordUsageStats(userId, ipAddress, tokenCount, hasImages, false);
 
     res.json({ success: true });
   } catch (error) {
