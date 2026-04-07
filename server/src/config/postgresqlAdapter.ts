@@ -10,6 +10,7 @@ const pool = new Pool({
   min: 2,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 5000,
+  ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false,
 });
 
 async function ensureSchemaExists(): Promise<void> {

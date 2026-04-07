@@ -67,7 +67,7 @@ router.post("/chat/sync", async (req: Request, res: Response) => {
         .json({ success: false, error: "chatId is required" });
     }
 
-    const userId = getUserId(req);
+    const userId = await getUserId(req);
     const ipAddress = getClientIp(req);
     const userAgent = req.headers["user-agent"] || null;
 
@@ -159,7 +159,7 @@ router.post("/message/add", async (req: Request, res: Response) => {
       });
     }
 
-    const userId = getUserId(req);
+    const userId = await getUserId(req);
     const ipAddress = getClientIp(req);
 
     const tokenCount = Math.ceil((content?.length || 0) / 4);
@@ -196,7 +196,7 @@ router.post("/message/add", async (req: Request, res: Response) => {
 router.post("/chat/soft-delete", async (req: Request, res: Response) => {
   try {
     const { chatId } = req.body as { chatId: string };
-    const userId = getUserId(req);
+    const userId = await getUserId(req);
 
     if (!userId && !chatId) {
       return res.status(400).json({
@@ -230,7 +230,7 @@ router.post("/message/soft-delete", async (req: Request, res: Response) => {
       chatId: string;
       messageId: string;
     };
-    const userId = getUserId(req);
+    const userId = await getUserId(req);
 
     if (!userId) {
       return res.status(400).json({
