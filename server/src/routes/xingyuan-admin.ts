@@ -475,8 +475,8 @@ router.delete(
     try {
       const adminId = (req as any).user?.id;
 
-      const chatCount = await get<{ count: number }>("SELECT COUNT(*) as count FROM xingyuan_chats")?.count || 0;
-      const messageCount = await get<{ count: number }>("SELECT COUNT(*) as count FROM xingyuan_messages")?.count || 0;
+      const chatCount = (await get<{ count: number }>("SELECT COUNT(*) as count FROM xingyuan_chats"))?.count || 0;
+      const messageCount = (await get<{ count: number }>("SELECT COUNT(*) as count FROM xingyuan_messages"))?.count || 0;
 
       await run("DELETE FROM xingyuan_messages");
       await run("DELETE FROM xingyuan_chats");

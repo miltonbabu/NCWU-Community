@@ -177,6 +177,7 @@ export interface Post {
   post_type?: string;
   title?: string | null;
   mentions?: string[];
+  view_count?: number;
   created_at: string;
   updated_at: string;
   deleted_at: string | null;

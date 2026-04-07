@@ -139,7 +139,7 @@ router.post(
             },
           },
         },
-      } as unknown as ApiResponse<ChatSession>);
+      } as any);
     } catch (error) {
       console.error("Error creating chat session:", error);
       res.status(500).json({

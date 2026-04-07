@@ -13,7 +13,7 @@ function getClientIp(req: Request): string {
   );
 }
 
-async function getUserId(req: Request): string | null {
+async function getUserId(req: Request): Promise<string | null> {
   try {
     const token = extractTokenFromHeader(req.headers.authorization);
     if (!token) {

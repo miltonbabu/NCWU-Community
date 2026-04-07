@@ -10,4 +10,9 @@ declare module 'multer' {
     path: string;
     buffer: Buffer;
   }
+  function multer(opts?: any): any;
+  namespace multer {
+    function memoryStorage(): any;
+  }
+  export = multer;
 }

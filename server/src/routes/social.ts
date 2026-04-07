@@ -389,7 +389,7 @@ router.get(
           : [],
         target_years: post.target_years ? JSON.parse(post.target_years) : [],
         mentions: post.mentions ? JSON.parse(post.mentions) : [],
-      }));
+      } as any));
 
       const countResult = await get<{ count: number }>(
         `SELECT COUNT(*) as count FROM posts p ${whereClause}`,
@@ -450,7 +450,7 @@ router.get(
           : [],
         target_years: post.target_years ? JSON.parse(post.target_years) : [],
         mentions: post.mentions ? JSON.parse(post.mentions) : [],
-      };
+      } as any;
 
       const comments = await all<CommentWithAuthor>(
         `SELECT c.*, u.full_name as author_name, u.avatar_url as author_avatar, u.department as author_department
