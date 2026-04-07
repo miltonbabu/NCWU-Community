@@ -6,7 +6,6 @@ import {
   Heart,
   Image as ImageIcon,
   MessageSquare,
-  X,
   Send,
   Loader2,
 } from "lucide-react";
@@ -162,7 +161,8 @@ export default function HomePhotoGallerySection({
   const [likedPosts, setLikedPosts] = useState<Set<string>>(new Set());
   const [likingId, setLikingId] = useState<string | null>(null);
   const [commentDialogOpen, setCommentDialogOpen] = useState(false);
-  const [selectedPostForComment, setSelectedPostForComment] = useState<GalleryPost | null>(null);
+  const [selectedPostForComment, setSelectedPostForComment] =
+    useState<GalleryPost | null>(null);
   const [commentInput, setCommentInput] = useState("");
   const [submittingComment, setSubmittingComment] = useState(false);
   const [comments, setComments] = useState<any[]>([]);
@@ -185,7 +185,7 @@ export default function HomePhotoGallerySection({
   const handleLike = async (postId: string, e: React.MouseEvent) => {
     e.stopPropagation();
     e.preventDefault();
-    
+
     if (!isAuthenticated) {
       toast.error("Please login to like posts");
       return;
@@ -214,9 +214,7 @@ export default function HomePhotoGallerySection({
         setLikedPosts((prev) => new Set([...prev, postId]));
         setPosts((prev) =>
           prev.map((p) =>
-            p.id === postId
-              ? { ...p, likes_count: (p.likes_count || 0) + 1 }
-              : p,
+            p.id === postId ? { ...p, like_count: (p.like_count || 0) + 1 } : p,
           ),
         );
       }
@@ -231,7 +229,7 @@ export default function HomePhotoGallerySection({
   const handleOpenComment = (post: GalleryPost, e: React.MouseEvent) => {
     e.stopPropagation();
     e.preventDefault();
-    
+
     setSelectedPostForComment(post);
     setComments(post.comments || []);
     setCommentDialogOpen(true);
@@ -246,9 +244,10 @@ export default function HomePhotoGallerySection({
 
     try {
       setSubmittingComment(true);
-      const res = await galleryApi.addComment(selectedPostForComment.id, {
-        content: commentInput.trim(),
-      });
+      const res = await galleryApi.addComment(
+        selectedPostForComment.id,
+        commentInput.trim(),
+      );
 
       if (res.success) {
         toast.success("Comment added");
@@ -260,11 +259,11 @@ export default function HomePhotoGallerySection({
           setSelectedPostForComment(postRes.data);
           setComments(postRes.data.comments || []);
           setPosts((prev) =>
-            prev.map((p) => 
-              p.id === selectedPostForComment.id 
+            prev.map((p) =>
+              p.id === selectedPostForComment.id
                 ? { ...p, comments_count: (p.comments_count || 0) + 1 }
-                : p
-            )
+                : p,
+            ),
           );
         }
       }
@@ -364,12 +363,9 @@ export default function HomePhotoGallerySection({
                 isDark ? "bg-slate-800" : "bg-white"
               } shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1`}
             >
-              <Link
-                to={`/gallery?post=${post.id}`}
-                className="block"
-              >
+              <Link to={`/gallery?post=${post.id}`} className="block">
                 <div className="relative h-64 sm:h-72 lg:h-80 overflow-hidden">
-                  <CollageImage images={images} isDark={isDark} />
+                  <CollageImage images={images} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   {images.length > 1 && (
                     <div className="absolute top-3 right-3 bg-black/50 backdrop-blur-sm text-white px-2.5 py-1 rounded-full text-xs flex items-center gap-1">
@@ -381,10 +377,7 @@ export default function HomePhotoGallerySection({
               </Link>
 
               <div className="p-4 sm:p-5">
-                <Link
-                  to={`/gallery?post=${post.id}`}
-                  className="block"
-                >
+                <Link to={`/gallery?post=${post.id}`} className="block">
                   <h3
                     className={`font-semibold text-lg mb-1.5 line-clamp-2 hover:text-orange-500 transition-colors ${
                       isDark ? "text-white" : "text-slate-900"
@@ -415,22 +408,28 @@ export default function HomePhotoGallerySection({
                       onClick={(e) => handleLike(post.id, e)}
                       disabled={likingId === post.id}
                       className={`flex items-center gap-1.5 text-sm transition-all ${
-                        isLiked 
-                          ? "text-red-500" 
-                          : isDark ? "text-slate-400 hover:text-slate-300" : "text-slate-600 hover:text-slate-900"
+                        isLiked
+                          ? "text-red-500"
+                          : isDark
+                            ? "text-slate-400 hover:text-slate-300"
+                            : "text-slate-600 hover:text-slate-900"
                       }`}
                     >
                       {likingId === post.id ? (
                         <Loader2 className="w-4 h-4 animate-spin" />
                       ) : (
-                        <Heart className={`w-4 h-4 ${isLiked ? "fill-current" : ""}`} />
+                        <Heart
+                          className={`w-4 h-4 ${isLiked ? "fill-current" : ""}`}
+                        />
                       )}
                       {post.likes_count || 0}
                     </button>
                     <button
                       onClick={(e) => handleOpenComment(post, e)}
                       className={`flex items-center gap-1.5 text-sm transition-all ${
-                        isDark ? "text-slate-400 hover:text-slate-300" : "text-slate-600 hover:text-slate-900"
+                        isDark
+                          ? "text-slate-400 hover:text-slate-300"
+                          : "text-slate-600 hover:text-slate-900"
                       }`}
                     >
                       <MessageSquare className="w-4 h-4" />
@@ -455,19 +454,25 @@ export default function HomePhotoGallerySection({
       </div>
 
       <Dialog open={commentDialogOpen} onOpenChange={setCommentDialogOpen}>
-        <DialogContent className={`sm:max-w-md ${isDark ? "bg-slate-800 border-slate-700" : "bg-white"}`}>
+        <DialogContent
+          className={`sm:max-w-md ${isDark ? "bg-slate-800 border-slate-700" : "bg-white"}`}
+        >
           <DialogHeader>
             <DialogTitle className={isDark ? "text-white" : "text-slate-900"}>
               Comments
             </DialogTitle>
-            <DialogDescription className={isDark ? "text-slate-400" : "text-slate-600"}>
+            <DialogDescription
+              className={isDark ? "text-slate-400" : "text-slate-600"}
+            >
               {selectedPostForComment?.title || "View and add comments"}
             </DialogDescription>
           </DialogHeader>
 
           <ScrollArea className="max-h-[300px] pr-2">
             {comments.length === 0 ? (
-              <div className={`text-center py-8 ${isDark ? "text-slate-500" : "text-slate-400"}`}>
+              <div
+                className={`text-center py-8 ${isDark ? "text-slate-500" : "text-slate-400"}`}
+              >
                 No comments yet. Be the first!
               </div>
             ) : (
@@ -476,15 +481,21 @@ export default function HomePhotoGallerySection({
                   <div key={index} className="flex gap-3">
                     <Avatar className="w-8 h-8">
                       <AvatarImage src={comment.author_avatar || ""} />
-                      <AvatarFallback className={isDark ? "bg-slate-700" : "bg-slate-200"}>
+                      <AvatarFallback
+                        className={isDark ? "bg-slate-700" : "bg-slate-200"}
+                      >
                         {(comment.author_name || "U").charAt(0).toUpperCase()}
                       </AvatarFallback>
                     </Avatar>
                     <div className="flex-1">
-                      <p className={`text-sm font-medium ${isDark ? "text-white" : "text-slate-900"}`}>
+                      <p
+                        className={`text-sm font-medium ${isDark ? "text-white" : "text-slate-900"}`}
+                      >
                         {comment.author_name || "Anonymous"}
                       </p>
-                      <p className={`text-sm ${isDark ? "text-slate-400" : "text-slate-600"}`}>
+                      <p
+                        className={`text-sm ${isDark ? "text-slate-400" : "text-slate-600"}`}
+                      >
                         {comment.content}
                       </p>
                     </div>
@@ -501,7 +512,11 @@ export default function HomePhotoGallerySection({
                 onChange={(e) => setCommentInput(e.target.value)}
                 placeholder="Add a comment..."
                 onKeyDown={(e) => e.key === "Enter" && handleAddComment()}
-                className={isDark ? "bg-slate-700 border-slate-600 text-white placeholder:text-slate-400" : ""}
+                className={
+                  isDark
+                    ? "bg-slate-700 border-slate-600 text-white placeholder:text-slate-400"
+                    : ""
+                }
               />
               <Button
                 onClick={handleAddComment}
