@@ -363,7 +363,6 @@ export function useHSKQuiz() {
 
     const answerDetails = currentQuiz.questions.map((q) => {
       const userAnswer = answers[q.id] || "";
-      // @ts-expect-error correct_answer is number index, options is string[]
       const correctAnswer = q.options[q.correct_answer] || "";
       const correct = userAnswer.toLowerCase() === correctAnswer.toLowerCase();
       if (correct) {
