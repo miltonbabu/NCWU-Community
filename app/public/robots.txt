@@ -1,0 +1,56 @@
+# Robots.txt for NCWU International Student Community
+# https://www.ncwu.site
+
+# Allow all search engines
+User-agent: *
+
+# Allow all pages to be indexed
+Allow: /
+
+# Disallow admin or private areas (if any)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+
+# Crawl delay for respectful crawling
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://www.ncwu.site/sitemap.xml
+
+# Specific rules for major search engines
+
+# Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Baidu (Chinese search engine)
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 1
+
+# Yandex (Russian search engine)
+User-agent: Yandex
+Allow: /
+Crawl-delay: 1
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+# Sogou (Chinese search engine)
+User-agent: Sogou
+Allow: /
+Crawl-delay: 1
+
+# 360 Search (Chinese search engine)
+User-agent: 360Spider
+Allow: /
+Crawl-delay: 1

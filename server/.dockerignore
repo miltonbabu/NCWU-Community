@@ -1,0 +1,12 @@
+node_modules
+dist
+src
+tsconfig.json
+.git
+.gitignore
+.env*
+*.sqlite
+*.db
+data
+uploads
+.trae
