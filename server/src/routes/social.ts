@@ -1,4 +1,4 @@
-import { Router, Request, Response } from "express";
+import express, { Request, Response } from "express";
 import { body, validationResult, query } from "express-validator";
 import { authenticate, optionalAuth } from "../middleware/auth.js";
 import { run, get, all } from "../config/database.js";
@@ -382,14 +382,14 @@ router.get(
       // Parse JSON fields for each post
       const parsedPosts = (posts || []).map((post) => ({
         ...post,
-        images: post.images ? JSON.parse(post.images) : [],
-        tags: post.tags ? JSON.parse(post.tags) : [],
+        images: post.images ? JSON.parse(post.images as string) : [],
+        tags: post.tags ? JSON.parse(post.tags as string) : [],
         target_departments: post.target_departments
-          ? JSON.parse(post.target_departments)
+          ? JSON.parse(post.target_departments as string)
           : [],
-        target_years: post.target_years ? JSON.parse(post.target_years) : [],
-        mentions: post.mentions ? JSON.parse(post.mentions) : [],
-      } as any));
+        target_years: post.target_years ? JSON.parse(post.target_years as string) : [],
+        mentions: post.mentions ? JSON.parse(post.mentions as string) : [],
+      }));
 
       const countResult = await get<{ count: number }>(
         `SELECT COUNT(*) as count FROM posts p ${whereClause}`,
@@ -443,14 +443,14 @@ router.get(
       // Parse JSON fields for the post
       const parsedPost = {
         ...post,
-        images: post.images ? JSON.parse(post.images) : [],
-        tags: post.tags ? JSON.parse(post.tags) : [],
+        images: post.images ? JSON.parse(post.images as string) : [],
+        tags: post.tags ? JSON.parse(post.tags as string) : [],
         target_departments: post.target_departments
-          ? JSON.parse(post.target_departments)
+          ? JSON.parse(post.target_departments as string)
           : [],
-        target_years: post.target_years ? JSON.parse(post.target_years) : [],
-        mentions: post.mentions ? JSON.parse(post.mentions) : [],
-      } as any;
+        target_years: post.target_years ? JSON.parse(post.target_years as string) : [],
+        mentions: post.mentions ? JSON.parse(post.mentions as string) : [],
+      };
 
       const comments = await all<CommentWithAuthor>(
         `SELECT c.*, u.full_name as author_name, u.avatar_url as author_avatar, u.department as author_department

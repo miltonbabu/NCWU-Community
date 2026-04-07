@@ -1,4 +1,4 @@
-import { Router, Response } from "express";
+import express, { Response } from "express";
 import { v4 as uuidv4 } from "uuid";
 import { run, get, all } from "../config/database";
 import { authenticate, requireAdmin, AuthRequest } from "../middleware/auth";

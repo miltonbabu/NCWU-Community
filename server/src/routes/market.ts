@@ -1,4 +1,4 @@
-import { Router, Request, Response } from "express";
+import express, { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
 import xss from "xss";
 import { body, validationResult } from "express-validator";
@@ -47,6 +47,13 @@ interface MarketComment {
   content: string;
   replies: any[];
   parent_reply_to_name?: string;
+  created_at: string;
+}
+
+interface MarketLike {
+  id: string;
+  post_id: string;
+  user_id: string;
   created_at: string;
 }
 

@@ -773,7 +773,10 @@ export async function checkUserRestriction(
   };
 }
 
-export async function isFeatureRestricted(userId: string, feature: string): Promise<boolean> {
+export async function isFeatureRestricted(
+  userId: string,
+  feature: string,
+): Promise<boolean> {
   const restriction = await checkUserRestriction(userId);
 
   if (!restriction.is_restricted) {
@@ -935,7 +938,10 @@ export async function extendUserBan(
     newEndsAt = new Date(now.getTime() + additionalDays * 24 * 60 * 60 * 1000);
   }
 
-  await run([newEndsAt.toISOString(), additionalDays, adminId, flagId]);
+  await run(
+    `UPDATE user_flags SET restriction_ends_at = ?, restriction_days = restriction_days + ?, admin_id = ? WHERE id = ?`,
+    [newEndsAt.toISOString(), additionalDays, adminId, flagId],
+  );
 }
 
 export function unbanUser(flagId: string, adminId: string): void {
