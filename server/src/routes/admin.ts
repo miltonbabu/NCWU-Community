@@ -1,4 +1,4 @@
-import { Router, Request, Response } from "express";
+import express, { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
 import xss from "xss";
 import { run, get, all } from "../config/database.js";
@@ -26,7 +26,7 @@ import type {
   AdminAuditLog,
 } from "../types/index.js";
 
-const router = Router();
+const router = express.Router();
 
 function sanitizeInput(input: string): string {
   return xss(input.trim());

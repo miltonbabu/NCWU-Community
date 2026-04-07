@@ -4,7 +4,7 @@ import { run, get, all } from "../config/database";
 import { authenticate, requireAdmin, AuthRequest } from "../middleware/auth";
 import { io } from "../index";
 
-const router = Router();
+const router = express.Router();
 
 router.get(
   "/stats",

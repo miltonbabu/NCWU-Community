@@ -27,7 +27,7 @@ import type {
   SafeUser,
 } from "../types/index.js";
 
-const router = Router();
+const router = express.Router();
 
 function generateId(): string {
   return `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;

@@ -1,11 +1,11 @@
-import { Router, type Request, type Response } from "express";
+import express, { type Request, type Response } from "express";
 import { v4 as uuidv4 } from "uuid";
 import { run, get, all } from "../config/database.js";
 import { authenticate } from "../middleware/auth.js";
 import * as fs from "fs";
 import * as path from "path";
 
-const router = Router();
+const router = express.Router();
 
 // Global search - search across all HSK levels (MUST be before /vocabulary/:level)
 router.get("/search", async (req: Request, res: Response) => {

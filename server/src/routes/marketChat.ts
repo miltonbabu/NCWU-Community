@@ -1,4 +1,4 @@
-import { Router, Request, Response } from "express";
+import express, { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
 import xss from "xss";
 import { body, validationResult } from "express-validator";
@@ -6,7 +6,7 @@ import { run, get, all } from "../config/database.js";
 import { authenticate, requireAdmin } from "../middleware/auth.js";
 import type { ApiResponse } from "../types/index.js";
 
-const router = Router();
+const router = express.Router();
 
 interface ChatSession {
   id: string;
@@ -139,7 +139,7 @@ router.post(
             },
           },
         },
-      } as ApiResponse<typeof session>);
+      } as unknown as ApiResponse<ChatSession>);
     } catch (error) {
       console.error("Error creating chat session:", error);
       res.status(500).json({

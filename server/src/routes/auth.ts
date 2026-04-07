@@ -1,4 +1,4 @@
-import { Router, Request, Response } from "express";
+import express, { Router, Request, Response } from "express";
 import { body, validationResult } from "express-validator";
 import { v4 as uuidv4 } from "uuid";
 import xss from "xss";
@@ -17,7 +17,7 @@ import type {
   ApiResponse,
 } from "../types/index.js";
 
-const router = Router();
+const router = express.Router();
 
 const MAX_LOGIN_ATTEMPTS = 5;
 const LOCKOUT_DURATION_MINUTES = 10;

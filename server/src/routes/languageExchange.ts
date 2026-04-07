@@ -1,4 +1,4 @@
-import { Router, Request, Response } from "express";
+import express, { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
 import { run, get, all } from "../config/database";
 import { authenticate, AuthRequest } from "../middleware/auth";
@@ -12,7 +12,7 @@ import {
   scheduleContentDeletion,
 } from "../utils/contentModeration";
 
-const router = Router();
+const router = express.Router();
 
 function sanitizeContent(content: string): string {
   return xss(content, {
@@ -337,7 +337,7 @@ router.post(
           .json({ success: false, message: "User not found" });
       }
 
-      console.log("Connect request:", { userId, userId, user });
+      console.log("Connect request:", { userId, targetUserId: userId, user });
 
       // Check if table exists first
       try {

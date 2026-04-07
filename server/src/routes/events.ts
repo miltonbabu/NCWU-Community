@@ -6,7 +6,7 @@ import { run, get, all } from "../config/database.js";
 import { authenticate, requireAdmin } from "../middleware/auth.js";
 import type { ApiResponse } from "../types/index.js";
 
-const router = Router();
+const router = express.Router();
 
 interface Event {
   id: string;

@@ -1,10 +1,10 @@
-import { Router, Request, Response } from "express";
+import express, { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
 import { run, get, all } from "../config/database.js";
 import { optionalAuth } from "../middleware/auth.js";
 import type { ApiResponse } from "../types/index.js";
 
-const router = Router();
+const router = express.Router();
 
 function getClientIp(req: Request): string {
   return (

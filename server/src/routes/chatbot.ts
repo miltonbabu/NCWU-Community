@@ -6,7 +6,7 @@ import {
   type KnowledgeEntry,
 } from "../data/chatbotKnowledge.js";
 
-const router = Router();
+const router = express.Router();
 
 interface UserInfo {
   name?: string | null;

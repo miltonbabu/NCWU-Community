@@ -1,6 +1,6 @@
-import { Router, Request, Response } from "express";
+import express, { Request, Response } from "express";
 
-const router = Router();
+const router = express.Router();
 
 const GLM_API_URL = "https://open.bigmodel.cn/api/paas/v4/chat/completions";
 const GLM_API_KEY = process.env.GLM_API_KEY;

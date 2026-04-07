@@ -6,7 +6,7 @@ import { run, get, all } from "../config/database.js";
 import { authenticate, requireAdmin } from "../middleware/auth.js";
 import type { ApiResponse } from "../types/index.js";
 
-const router = Router();
+const router = express.Router();
 
 interface MarketPost {
   id: string;
@@ -26,6 +26,7 @@ interface MarketPost {
   auto_remove_at: string | null;
   status: string;
   views: number;
+  last_viewed_at: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -38,18 +39,14 @@ interface MarketComment {
   created_at: string;
 }
 
-interface MarketLike {
-  id: string;
-  post_id: string;
-  user_id: string;
-  created_at: string;
-}
-
 interface MarketComment {
   id: string;
   post_id: string;
   user_id: string;
+  parent_id: string | null;
   content: string;
+  replies: any[];
+  parent_reply_to_name?: string;
   created_at: string;
 }
 
@@ -255,19 +252,21 @@ router.get("/market/posts/:id", async (req: Request, res: Response) => {
 });
 
 // Get latest market posts for homepage (public)
-router.get("/market/posts/latest/:count", async (req: Request, res: Response) => {
-  try {
-    const count = parseInt(req.params.count) || 6;
+router.get(
+  "/market/posts/latest/:count",
+  async (req: Request, res: Response) => {
+    try {
+      const count = parseInt(req.params.count) || 6;
 
-    const posts = await all<
-      MarketPost & {
-        like_count: number;
-        comment_count: number;
-        user_name: string;
-        user_avatar: string;
-      }
-    >(
-      `
+      const posts = await all<
+        MarketPost & {
+          like_count: number;
+          comment_count: number;
+          user_name: string;
+          user_avatar: string;
+        }
+      >(
+        `
       SELECT mp.*, 
         (SELECT COUNT(*) FROM market_likes WHERE post_id = mp.id) as like_count,
         (SELECT COUNT(*) FROM market_comments WHERE post_id = mp.id) as comment_count,
@@ -279,32 +278,33 @@ router.get("/market/posts/latest/:count", async (req: Request, res: Response) =>
       ORDER BY mp.created_at DESC
       LIMIT ?
     `,
-      [count],
-    );
+        [count],
+      );
 
-    const formattedPosts = posts.map((post) => ({
-      ...post,
-      images: JSON.parse(post.images || "[]"),
-      tags: JSON.parse(post.tags || "[]"),
-      reference_links: JSON.parse(post.reference_links || "[]"),
-      like_count: post.like_count || 0,
-      comment_count: post.comment_count || 0,
-      is_new: isNewPost(post.created_at),
-      is_sold: !!post.is_sold,
-    }));
+      const formattedPosts = posts.map((post) => ({
+        ...post,
+        images: JSON.parse(post.images || "[]"),
+        tags: JSON.parse(post.tags || "[]"),
+        reference_links: JSON.parse(post.reference_links || "[]"),
+        like_count: post.like_count || 0,
+        comment_count: post.comment_count || 0,
+        is_new: isNewPost(post.created_at),
+        is_sold: !!post.is_sold,
+      }));
 
-    res.json({
-      success: true,
-      data: formattedPosts,
-    } as ApiResponse<typeof formattedPosts>);
-  } catch (error) {
-    console.error("Error fetching latest market posts:", error);
-    res.status(500).json({
-      success: false,
-      error: "Failed to fetch market posts",
-    } as ApiResponse<never>);
-  }
-});
+      res.json({
+        success: true,
+        data: formattedPosts,
+      } as ApiResponse<typeof formattedPosts>);
+    } catch (error) {
+      console.error("Error fetching latest market posts:", error);
+      res.status(500).json({
+        success: false,
+        error: "Failed to fetch market posts",
+      } as ApiResponse<never>);
+    }
+  },
+);
 
 // Get user's market posts (authenticated)
 router.get(
@@ -451,46 +451,49 @@ router.post(
 );
 
 // Update market post (authenticated - owner only)
-router.put("/market/posts/:id", authenticate, async (req: Request, res: Response) => {
-  try {
-    const { id } = req.params;
-    const userId = (req as any).user?.id;
+router.put(
+  "/market/posts/:id",
+  authenticate,
+  async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params;
+      const userId = (req as any).user?.id;
 
-    const post = await get<MarketPost>(
-      "SELECT * FROM market_posts WHERE id = ?",
-      [id],
-    );
+      const post = await get<MarketPost>(
+        "SELECT * FROM market_posts WHERE id = ?",
+        [id],
+      );
 
-    if (!post) {
-      return res.status(404).json({
-        success: false,
-        error: "Post not found",
-      } as ApiResponse<never>);
-    }
+      if (!post) {
+        return res.status(404).json({
+          success: false,
+          error: "Post not found",
+        } as ApiResponse<never>);
+      }
 
-    if (post.user_id !== userId) {
-      return res.status(403).json({
-        success: false,
-        error: "You can only edit your own posts",
-      } as ApiResponse<never>);
-    }
+      if (post.user_id !== userId) {
+        return res.status(403).json({
+          success: false,
+          error: "You can only edit your own posts",
+        } as ApiResponse<never>);
+      }
 
-    const {
-      title,
-      description,
-      price,
-      category,
-      tags,
-      condition,
-      phone_number,
-      reference_links,
-      images,
-      status,
-    } = req.body;
-    const now = new Date().toISOString();
+      const {
+        title,
+        description,
+        price,
+        category,
+        tags,
+        condition,
+        phone_number,
+        reference_links,
+        images,
+        status,
+      } = req.body;
+      const now = new Date().toISOString();
 
-    await run(
-      `UPDATE market_posts SET
+      await run(
+        `UPDATE market_posts SET
           title = COALESCE(?, title),
           description = COALESCE(?, description),
           price = COALESCE(?, price),
@@ -503,45 +506,46 @@ router.put("/market/posts/:id", authenticate, async (req: Request, res: Response
           status = COALESCE(?, status),
           updated_at = ?
          WHERE id = ?`,
-      [
-        title ? sanitizeInput(title) : null,
-        description ? sanitizeInput(description) : null,
-        price !== undefined ? price : null,
-        category ? sanitizeInput(category) : null,
-        tags ? JSON.stringify(tags) : null,
-        condition || null,
-        phone_number !== undefined ? phone_number : null,
-        reference_links ? JSON.stringify(reference_links) : null,
-        images ? JSON.stringify(images) : null,
-        status || null,
-        now,
-        id,
-      ],
-    );
+        [
+          title ? sanitizeInput(title) : null,
+          description ? sanitizeInput(description) : null,
+          price !== undefined ? price : null,
+          category ? sanitizeInput(category) : null,
+          tags ? JSON.stringify(tags) : null,
+          condition || null,
+          phone_number !== undefined ? phone_number : null,
+          reference_links ? JSON.stringify(reference_links) : null,
+          images ? JSON.stringify(images) : null,
+          status || null,
+          now,
+          id,
+        ],
+      );
 
-    const updatedPost = await get<MarketPost>(
-      "SELECT * FROM market_posts WHERE id = ?",
-      [id],
-    );
+      const updatedPost = await get<MarketPost>(
+        "SELECT * FROM market_posts WHERE id = ?",
+        [id],
+      );
 
-    res.json({
-      success: true,
-      message: "Post updated successfully",
-      data: {
-        ...updatedPost,
-        images: JSON.parse(updatedPost?.images || "[]"),
-        tags: JSON.parse(updatedPost?.tags || "[]"),
-        reference_links: JSON.parse(updatedPost?.reference_links || "[]"),
-      },
-    } as ApiResponse<typeof updatedPost>);
-  } catch (error) {
-    console.error("Error updating market post:", error);
-    res.status(500).json({
-      success: false,
-      error: "Failed to update post",
-    } as ApiResponse<never>);
-  }
-});
+      res.json({
+        success: true,
+        message: "Post updated successfully",
+        data: {
+          ...updatedPost,
+          images: JSON.parse(updatedPost?.images || "[]"),
+          tags: JSON.parse(updatedPost?.tags || "[]"),
+          reference_links: JSON.parse(updatedPost?.reference_links || "[]"),
+        },
+      } as ApiResponse<typeof updatedPost>);
+    } catch (error) {
+      console.error("Error updating market post:", error);
+      res.status(500).json({
+        success: false,
+        error: "Failed to update post",
+      } as ApiResponse<never>);
+    }
+  },
+);
 
 // Delete market post (authenticated - owner only)
 router.delete(
@@ -730,86 +734,89 @@ router.delete(
 );
 
 // Get comments for post
-router.get("/market/posts/:id/comments", async (req: Request, res: Response) => {
-  try {
-    const { id } = req.params;
+router.get(
+  "/market/posts/:id/comments",
+  async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params;
 
-    const comments = await all<
-      MarketComment & { user_name: string; user_avatar: string }
-    >(
-      `
+      const comments = await all<
+        MarketComment & { user_name: string; user_avatar: string }
+      >(
+        `
       SELECT mc.*, u.full_name as user_name, u.avatar_url as user_avatar
       FROM market_comments mc
       LEFT JOIN users u ON mc.user_id = u.id
       WHERE mc.post_id = ?
       ORDER BY mc.created_at ASC
     `,
-      [id],
-    );
+        [id],
+      );
 
-    console.log(
-      "Raw comments from DB:",
-      JSON.stringify(
-        comments.map((c) => ({
-          id: c.id,
-          parent_id: c.parent_id,
-          content: c.content?.substring(0, 20),
-        })),
-        null,
-        2,
-      ),
-    );
+      console.log(
+        "Raw comments from DB:",
+        JSON.stringify(
+          comments.map((c) => ({
+            id: c.id,
+            parent_id: c.parent_id,
+            content: c.content?.substring(0, 20),
+          })),
+          null,
+          2,
+        ),
+      );
 
-    // Organize comments into threads (parent -> replies)
-    const commentMap = new Map<string, any>();
-    const topLevelComments: any[] = [];
+      // Organize comments into threads (parent -> replies)
+      const commentMap = new Map<string, any>();
+      const topLevelComments: any[] = [];
 
-    comments.forEach((comment) => {
-      comment.replies = [];
-      commentMap.set(comment.id, comment);
-    });
+      comments.forEach((comment) => {
+        comment.replies = [];
+        commentMap.set(comment.id, comment);
+      });
 
-    comments.forEach((comment) => {
-      if (comment.parent_id && commentMap.has(comment.parent_id)) {
-        const parentComment = commentMap.get(comment.parent_id);
-        comment.parent_reply_to_name = parentComment.user_name || "Anonymous";
-        parentComment.replies.push(comment);
-        console.log(
-          `Nesting comment ${comment.id} under parent ${comment.parent_id}`,
-        );
-      } else {
-        topLevelComments.push(comment);
-        console.log(
-          `Adding comment ${comment.id} as top-level (parent_id: ${comment.parent_id})`,
-        );
-      }
-    });
+      comments.forEach((comment) => {
+        if (comment.parent_id && commentMap.has(comment.parent_id)) {
+          const parentComment = commentMap.get(comment.parent_id);
+          comment.parent_reply_to_name = parentComment.user_name || "Anonymous";
+          parentComment.replies.push(comment);
+          console.log(
+            `Nesting comment ${comment.id} under parent ${comment.parent_id}`,
+          );
+        } else {
+          topLevelComments.push(comment);
+          console.log(
+            `Adding comment ${comment.id} as top-level (parent_id: ${comment.parent_id})`,
+          );
+        }
+      });
 
-    console.log("Top-level comments count:", topLevelComments.length);
-    console.log(
-      "Top-level comments structure:",
-      JSON.stringify(
-        topLevelComments.map((c) => ({
-          id: c.id,
-          repliesCount: c.replies?.length,
-        })),
-        null,
-        2,
-      ),
-    );
+      console.log("Top-level comments count:", topLevelComments.length);
+      console.log(
+        "Top-level comments structure:",
+        JSON.stringify(
+          topLevelComments.map((c) => ({
+            id: c.id,
+            repliesCount: c.replies?.length,
+          })),
+          null,
+          2,
+        ),
+      );
 
-    res.json({
-      success: true,
-      data: topLevelComments,
-    } as ApiResponse<typeof topLevelComments>);
-  } catch (error) {
-    console.error("Error fetching comments:", error);
-    res.status(500).json({
-      success: false,
-      error: "Failed to fetch comments",
-    } as ApiResponse<never>);
-  }
-});
+      res.json({
+        success: true,
+        data: topLevelComments,
+      } as ApiResponse<typeof topLevelComments>);
+    } catch (error) {
+      console.error("Error fetching comments:", error);
+      res.status(500).json({
+        success: false,
+        error: "Failed to fetch comments",
+      } as ApiResponse<never>);
+    }
+  },
+);
 
 // Add comment (authenticated)
 router.post(

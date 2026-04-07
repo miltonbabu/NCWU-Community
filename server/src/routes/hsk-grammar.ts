@@ -1,4 +1,4 @@
-import { Router, Request, Response } from 'express';
+import express, { Request, Response } from 'express';
 import {
   getGrammarByLevel,
   searchGrammar,
@@ -8,7 +8,7 @@ import {
   preloadAllGrammarData,
 } from '../utils/hskGrammarParser';
 
-const router = Router();
+const router = express.Router();
 
 preloadAllGrammarData();
 
