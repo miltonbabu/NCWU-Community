@@ -969,7 +969,7 @@ export function deleteFlag(flagId: string): void {
   run(`DELETE FROM user_flags WHERE id = ?`, [flagId]);
 }
 
-export function getAllFlags(
+export async function getAllFlags(
   page: number = 1,
   limit: number = 20,
   status: "active" | "expired" | "all" = "all",
@@ -992,7 +992,7 @@ export function getAllFlags(
     params.push(source);
   }
 
-  const flags = all<{
+  const flags = await all<{
     id: string;
     user_id: string;
     flag_type: string;
@@ -1031,7 +1031,7 @@ export function getAllFlags(
     [...params, limit, offset],
   );
 
-  const totalResult = get<{ count: number }>(
+  const totalResult = await get<{ count: number }>(
     `SELECT COUNT(*) as count FROM user_flags uf ${whereClause}`,
     params,
   );
@@ -1046,27 +1046,27 @@ export function getAllFlags(
   };
 }
 
-export function getFlagStats(): {
+export async function getFlagStats(): {
   totalFlags: number;
   activeRestrictions: number;
   expiredRestrictions: number;
   bySource: { source: string; count: number }[];
 } {
-  const totalFlags = get<{ count: number }>(
+  const totalFlags = await get<{ count: number }>(
     "SELECT COUNT(*) as count FROM user_flags",
   );
 
-  const activeRestrictions = get<{ count: number }>(
-    `SELECT COUNT(*) as count FROM user_flags 
+  const activeRestrictions = await get<{ count: number }>(
+    `SELECT COUNT(*) as count FROM user_flags
      WHERE is_active = 1 AND (restriction_ends_at IS NULL OR restriction_ends_at > datetime('now'))`,
   );
 
-  const expiredRestrictions = get<{ count: number }>(
-    `SELECT COUNT(*) as count FROM user_flags 
+  const expiredRestrictions = await get<{ count: number }>(
+    `SELECT COUNT(*) as count FROM user_flags
      WHERE is_active = 0 OR (restriction_ends_at IS NOT NULL AND restriction_ends_at <= datetime('now'))`,
   );
 
-  const bySource = all<{ source: string; count: number }>(
+  const bySource = await all<{ source: string; count: number }>(
     `SELECT source, COUNT(*) as count FROM user_flags GROUP BY source`,
   );
 
