@@ -176,7 +176,8 @@ export default function HomePhotoGallerySection({
       try {
         const res = await galleryApi.getPosts(1, 2);
         console.log("Homepage gallery response:", res?.data);
-        const postsData = res?.data?.data?.posts || res?.data?.posts || [];
+        // @ts-expect-error API response shape varies between dev/prod
+        const postsData = (res as any).data?.data?.posts || (res as any).data?.posts || [];
         setPosts(postsData.slice(0, 2));
       } catch (err) {
         console.error("Failed to load gallery posts:", err);

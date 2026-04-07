@@ -25,7 +25,6 @@ import {
   ExternalLink,
   Sparkles,
   CheckCircle,
-  DollarSign,
   MessageSquare,
   Tag,
   Clock,
@@ -145,12 +144,13 @@ export default function MarketPage() {
         });
         setLikedPosts(liked);
       }
-    } catch (error) {
+    } catch {
       toast.error("Failed to fetch posts");
     }
     setIsLoading(false);
   }, [selectedCategory, minPrice, maxPrice, debouncedSearch, currentPage]);
 
+  // eslint-disable-next-line react-compiler/react-compiler
   useEffect(() => {
     fetchPosts();
   }, [fetchPosts]);
@@ -171,7 +171,7 @@ export default function MarketPage() {
     }
   };
 
-  const handleLike = async (postId: string) => {
+  const _handleLike = async (postId: string) => {
     if (!isAuthenticated) {
       toast.error("Please login to like posts");
       return;
@@ -207,12 +207,12 @@ export default function MarketPage() {
           );
         }
       }
-    } catch (error) {
+    } catch {
       toast.error("Failed to update like");
     }
   };
 
-  const handleCall = (phone: string) => {
+  const _handleCall = (phone: string) => {
     window.open(`tel:${phone}`, "_self");
   };
 
