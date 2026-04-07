@@ -74,7 +74,7 @@ export function SettingsDialog() {
                 <span className="text-xs">Dark</span>
               </Button>
               <Button
-                variant={resolvedTheme === "system" ? "default" : "outline"}
+                variant={(resolvedTheme as string) === "system" ? "default" : "outline"}
                 className="flex flex-col gap-1 h-auto py-3"
                 onClick={() => setTheme("system")}
               >

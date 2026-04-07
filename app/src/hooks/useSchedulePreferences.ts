@@ -305,7 +305,7 @@ export function useScheduleNotifications() {
         return true;
       }
 
-      const timeoutId = setTimeout(() => {
+      setTimeout(() => {
         if (Notification.permission === "granted") {
           new Notification("Upcoming Class Reminder", {
             body: `${classSession.subject} starts in ${minutesBefore} minutes!\n📍 ${classSession.room}\n👨‍🏫 ${classSession.instructor}`,

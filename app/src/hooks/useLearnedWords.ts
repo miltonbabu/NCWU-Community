@@ -37,7 +37,7 @@ export function useLearnedWords() {
         if (response?.success && response.data) {
           const words = Array.isArray(response.data)
             ? response.data
-            : response.data.words || [];
+            : (response.data as any).words || [];
           const formattedWords: LearnedWord[] = words.map((w: any) => ({
             id: w.id || `${w.level}-${w.word_id}`,
             wordId: w.word_id,

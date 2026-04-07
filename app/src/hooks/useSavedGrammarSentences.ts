@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useAuth } from '@/contexts/AuthContext';
 import type { HSKLevel } from '@/types/hsk';
 
 export interface SavedGrammarSentence {
@@ -24,7 +23,6 @@ function getUserStorageKey(baseKey: string): string {
 }
 
 export function useSavedGrammarSentences() {
-  const { isAuthenticated, user } = useAuth();
   const [savedSentences, setSavedSentences] = useState<SavedGrammarSentence[]>([]);
   const [loading, setLoading] = useState(true);
 

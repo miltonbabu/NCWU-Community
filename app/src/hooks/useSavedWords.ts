@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { hskApi } from "@/lib/api";
-import type { HSKWord, HSKLevel } from "@/types/hsk";
+import type { HSKLevel } from "@/types/hsk";
 import type { VocabularyWord } from "@/data/hsk1Vocabulary";
 
 export interface SavedWord {
@@ -17,8 +17,6 @@ export interface SavedWord {
   exampleTranslation?: string;
   savedAt: string;
 }
-
-export type { SavedWord };
 
 const SAVED_WORDS_KEY = "hsk_saved_words";
 

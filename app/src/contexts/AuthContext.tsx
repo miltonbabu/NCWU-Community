@@ -305,7 +305,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           setCompleteProfilePopup({
             isOpen: true,
             userName: googleUser.displayName || response.data.user.full_name?.split(" ")[0],
-            userPhoto: googleUser.photoURL || response.data.user.avatar_url,
+            userPhoto: googleUser.photoURL || response.data.user.avatar_url || undefined,
           });
         } else {
           setWelcomePopup({

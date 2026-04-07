@@ -98,7 +98,7 @@ function processInlineContent(text: string): string {
 
   processed = processed.replace(
     /\\\(([\s\S]+?)\\\)/g,
-    (match, latex) =>
+    (_match, latex) =>
       '<span class="inline-math align-middle">' +
       renderMath(latex.trim(), false) +
       "</span>",
@@ -173,15 +173,15 @@ function processInlineContent(text: string): string {
 function processTables(text: string): string {
   const tableRegex = /^(\|.+\|)\n(\|[-:\s|]+\|)\n((?:\|.+\|\n?)*)/gm;
 
-  return text.replace(tableRegex, (match, headerLine, separatorLine, bodyLines) => {
+  return text.replace(tableRegex, (_match, headerLine, separatorLine, bodyLines) => {
     const headers = parseTableRow(headerLine);
     const aligns = parseTableAlign(separatorLine);
 
     const bodyRows = bodyLines
       .trimEnd()
       .split("\n")
-      .filter((line) => line.trim().startsWith("|"))
-      .map((line) => parseTableRow(line));
+      .filter((line: any) => line.trim().startsWith("|"))
+      .map((line: any) => parseTableRow(line));
 
     const headerHtml = headers
       .map(
@@ -192,8 +192,8 @@ function processTables(text: string): string {
 
     const bodyHtml = bodyRows
       .map(
-        (row) =>
-          `<tr>${row.map((cell) => `<td class="px-3 py-2 border-b border-border">${cell}</td>`).join("")}</tr>`,
+        (row: any) =>
+          `<tr>${row.map((cell: any) => `<td class="px-3 py-2 border-b border-border">${cell}</td>`).join("")}</tr>`,
       )
       .join("");
 
