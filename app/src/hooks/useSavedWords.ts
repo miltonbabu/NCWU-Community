@@ -41,6 +41,7 @@ export function useSavedWords() {
         const response = await hskApi.getSavedWords();
         if (response?.success && response.data) {
           const words = Array.isArray(response.data) ? response.data : [];
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const formattedWords: SavedWord[] = words.map((w: any) => ({
             id: w.id || `${w.level}-${w.word_id}`,
             wordId: w.word_id,

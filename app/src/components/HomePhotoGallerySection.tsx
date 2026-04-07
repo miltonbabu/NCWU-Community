@@ -260,8 +260,10 @@ export default function HomePhotoGallerySection({
         // Refresh post to get updated comments
         const postRes = await galleryApi.getPost(selectedPostForComment.id);
         if (postRes.success && postRes.data) {
-          setSelectedPostForComment(postRes.data);
-          setComments(postRes.data.comments || []);
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          setSelectedPostForComment(postRes.data as any as GalleryPost);
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          setComments((postRes.data as any as GalleryPost).comments || []);
           setPosts((prev) =>
             prev.map((p) =>
               p.id === selectedPostForComment.id
