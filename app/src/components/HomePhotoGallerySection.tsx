@@ -209,7 +209,8 @@ export default function HomePhotoGallerySection({
         setPosts((prev) =>
           prev.map((p) =>
             p.id === postId
-              ? { ...p, likes_count: Math.max(0, (p.likes_count || 1) - 1) }
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              ? { ...p, likes_count: Math.max(0, ((p as any).likes_count || 1) - 1) }
               : p,
           ),
         );

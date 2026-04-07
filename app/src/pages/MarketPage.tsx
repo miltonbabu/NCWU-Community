@@ -22,7 +22,6 @@ import {
   Plus,
   Filter,
   X,
-  Phone,
   ExternalLink,
   Sparkles,
   CheckCircle,

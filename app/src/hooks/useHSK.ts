@@ -309,7 +309,7 @@ export function useHSKQuiz() {
     }
   }, [currentQuestionIndex]);
 
-  const submitQuiz = useCallback(async (): HSKQuizResult | null => {
+  const submitQuiz = useCallback(async (): Promise<HSKQuizResult | null> => {
     if (!currentQuiz) return null;
 
     const timeSpent = Math.round((Date.now() - startTime) / 1000);
