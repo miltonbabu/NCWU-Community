@@ -744,8 +744,10 @@ export interface UserRestriction {
   restricted_features: string[];
 }
 
-export function checkUserRestriction(userId: string): UserRestriction {
-  const activeFlag = get<{
+export async function checkUserRestriction(
+  userId: string,
+): Promise<UserRestriction> {
+  const activeFlag = await get<{
     id: string;
     user_id: string;
     flag_type: string;
@@ -763,8 +765,8 @@ export function checkUserRestriction(userId: string): UserRestriction {
     created_at: string;
     admin_id: string | null;
   }>(
-    `SELECT * FROM user_flags 
-     WHERE user_id = ? AND is_active = 1 
+    `SELECT * FROM user_flags
+     WHERE user_id = ? AND is_active = 1
      AND (restriction_ends_at IS NULL OR restriction_ends_at > datetime('now'))
      ORDER BY created_at DESC LIMIT 1`,
     [userId],
@@ -925,12 +927,12 @@ export function scheduleContentDeletion(
   );
 }
 
-export function extendUserBan(
+export async function extendUserBan(
   flagId: string,
   adminId: string,
   additionalDays: number,
-): void {
-  const flag = get<{
+): Promise<void> {
+  const flag = await get<{
     id: string;
     user_id: string;
     restriction_ends_at: string | null;
@@ -950,12 +952,7 @@ export function extendUserBan(
     newEndsAt = new Date(now.getTime() + additionalDays * 24 * 60 * 60 * 1000);
   }
 
-  run(
-    `UPDATE user_flags 
-     SET restriction_ends_at = ?, restriction_days = restriction_days + ?, admin_id = ?, is_active = 1
-     WHERE id = ?`,
-    [newEndsAt.toISOString(), additionalDays, adminId, flagId],
-  );
+  await run([newEndsAt.toISOString(), additionalDays, adminId, flagId]);
 }
 
 export function unbanUser(flagId: string, adminId: string): void {
@@ -974,7 +971,7 @@ export async function getAllFlags(
   limit: number = 20,
   status: "active" | "expired" | "all" = "all",
   source?: string,
-): { flags: any[]; total: number } {
+): Promise<{ flags: any[]; total: number }> {
   const offset = (page - 1) * limit;
   let whereClause = "WHERE 1=1";
   const params: any[] = [];
@@ -1046,12 +1043,12 @@ export async function getAllFlags(
   };
 }
 
-export async function getFlagStats(): {
+export async function getFlagStats(): Promise<{
   totalFlags: number;
   activeRestrictions: number;
   expiredRestrictions: number;
   bySource: { source: string; count: number }[];
-} {
+}> {
   const totalFlags = await get<{ count: number }>(
     "SELECT COUNT(*) as count FROM user_flags",
   );
