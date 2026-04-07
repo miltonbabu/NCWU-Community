@@ -2931,7 +2931,7 @@ router.get(
       const status = (req.query.status as string) || "all";
       const source = req.query.source as string | undefined;
 
-      const { flags, total } = getAllFlags(
+      const { flags, total } = await getAllFlags(
         page,
         limit,
         status as "active" | "expired" | "all",

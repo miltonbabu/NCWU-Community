@@ -95,13 +95,13 @@ export function requireSuperAdmin(req: Request, res: Response, next: NextFunctio
   next();
 }
 
-export function optionalAuth(req: Request, res: Response, next: NextFunction) {
+export async function optionalAuth(req: Request, res: Response, next: NextFunction) {
   const token = extractTokenFromHeader(req.headers.authorization);
   
   if (token) {
     const decoded = verifyToken(token);
     if (decoded) {
-      const user = get<User>('SELECT * FROM users WHERE id = ?', [decoded.userId]);
+      const user = await get<User>('SELECT * FROM users WHERE id = ?', [decoded.userId]);
       if (user && !user.is_banned) {
         req.user = user;
         req.userId = user.id;

@@ -1,7 +1,3 @@
-declare module 'express' {
-  export { Request, Response, NextFunction, Router } from 'express-serve-static-core';
-}
-
 declare module 'multer' {
   interface MulterFile {
     fieldname: string;
