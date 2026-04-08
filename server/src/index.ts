@@ -600,6 +600,21 @@ async function startServer() {
   app.use(express.json({ limit: "5mb" }));
   app.use(express.urlencoded({ extended: true, limit: "5mb" }));
 
+  app.get("/", (req, res) => {
+    res.json({
+      success: true,
+      message: "NCWU API is running",
+      health: "/api/health",
+      endpoints: [
+        "/api/auth",
+        "/api/admin",
+        "/api/hsk",
+        "/api/social",
+        "/api/discord",
+      ],
+    });
+  });
+
   app.get("/api/health", (req, res) => {
     res.json({
       success: true,
