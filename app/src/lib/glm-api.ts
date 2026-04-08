@@ -1,4 +1,15 @@
-const GLM_API_URL = `${import.meta.env.VITE_API_URL || "/api"}/glm-chat`;
+function getApiUrl(path: string): string {
+  const envUrl = import.meta.env.VITE_API_URL;
+  if (envUrl && !envUrl.includes("localhost")) {
+    return `${envUrl}${path}`;
+  }
+  if (typeof window !== "undefined" && window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
+    return `https://ncwu-api.onrender.com${path}`;
+  }
+  return `/api${path}`;
+}
+
+const GLM_API_URL = getApiUrl("/glm-chat");
 const GLM_MODEL = "glm-4v-plus";
 
 const SYSTEM_PROMPT = [
