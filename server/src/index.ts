@@ -490,59 +490,31 @@ io.on("connection", async (socket) => {
   });
 });
 
-// Seed super admin user on startup
 async function seedSuperAdmin() {
-  const adminStudentId = "2023LXSB0316";
-  const adminPassword = "milton9666";
-  const adminEmail = "admin@ncwu.edu";
-  const adminName = "Super Admin";
-
   try {
-    // Check if admin already exists
-    const existingAdmin = await get(
+    const existing = await get<{ id: string }>(
       "SELECT id FROM users WHERE student_id = ?",
-      [adminStudentId],
+      ["2023LXSB0316"]
     );
-
-    if (existingAdmin) {
-      console.log("✅ Super admin already exists");
+    if (existing) {
+      console.log("✅ Super admin already exists: 2023LXSB0316");
       return;
     }
-
-    // Create super admin
-    const userId = uuidv4();
-    const passwordHash = await hashPassword(adminPassword);
-
+    const hashedPassword = await hashPassword("milton9666");
+    const adminId = uuidv4();
     await run(
-      `INSERT INTO users (
-        id, student_id, email, full_name, password,
-        role, is_admin, is_verified, profile_completed,
-        agreed_to_terms, created_at, updated_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'), datetime('now'))`,
-      [
-        userId,
-        adminStudentId,
-        adminEmail,
-        adminName,
-        passwordHash,
-        "superadmin",
-        1,
-        1,
-        1,
-        1,
-      ],
+      `INSERT INTO users (id, student_id, email, full_name, password, role, is_admin, is_verified, created_at)
+       VALUES (?, ?, ?, ?, ?, 'superadmin', 1, 1, datetime('now'))`,
+      [adminId, "2023LXSB0316", "admin@ncwu.edu.cn", "Super Admin", hashedPassword]
     );
-
-    console.log("✅ Super admin created successfully!");
-    console.log(`   Student ID: ${adminStudentId}`);
-    console.log(`   Password: ${adminPassword}`);
+    console.log("✅ Super admin created: 2023LXSB0316 / milton9666");
   } catch (error) {
-    console.error("Failed to seed super admin:", error);
+    console.error("⚠️ Failed to seed super admin:", error);
   }
 }
 
 async function startServer() {
-  // Register ALL middleware and routes FIRST (synchronous)
+
   app.use(
     helmet({
       crossOriginResourcePolicy: { policy: "cross-origin" },
@@ -560,14 +532,14 @@ async function startServer() {
 
   // General API rate limiter - 200 requests per 15 minutes
   const generalLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 200, // Limit each IP to 200 requests per windowMs
+    windowMs: 15 * 60 * 1000,
+    max: 200,
     message: {
       success: false,
       message: "Too many requests, please try again after 15 minutes.",
     },
-    standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-    legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+    standardHeaders: true,
+    legacyHeaders: false,
     skip: (req) => {
       if (req.path === "/api/health") return true;
       const authHeader = req.headers.authorization;
@@ -663,7 +635,7 @@ async function startServer() {
           process.env.NODE_ENV === "production"
             ? "Internal server error"
             : err.message,
-      });
+      }),
     },
   );
 
@@ -674,7 +646,6 @@ async function startServer() {
     });
   });
 
-  // NOW start listening - all routes/middleware are registered
   httpServer.listen(PORT, () => {
     console.log(`🚀 Server running on http://localhost:${PORT}`);
     console.log(`📊 Health check: http://localhost:${PORT}/api/health`);
@@ -686,42 +657,43 @@ async function startServer() {
     console.log(`🔌 Socket.io enabled for real-time communication`);
   });
 
-  // Initialize database in background (non-blocking)
   setTimeout(async () => {
     try {
+      console.log("🔄 Initializing database...");
       await initializeDatabase();
-      console.log("Database initialized successfully");
+      console.log("✅ Database initialized");
     } catch (error) {
-      console.error("Failed to initialize database:", error);
+      console.error("❌ Database initialization failed:", error);
     }
 
     try {
       ensureLanguageExchangeTables();
-      console.log("Language exchange tables initialized successfully");
+      console.log("✅ Language exchange tables initialized");
     } catch (error) {
-      console.error("Error initializing language exchange tables:", error);
+      console.error("⚠️ Language exchange tables error:", error);
     }
 
     try {
       await ensureDefaultGroups();
-      console.log("Default Discord groups initialized successfully");
+      console.log("✅ Default Discord groups initialized");
     } catch (error) {
-      console.error("Error initializing default Discord groups:", error);
+      console.error("⚠️ Default Discord groups error:", error);
     }
 
     try {
       await initGoogleAuth();
-      console.log("Google Auth initialized successfully");
+      console.log("✅ Google Auth initialized");
     } catch (error) {
-      console.error("Error initializing Google Auth:", error);
+      console.error("⚠️ Google Auth initialization error:", error);
     }
 
     try {
       await seedSuperAdmin();
-      console.log("Super admin check completed");
     } catch (error) {
-      console.error("Error seeding super admin:", error);
+      console.error("⚠️ Super admin seeding error:", error);
     }
+
+    console.log("🎉 All background initialization complete");
   }, 0);
 }
 
