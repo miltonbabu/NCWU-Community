@@ -288,7 +288,7 @@ async function recordUsageStats(
       total_tokens: number;
       image_count: number;
       document_count: number;
-    }>()(
+    }>(
       "SELECT * FROM xingyuan_usage_stats WHERE (user_id = ? OR (user_id IS NULL AND ? IS NULL)) AND (ip_address = ? OR (ip_address IS NULL AND ? IS NULL)) AND date = ?",
       [userId, userId, ipAddress, ipAddress, today],
     );

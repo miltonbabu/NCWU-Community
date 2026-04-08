@@ -4,6 +4,8 @@ interface TransformResult {
 }
 
 export function transformSqlForPostgresql(sql: string, params: unknown[] = []): TransformResult {
+  if (!sql || typeof sql !== "string") return { sql: sql || "", params };
+
   let transformedSql = sql;
   const transformedParams = [...params];
 
