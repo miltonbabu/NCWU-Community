@@ -62,12 +62,9 @@ router.get(
         Event & { interest_count: number; going_count: number }
       >(`
       SELECT e.*,
-        COUNT(DISTINCT ei.id) as interest_count,
-        COUNT(DISTINCT eg.id) as going_count
+        (SELECT COUNT(*) FROM event_interests WHERE event_id = e.id) AS interest_count,
+        (SELECT COUNT(*) FROM event_going WHERE event_id = e.id) AS going_count
       FROM events e
-      LEFT JOIN event_interests ei ON e.id = ei.event_id
-      LEFT JOIN event_going eg ON e.id = eg.event_id
-      GROUP BY e.id
       ORDER BY e.event_date DESC, e.created_at DESC
     `);
 
@@ -440,14 +437,11 @@ router.get("/events", async (req: Request, res: Response) => {
       Event & { interest_count: number; going_count: number }
     >(
       `
-      SELECT e.*, 
-        COUNT(DISTINCT ei.id) as interest_count,
-        COUNT(DISTINCT eg.id) as going_count
+      SELECT e.*,
+        (SELECT COUNT(*) FROM event_interests WHERE event_id = e.id) AS interest_count,
+        (SELECT COUNT(*) FROM event_going WHERE event_id = e.id) AS going_count
       FROM events e
-      LEFT JOIN event_interests ei ON e.id = ei.event_id
-      LEFT JOIN event_going eg ON e.id = eg.event_id
       WHERE e.is_active = 1 AND e.event_date >= date('now')
-      GROUP BY e.id
       ORDER BY e.event_date ASC
       LIMIT ? OFFSET ?
     `,
@@ -484,14 +478,11 @@ router.get("/events/:id", async (req: Request, res: Response) => {
       Event & { interest_count: number; going_count: number }
     >(
       `
-      SELECT e.*, 
-        COUNT(DISTINCT ei.id) as interest_count,
-        COUNT(DISTINCT eg.id) as going_count
+      SELECT e.*,
+        (SELECT COUNT(*) FROM event_interests WHERE event_id = e.id) AS interest_count,
+        (SELECT COUNT(*) FROM event_going WHERE event_id = e.id) AS going_count
       FROM events e
-      LEFT JOIN event_interests ei ON e.id = ei.event_id
-      LEFT JOIN event_going eg ON e.id = eg.event_id
       WHERE e.id = ?
-      GROUP BY e.id
     `,
       [id],
     );
@@ -756,14 +747,11 @@ router.get("/events/latest/:count", async (req: Request, res: Response) => {
       Event & { interest_count: number; going_count: number }
     >(
       `
-      SELECT e.*, 
-        COUNT(DISTINCT ei.id) as interest_count,
-        COUNT(DISTINCT eg.id) as going_count
+      SELECT e.*,
+        (SELECT COUNT(*) FROM event_interests WHERE event_id = e.id) AS interest_count,
+        (SELECT COUNT(*) FROM event_going WHERE event_id = e.id) AS going_count
       FROM events e
-      LEFT JOIN event_interests ei ON e.id = ei.event_id
-      LEFT JOIN event_going eg ON e.id = eg.event_id
       WHERE e.is_active = 1 AND e.event_date >= date('now')
-      GROUP BY e.id
       ORDER BY e.event_date ASC
       LIMIT ?
     `,
