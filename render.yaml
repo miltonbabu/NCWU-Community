@@ -22,12 +22,12 @@ services:
 
   - type: web
     name: ncwu-frontend
-    env: node
+    env: static
     region: oregon
     plan: free
     rootDir: app
     buildCommand: npm run build
-    startCommand: node server.js
+    staticPublishPath: ./dist
     envVars:
       - key: VITE_API_URL
         value: https://ncwu-api.onrender.com/api
@@ -42,7 +42,7 @@ services:
         value: ncwu-community
         sync: false
       - key: VITE_FIREBASE_STORAGE_BUCKET
-        value: ncwu-community.firebasestorage.app
+        value: ncwu-community.firebasestorage.app.com
         sync: false
       - key: VITE_FIREBASE_MESSAGING_SENDER_ID
         value: "921961386134"
