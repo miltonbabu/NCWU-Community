@@ -15,14 +15,18 @@ services:
         sync: false
     autoDeploy: true
 
-  - type: static
+  - type: web
     name: ncwu-frontend
+    env: static
     region: oregon
     plan: free
     rootDir: app
     buildCommand: npm run build
     staticPublishPath: ./dist
-    spa: true
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
     envVars:
       - key: VITE_API_URL
         value: https://ncwu-api.onrender.com/api
