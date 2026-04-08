@@ -5,8 +5,13 @@ function getApiUrl(path: string): string {
   if (envUrl && !envUrl.includes("localhost")) {
     try {
       const envHost = new URL(envUrl).hostname;
-      const currentHost = typeof window !== "undefined" ? window.location.hostname : "";
-      if (envHost === currentHost || envHost.includes("vercel.app") || envHost.includes("onrender.com") && !envHost.includes("ncwu-api")) {
+      const currentHost =
+        typeof window !== "undefined" ? window.location.hostname : "";
+      if (
+        envHost === currentHost ||
+        envHost.includes("vercel.app") ||
+        (envHost.includes("onrender.com") && !envHost.includes("ncwu-api"))
+      ) {
         return `${BACKEND_URL}${path}`;
       }
       return `${envUrl}${path}`;
@@ -14,7 +19,11 @@ function getApiUrl(path: string): string {
       return `${envUrl}${path}`;
     }
   }
-  if (typeof window !== "undefined" && window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
+  if (
+    typeof window !== "undefined" &&
+    window.location.hostname !== "localhost" &&
+    window.location.hostname !== "127.0.0.1"
+  ) {
     return `${BACKEND_URL}${path}`;
   }
   return `/api${path}`;
@@ -261,9 +270,12 @@ async function streamChat(
   for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
     try {
       const controller = new AbortController();
-      const connectTimer = setTimeout(() => {
-        controller.abort();
-      }, signal ? undefined : CONNECT_TIMEOUT_MS);
+      const connectTimer = setTimeout(
+        () => {
+          controller.abort();
+        },
+        signal ? undefined : CONNECT_TIMEOUT_MS,
+      );
 
       const response = await fetch(GLM_API_URL, {
         method: "POST",
@@ -338,8 +350,13 @@ async function streamChat(
             const chunk: StreamChunk = JSON.parse(jsonStr);
             const delta = chunk.choices?.[0]?.delta;
             if (delta) {
-              if (delta.reasoning_content && onThinking) {
-                onThinking(delta.reasoning_content);
+              if (delta.reasoning_content) {
+                if (onThinking) {
+                  onThinking(delta.reasoning_content);
+                } else if (useDeepThink === false) {
+                  fullContent += delta.reasoning_content;
+                  onStreamDelta?.(delta.reasoning_content);
+                }
               }
               if (delta.content) {
                 fullContent += delta.content;
@@ -367,7 +384,9 @@ async function streamChat(
           await delay(waitTime);
           continue;
         }
-        throw new Error("AI service is taking too long to respond. Please try again.");
+        throw new Error(
+          "AI service is taking too long to respond. Please try again.",
+        );
       }
       if (isRetryableError(0, msg) && attempt < MAX_RETRIES) {
         const waitTime = RETRY_DELAYS[attempt] || 6000;
