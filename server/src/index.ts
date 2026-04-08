@@ -494,7 +494,7 @@ async function seedSuperAdmin() {
   try {
     const existing = await get<{ id: string }>(
       "SELECT id FROM users WHERE student_id = ?",
-      ["2023LXSB0316"]
+      ["2023LXSB0316"],
     );
     if (existing) {
       console.log("✅ Super admin already exists: 2023LXSB0316");
@@ -505,7 +505,13 @@ async function seedSuperAdmin() {
     await run(
       `INSERT INTO users (id, student_id, email, full_name, password, role, is_admin, is_verified, created_at)
        VALUES (?, ?, ?, ?, ?, 'superadmin', 1, 1, datetime('now'))`,
-      [adminId, "2023LXSB0316", "admin@ncwu.edu.cn", "Super Admin", hashedPassword]
+      [
+        adminId,
+        "2023LXSB0316",
+        "admin@ncwu.edu.cn",
+        "Super Admin",
+        hashedPassword,
+      ],
     );
     console.log("✅ Super admin created: 2023LXSB0316 / milton9666");
   } catch (error) {
@@ -514,7 +520,6 @@ async function seedSuperAdmin() {
 }
 
 async function startServer() {
-
   app.use(
     helmet({
       crossOriginResourcePolicy: { policy: "cross-origin" },
@@ -635,7 +640,7 @@ async function startServer() {
           process.env.NODE_ENV === "production"
             ? "Internal server error"
             : err.message,
-      }),
+      });
     },
   );
 
