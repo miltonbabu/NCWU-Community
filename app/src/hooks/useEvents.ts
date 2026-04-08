@@ -295,7 +295,7 @@ export function useEventFilters(events: CalendarEvent[]) {
   const [showPastEvents, setShowPastEvents] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const categories: EventCategory[] = [
+  const categories: EventCategoryType[] = [
     "academic",
     "cultural",
     "sports",

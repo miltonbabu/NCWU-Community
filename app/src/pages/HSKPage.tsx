@@ -4019,8 +4019,8 @@ function QuizTab({
   const [timeEnded, setTimeEnded] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const handleSubmit = useCallback(() => {
-    const result = submitQuiz();
+  const handleSubmit = useCallback(async () => {
+    const result = await submitQuiz();
     if (result) {
       setQuizResult(result);
       const percentage = Math.round((result.score / result.totalPoints) * 100);

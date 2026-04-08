@@ -69,15 +69,20 @@ export function useHSKProgress() {
           const progressMap: Record<number, HSKProgress> = {};
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (response.data as any[]).forEach((item: Record<string, unknown>) => {
-            progressMap[item.level] = {
-              level: item.level,
-              wordsLearned: item.words_learned,
-              totalWords: item.total_words,
-              quizzesTaken: item.quizzes_taken,
-              averageScore: item.average_score,
-              lastStudied: item.last_studied,
-              masteredWords: JSON.parse(item.mastered_words || "[]"),
-              practicingWords: JSON.parse(item.practicing_words || "[]"),
+            const level = item.level as number;
+            progressMap[level] = {
+              level: level,
+              wordsLearned: item.words_learned as number,
+              totalWords: item.total_words as number,
+              quizzesTaken: item.quizzes_taken as number,
+              averageScore: item.average_score as number,
+              lastStudied: item.last_studied as string,
+              masteredWords: JSON.parse(
+                (item.mastered_words as string) || "[]",
+              ),
+              practicingWords: JSON.parse(
+                (item.practicing_words as string) || "[]",
+              ),
             };
           });
           setProgress(progressMap);

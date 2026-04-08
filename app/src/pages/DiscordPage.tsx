@@ -410,7 +410,7 @@ export default function DiscordPage() {
           const messageId = msgEl.getAttribute("data-message-id");
           if (messageId && !viewedMessagesRef.current.has(messageId)) {
             viewedMessagesRef.current.add(messageId);
-            markViewed(selectedGroup?.id || "", messageId);
+            markViewed(selectedGroup?.id || "", [messageId]);
           }
         }
       });
