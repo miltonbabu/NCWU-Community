@@ -28,7 +28,7 @@ services:
     rootDir: app
     buildCommand: npm run build
     staticPublishPath: ./dist
-    routes:
+    redirects:
       - type: rewrite
         source: /*
         destination: /index.html
