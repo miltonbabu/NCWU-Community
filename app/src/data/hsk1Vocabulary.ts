@@ -3,7 +3,7 @@ export interface VocabularyWord {
   chinese: string;
   pinyin: string;
   english: string;
-  partOfSpeech: string;
+  partOfSpeech?: string;
   exampleSentence?: string;
   examplePinyin?: string;
   exampleTranslation?: string;
