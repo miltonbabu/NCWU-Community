@@ -25,9 +25,10 @@ async function getUserId(req: Request): Promise<string | null> {
       console.log("[Xingyuan] Token verification failed");
       return null;
     }
-    const user = await get<{ id: string }>("SELECT id FROM users WHERE id = ?", [
-      decoded.userId,
-    ]);
+    const user = await get<{ id: string }>(
+      "SELECT id FROM users WHERE id = ?",
+      [decoded.userId],
+    );
     if (user) {
       console.log("[Xingyuan] Authenticated user:", user.id);
       return user.id;
@@ -129,7 +130,18 @@ router.post("/chat/sync", async (req: Request, res: Response) => {
             ],
           );
 
-          await recordUsageStats(userId, ipAddress, tokenCount, hasImages, false);
+          await recordUsageStats(
+            userId,
+            ipAddress,
+            tokenCount,
+            hasImages,
+            false,
+          ).catch((err) => {
+            console.error(
+              "[Xingyuan] Non-fatal: usage stats recording failed:",
+              err,
+            );
+          });
         }
       }
     }
@@ -180,11 +192,19 @@ router.post("/message/add", async (req: Request, res: Response) => {
       ],
     );
 
-    await run("UPDATE xingyuan_chats SET updated_at = datetime('now') WHERE id = ?", [
-      chatId,
-    ]);
+    await run(
+      "UPDATE xingyuan_chats SET updated_at = datetime('now') WHERE id = ?",
+      [chatId],
+    );
 
-    await recordUsageStats(userId, ipAddress, tokenCount, hasImages, false);
+    recordUsageStats(userId, ipAddress, tokenCount, hasImages, false).catch(
+      (err) => {
+        console.error(
+          "[Xingyuan] Non-fatal: usage stats recording failed:",
+          err,
+        );
+      },
+    );
 
     res.json({ success: true });
   } catch (error) {
@@ -268,9 +288,9 @@ async function recordUsageStats(
       total_tokens: number;
       image_count: number;
       document_count: number;
-    }>(
-      "SELECT * FROM xingyuan_usage_stats WHERE user_id IS ? AND ip_address IS ? AND date = ?",
-      [userId, ipAddress, today],
+    }>()(
+      "SELECT * FROM xingyuan_usage_stats WHERE (user_id = ? OR (user_id IS NULL AND ? IS NULL)) AND (ip_address = ? OR (ip_address IS NULL AND ? IS NULL)) AND date = ?",
+      [userId, userId, ipAddress, ipAddress, today],
     );
 
     if (existing) {
