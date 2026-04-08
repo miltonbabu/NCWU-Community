@@ -230,10 +230,10 @@ router.get("/groups", authenticate, async (req: AuthRequest, res: Response) => {
         return true;
       }
       if (g.type === "department") {
-        return (
-          g.department === userData.department &&
-          g.year === userData.enrollment_year
-        );
+        if (!userData.department) {
+          return true;
+        }
+        return g.department === userData.department;
       }
       return false;
     });
@@ -244,8 +244,8 @@ router.get("/groups", authenticate, async (req: AuthRequest, res: Response) => {
       can_send_message:
         isAdmin ||
         g.type === "all" ||
-        (g.department === userData.department &&
-          g.year === userData.enrollment_year),
+        !userData.department ||
+        g.department === userData.department,
     }));
 
     res.json({ success: true, data: result });
