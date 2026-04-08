@@ -375,7 +375,7 @@ export default function AdminFlagsPage() {
                     Social Flags
                   </p>
                   <p className="text-3xl font-bold mt-1">
-                    {stats.bySource.find((s) => s.source === "social_post")
+                    {stats?.bySource?.find((s) => s.source === "social_post")
                       ?.count || 0}
                   </p>
                 </div>
