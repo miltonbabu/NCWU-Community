@@ -24,6 +24,8 @@ function replaceDatetimeFunctions(sql: string): string {
 
   result = result.replace(/datetime\(\s*'now'\s*\)/gi, 'NOW()');
 
+  result = result.replace(/date\(\s*'now'\s*\)/gi, 'CURRENT_DATE');
+
   return result;
 }
 
