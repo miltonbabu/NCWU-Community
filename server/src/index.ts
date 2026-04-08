@@ -542,46 +542,55 @@ async function seedSuperAdmin() {
 }
 
 async function startServer() {
-  // Initialize database with error handling
-  try {
-    await initializeDatabase();
-    console.log("Database initialized successfully");
-  } catch (error) {
-    console.error("Failed to initialize database:", error);
-    console.warn("Server will continue but database operations may fail");
-  }
+  // Start HTTP server IMMEDIATELY so Render sees it as alive
+  httpServer.listen(PORT, () => {
+    console.log(`🚀 Server running on http://localhost:${PORT}`);
+    console.log(`📊 Health check: http://localhost:${PORT}/api/health`);
+    console.log(`🔐 Auth endpoints: http://localhost:${PORT}/api/auth`);
+    console.log(`👑 Admin endpoints: http://localhost:${PORT}/api/admin`);
+    console.log(`📚 HSK endpoints: http://localhost:${PORT}/api/hsk`);
+    console.log(`💬 Discord endpoints: http://localhost:${PORT}/api/discord`);
+    console.log(`🎉 Events endpoints: http://localhost:${PORT}/api/events`);
+    console.log(`🔌 Socket.io enabled for real-time communication`);
+  });
 
-  // Ensure language exchange tables exist
-  try {
-    ensureLanguageExchangeTables();
-    console.log("Language exchange tables initialized successfully");
-  } catch (error) {
-    console.error("Error initializing language exchange tables:", error);
-  }
+  // Initialize everything in background (non-blocking)
+  setTimeout(async () => {
+    try {
+      await initializeDatabase();
+      console.log("Database initialized successfully");
+    } catch (error) {
+      console.error("Failed to initialize database:", error);
+    }
 
-  // Initialize default Discord groups
-  try {
-    await ensureDefaultGroups();
-    console.log("Default Discord groups initialized successfully");
-  } catch (error) {
-    console.error("Error initializing default Discord groups:", error);
-  }
+    try {
+      ensureLanguageExchangeTables();
+      console.log("Language exchange tables initialized successfully");
+    } catch (error) {
+      console.error("Error initializing language exchange tables:", error);
+    }
 
-  // Initialize Google Auth
-  try {
-    await initGoogleAuth();
-    console.log("Google Auth initialized successfully");
-  } catch (error) {
-    console.error("Error initializing Google Auth:", error);
-  }
+    try {
+      await ensureDefaultGroups();
+      console.log("Default Discord groups initialized successfully");
+    } catch (error) {
+      console.error("Error initializing default Discord groups:", error);
+    }
 
-  // Seed super admin user
-  try {
-    await seedSuperAdmin();
-    console.log("Super admin check completed");
-  } catch (error) {
-    console.error("Error seeding super admin:", error);
-  }
+    try {
+      await initGoogleAuth();
+      console.log("Google Auth initialized successfully");
+    } catch (error) {
+      console.error("Error initializing Google Auth:", error);
+    }
+
+    try {
+      await seedSuperAdmin();
+      console.log("Super admin check completed");
+    } catch (error) {
+      console.error("Error seeding super admin:", error);
+    }
+  }, 0);
 
   app.use(
     helmet({
