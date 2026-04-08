@@ -18,13 +18,13 @@ function replaceDatetimeFunctions(sql: string): string {
   let result = sql;
 
   result = result.replace(
-    /datetime\(\s*'now'\s*,\s*'-?\d+\s*(hour|hours|day|days|week|weeks|month|months|year|years)'\s*\)/gi,
+    /datetime\(\s*["']now["']\s*,\s*'-?\d+\s*(hour|hours|day|days|week|weeks|month|months|year|years)'\s*\)/gi,
     (_match, unit) => `NOW() - INTERVAL '1 ${unit}'`,
   );
 
-  result = result.replace(/datetime\(\s*'now'\s*\)/gi, 'NOW()');
+  result = result.replace(/datetime\(\s*["']now["']\s*\)/gi, 'NOW()');
 
-  result = result.replace(/date\(\s*'now'\s*\)/gi, 'CURRENT_DATE');
+  result = result.replace(/date\(\s*["']now["']\s*\)/gi, 'CURRENT_DATE');
 
   return result;
 }
