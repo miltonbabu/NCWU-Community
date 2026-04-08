@@ -532,17 +532,17 @@ async function seedSuperAdmin() {
 
 async function startServer() {
   app.use(
-    helmet({
-      crossOriginResourcePolicy: { policy: "cross-origin" },
-    }),
-  );
-
-  app.use(
     cors({
       origin: allowedOrigins,
       credentials: true,
       methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-      allowedHeaders: ["Content-Type", "Authorization"],
+      allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+    }),
+  );
+
+  app.use(
+    helmet({
+      crossOriginResourcePolicy: { policy: "cross-origin" },
     }),
   );
 
