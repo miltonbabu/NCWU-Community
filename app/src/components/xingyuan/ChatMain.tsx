@@ -232,8 +232,7 @@ export function ChatMain() {
       let accumulatedThinking = "";
       let hasAddedToChat = false;
 
-      const controller = new AbortController();
-      abortRef.current = controller;
+      abortRef.current = null;
 
       const addToChat = () => {
         if (hasAddedToChat) return;
@@ -265,6 +264,7 @@ export function ChatMain() {
         const MAX_SEND_RETRIES = 2;
 
         for (let attempt = 0; attempt <= MAX_SEND_RETRIES; attempt++) {
+          if (abortRef.current?.signal.aborted) break;
           if (attempt > 0) {
             if (!hasAddedToChat) addToChat();
             updateContent(
@@ -278,13 +278,16 @@ export function ChatMain() {
             accumulatedThinking = "";
           }
 
+          const attemptController = new AbortController();
+          abortRef.current = attemptController;
+
           try {
             const response = await sendGLMMessage(
               historyMessages,
               sendImages,
               useThinking
                 ? (text) => {
-                    if (controller.signal.aborted) return;
+                    if (attemptController.signal.aborted) return;
                     accumulatedThinking += text;
                     if (!hasAddedToChat) addToChat();
                     dispatchUpdateThinking(
@@ -295,17 +298,17 @@ export function ChatMain() {
                   }
                 : undefined,
               (delta) => {
-                if (controller.signal.aborted) return;
+                if (attemptController.signal.aborted) return;
                 streamedContent += delta;
                 if (!hasAddedToChat) addToChat();
                 updateContent(chatId!, aiMessageId, streamedContent);
               },
               useThinking,
-              controller.signal,
+              attemptController.signal,
               userName,
             );
 
-            if (!controller.signal.aborted) {
+            if (!attemptController.signal.aborted) {
               if (!streamedContent && response) {
                 if (!hasAddedToChat) addToChat();
                 updateContent(chatId!, aiMessageId, response);
@@ -321,16 +324,21 @@ export function ChatMain() {
             console.warn(`[Xingyuan] Send attempt ${attempt + 1} failed:`, lastError.message);
             if (attempt === MAX_SEND_RETRIES) {
               if (!hasAddedToChat) addToChat();
+              const friendlyMsg = lastError.message.includes("aborted")
+                ? "Request was cancelled. Please try again."
+                : lastError.message.includes("Empty streamed")
+                  ? "AI returned an empty response. Please try again."
+                  : lastError.message;
               updateContent(
                 chatId!,
                 aiMessageId,
-                `Error: ${lastError.message}. Please try again.`,
+                `Error: ${friendlyMsg}. Please try again.`,
               );
             }
           }
         }
       } catch (error) {
-        if (controller.signal.aborted) return;
+        if (abortRef.current?.signal.aborted) return;
         if (!hasAddedToChat) addToChat();
         updateContent(
           chatId!,
@@ -338,7 +346,7 @@ export function ChatMain() {
           `Error: ${error instanceof Error ? error.message : "Failed to get response"}`,
         );
       } finally {
-        if (!controller.signal.aborted) {
+        if (!abortRef.current?.signal.aborted) {
           sendingRef.current = false;
           isLoadingRef.current = false;
           abortRef.current = null;

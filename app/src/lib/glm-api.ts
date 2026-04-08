@@ -350,13 +350,8 @@ async function streamChat(
             const chunk: StreamChunk = JSON.parse(jsonStr);
             const delta = chunk.choices?.[0]?.delta;
             if (delta) {
-              if (delta.reasoning_content) {
-                if (onThinking) {
-                  onThinking(delta.reasoning_content);
-                } else if (useDeepThink === false) {
-                  fullContent += delta.reasoning_content;
-                  onStreamDelta?.(delta.reasoning_content);
-                }
+              if (delta.reasoning_content && onThinking) {
+                onThinking(delta.reasoning_content);
               }
               if (delta.content) {
                 fullContent += delta.content;
