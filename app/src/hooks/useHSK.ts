@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { hskApi } from "@/lib/api";
-import type { HSKLevel, HSKProgress, HSKQuizResult } from "@/types/hsk";
+import type { HSKLevel, HSKProgress } from "@/types/hsk";
 
 export type HSKQuizQuestion = {
   id: string;
@@ -28,12 +28,15 @@ export interface HSKQuiz {
 }
 
 export interface HSKQuizResult {
-  id: string;
-  quiz_id: string;
+  id?: string;
+  quizId: string;
   score: number;
-  total_questions: number;
-  correct_answers: number;
-  completed_at: string;
+  totalPoints: number;
+  correctAnswers: number;
+  totalQuestions: number;
+  timeSpent: number;
+  completedAt: string;
+  answers: { questionId: string; answer: string; correct: boolean }[];
 }
 
 export interface WordList {
@@ -41,6 +44,8 @@ export interface WordList {
   name: string;
   level: HSKLevel;
   word_ids?: number[];
+  words?: string[];
+  completedAt?: string;
   created_at?: string;
 }
 
