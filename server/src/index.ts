@@ -6,7 +6,6 @@ import rateLimit from "express-rate-limit";
 import { createServer } from "http";
 import { Server } from "socket.io";
 import { v4 as uuidv4 } from "uuid";
-import path from "path";
 
 import {
   initializeDatabase,
@@ -532,9 +531,6 @@ async function seedSuperAdmin() {
 }
 
 async function startServer() {
-  const frontendDist = path.resolve(__dirname, "../frontend-dist");
-  app.use(express.static(frontendDist));
-
   app.use(
     helmet({
       crossOriginResourcePolicy: { policy: "cross-origin" },
@@ -675,21 +671,9 @@ async function startServer() {
   );
 
   app.use((req: express.Request, res: express.Response) => {
-    if (req.url.startsWith("/api") || req.url.startsWith("/socket.io")) {
-      return res.status(404).json({
-        success: false,
-        message: "Route not found",
-      });
-    }
-
-    const frontendDist = path.resolve(__dirname, "../frontend-dist");
-    res.sendFile(path.join(frontendDist, "index.html"), (err) => {
-      if (err) {
-        res.status(404).json({
-          success: false,
-          message: "Route not found",
-        });
-      }
+    res.status(404).json({
+      success: false,
+      message: "Route not found",
     });
   });
 

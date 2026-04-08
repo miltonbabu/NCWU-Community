@@ -5,7 +5,6 @@ COPY package.json package-lock.json ./
 RUN npm ci --only=production
 
 COPY dist ./dist
-COPY ../app/dist ./frontend-dist
 
 EXPOSE 3001
 ENV NODE_ENV=production
