@@ -260,39 +260,74 @@ export function ChatMain() {
           { role: "user" as const, content: finalContent },
         ];
 
-        const response = await sendGLMMessage(
-          historyMessages,
-          sendImages,
-          useThinking
-            ? (text) => {
-                if (controller.signal.aborted) return;
-                accumulatedThinking += text;
-                if (!hasAddedToChat) addToChat();
-                dispatchUpdateThinking(
-                  chatId!,
-                  aiMessageId,
-                  accumulatedThinking,
-                );
-              }
-            : undefined,
-          (delta) => {
-            if (controller.signal.aborted) return;
-            streamedContent += delta;
-            if (!hasAddedToChat) addToChat();
-            updateContent(chatId!, aiMessageId, streamedContent);
-          },
-          useThinking,
-          controller.signal,
-          userName,
-        );
+        let lastError: Error | null = null;
+        let responseContent = "";
+        const MAX_SEND_RETRIES = 2;
 
-        if (!controller.signal.aborted) {
-          if (!streamedContent && response) {
+        for (let attempt = 0; attempt <= MAX_SEND_RETRIES; attempt++) {
+          if (attempt > 0) {
             if (!hasAddedToChat) addToChat();
-            updateContent(chatId!, aiMessageId, response);
+            updateContent(
+              chatId!,
+              aiMessageId,
+              useThinking ? accumulatedThinking || "" : "",
+            );
+            updateThinking?.(chatId!, aiMessageId, `Connection issue... Retrying (${attempt}/${MAX_SEND_RETRIES}) in ${3 + attempt * 2}s...\n`);
+            await new Promise((r) => setTimeout(r, (3 + attempt * 2) * 1000));
+            streamedContent = "";
+            accumulatedThinking = "";
           }
 
-          if (!hasAddedToChat) addToChat();
+          try {
+            const response = await sendGLMMessage(
+              historyMessages,
+              sendImages,
+              useThinking
+                ? (text) => {
+                    if (controller.signal.aborted) return;
+                    accumulatedThinking += text;
+                    if (!hasAddedToChat) addToChat();
+                    dispatchUpdateThinking(
+                      chatId!,
+                      aiMessageId,
+                      accumulatedThinking,
+                    );
+                  }
+                : undefined,
+              (delta) => {
+                if (controller.signal.aborted) return;
+                streamedContent += delta;
+                if (!hasAddedToChat) addToChat();
+                updateContent(chatId!, aiMessageId, streamedContent);
+              },
+              useThinking,
+              controller.signal,
+              userName,
+            );
+
+            if (!controller.signal.aborted) {
+              if (!streamedContent && response) {
+                if (!hasAddedToChat) addToChat();
+                updateContent(chatId!, aiMessageId, response);
+                responseContent = response;
+              }
+
+              if (!hasAddedToChat) addToChat();
+            }
+            lastError = null;
+            break;
+          } catch (retryErr) {
+            lastError = retryErr instanceof Error ? retryErr : new Error(String(retryErr));
+            console.warn(`[Xingyuan] Send attempt ${attempt + 1} failed:`, lastError.message);
+            if (attempt === MAX_SEND_RETRIES) {
+              if (!hasAddedToChat) addToChat();
+              updateContent(
+                chatId!,
+                aiMessageId,
+                `Error: ${lastError.message}. Please try again.`,
+              );
+            }
+          }
         }
       } catch (error) {
         if (controller.signal.aborted) return;
