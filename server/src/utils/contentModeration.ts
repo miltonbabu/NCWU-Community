@@ -801,12 +801,7 @@ export function createUserFlag(
   );
 
   const contentPreview = content.substring(0, 200);
-  const restrictedFeatures = [
-    "social_post",
-    "social_comment",
-    "discord",
-    "language_exchange",
-  ];
+  const restrictedFeatures = [source];
 
   run(
     `INSERT INTO user_flags (
