@@ -284,6 +284,7 @@ router.get("/groups", authenticate, async (req: AuthRequest, res: Response) => {
     };
 
     const userDepartment = normalizeDept(userData.department);
+    const userYear = userData.enrollment_year;
 
     const accessibleGroups = groupsWithCounts.filter((g) => {
       if (isAdmin) {
@@ -293,12 +294,15 @@ router.get("/groups", authenticate, async (req: AuthRequest, res: Response) => {
         return true;
       }
       if (g.type === "department") {
-        if (!userDepartment) {
-          return true;
+        if (!userDepartment || !userYear) {
+          return false;
         }
         const groupDept = normalizeDept(g.department);
-        if (!groupDept) return true;
-        return groupDept.toLowerCase() === userDepartment.toLowerCase();
+        if (!groupDept) return false;
+        const deptMatch =
+          groupDept.toLowerCase() === userDepartment.toLowerCase();
+        const yearMatch = g.year === userYear;
+        return deptMatch && yearMatch;
       }
       return false;
     });
@@ -309,9 +313,12 @@ router.get("/groups", authenticate, async (req: AuthRequest, res: Response) => {
       can_send_message:
         isAdmin ||
         g.type === "all" ||
-        !userDepartment ||
-        normalizeDept(g.department)?.toLowerCase() ===
-          userDepartment.toLowerCase(),
+        (!userDepartment
+          ? false
+          : !userYear
+            ? false
+            : normalizeDept(g.department)?.toLowerCase() ===
+                userDepartment.toLowerCase() && g.year === userYear),
     }));
 
     res.json({ success: true, data: result });
@@ -880,15 +887,18 @@ router.post(
       };
 
       const userDepartment = normalizeDept(userData.department);
+      const userYear = userData.enrollment_year;
       const groupDepartment = normalizeDept(group.department);
 
       const canSendMessage =
         isAdmin ||
         group.type === "all" ||
         (group.type === "department" &&
-          (!userDepartment ||
-            !groupDepartment ||
-            userDepartment.toLowerCase() === groupDepartment.toLowerCase()));
+          !!userDepartment &&
+          !!userYear &&
+          !!groupDepartment &&
+          userDepartment.toLowerCase() === groupDepartment.toLowerCase() &&
+          group.year === userYear);
 
       if (!canSendMessage) {
         return res.status(403).json({
