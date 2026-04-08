@@ -1,11 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { hskApi } from "@/lib/api";
-import type {
-  HSKLevel,
-  HSKProgress,
-  HSKQuiz as TypesHSKQuiz,
-} from "@/types/hsk";
+import type { HSKLevel, HSKProgress, HSKQuizResult } from "@/types/hsk";
 
 export type HSKQuizQuestion = {
   id: string;
@@ -38,6 +34,14 @@ export interface HSKQuizResult {
   total_questions: number;
   correct_answers: number;
   completed_at: string;
+}
+
+export interface WordList {
+  id?: string;
+  name: string;
+  level: HSKLevel;
+  word_ids?: number[];
+  created_at?: string;
 }
 
 function getUserStorageKey(baseKey: string): string {
@@ -298,7 +302,7 @@ export function useHSKQuiz() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [startTime, setStartTime] = useState<number>(0);
-  const [quizResults, setQuizResults] = useState<any[]>([]);
+  const [quizResults, setQuizResults] = useState<HSKQuizResult[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -310,7 +314,18 @@ export function useHSKQuiz() {
         const response = await hskApi.getQuizResults();
         if (response.success && response.data) {
           setQuizResults(
-            (response.data as any[]).map((item: any) => ({
+            (
+              response.data as {
+                quiz_id: string;
+                score: number;
+                total_points: number;
+                correct_answers: number;
+                total_questions: number;
+                time_spent: number;
+                completed_at: string;
+                answers: string;
+              }[]
+            ).map((item) => ({
               quizId: item.quiz_id,
               score: item.score,
               totalPoints: item.total_points,
@@ -647,7 +662,7 @@ export function useLanguagePartners() {
 
 export function useWordListHistory() {
   const { isAuthenticated, user } = useAuth();
-  const [wordListHistory, setWordListHistory] = useState<any[]>([]);
+  const [wordListHistory, setWordListHistory] = useState<WordList[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -658,8 +673,7 @@ export function useWordListHistory() {
         setError(null);
         const response = await hskApi.getWordLists();
         if (response.success && response.data) {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          setWordListHistory(response.data as any[]);
+          setWordListHistory(response.data as WordList[]);
         }
       } catch (err) {
         setError("Failed to load word lists");
@@ -687,7 +701,7 @@ export function useWordListHistory() {
   }, [loadWordLists]);
 
   const addWordList = useCallback(
-    async (list: any) => {
+    async (list: WordList) => {
       setWordListHistory((prev) => [list, ...prev]);
 
       // Save to API if authenticated
