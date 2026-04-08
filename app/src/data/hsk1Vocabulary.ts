@@ -9,6 +9,8 @@ export interface VocabularyWord {
   exampleTranslation?: string;
   notes?: string;
   difficulty?: number | string;
+  type?: string;
+  example?: string;
 }
 
 export const hsk1Vocabulary: VocabularyWord[] = [
