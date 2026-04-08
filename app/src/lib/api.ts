@@ -7,6 +7,11 @@ interface ApiResponse<T = unknown> {
   data?: T;
   error?: string;
   errors?: Array<{ msg: string; param: string }>;
+  pagination?: {
+    hasMore?: boolean;
+    nextCursor?: string;
+    total?: number;
+  };
 }
 
 class ApiClient {
@@ -550,6 +555,7 @@ export const adminApi = {
     is_pinned?: boolean;
     is_emergency?: boolean;
     location?: string;
+    post_type?: string;
   }) => api.post("/admin/social/posts", data),
 
   uploadImages: (formData: FormData) => {
@@ -1748,5 +1754,9 @@ export const xingyuanAdminApi = {
     api.delete(`/admin/xingyuan/users/${userId}/hard`),
 
   hardDeleteAllData: () =>
-    api.delete<{ success: boolean; message: string; deleted: { chats: number; messages: number } }>("/admin/xingyuan/all/hard"),
+    api.delete<{
+      success: boolean;
+      message: string;
+      deleted: { chats: number; messages: number };
+    }>("/admin/xingyuan/all/hard"),
 };

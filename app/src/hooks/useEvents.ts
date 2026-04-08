@@ -7,6 +7,11 @@ export interface CalendarEvent {
   date: string;
   type: string;
   description?: string;
+  time?: string;
+  location?: string;
+  endTime?: string;
+  category?: string;
+  isPast?: boolean;
 }
 
 export interface EventRSVP {
@@ -14,18 +19,27 @@ export interface EventRSVP {
   event_id: string;
   user_id: string;
   status: string;
+  eventId?: string;
+  userId?: string;
+  createdAt?: string;
 }
 
 export interface EventReminder {
   id: string;
   event_id: string;
   reminder_time: string;
+  eventId?: string;
+  minutesBefore?: number;
 }
 
 export interface EventPhoto {
   id: string;
   event_id: string;
   url: string;
+  eventId?: string;
+  caption?: string;
+  uploadedAt?: string;
+  uploadedBy?: string;
 }
 
 export interface EventCategory {
@@ -33,6 +47,8 @@ export interface EventCategory {
   name: string;
   icon?: string;
 }
+
+export type EventCategoryType = 'academic' | 'cultural' | 'sports' | 'social' | 'workshop' | 'career' | 'other';
 
 const RSVP_STORAGE_KEY = 'event_rsvps';
 const REMINDERS_STORAGE_KEY = 'event_reminders';
@@ -60,6 +76,9 @@ export function useEventRSVP(eventId: string) {
     setRsvps(prev => ({
       ...prev,
       [eventId]: {
+        id: `rsvp-${Date.now()}`,
+        event_id: eventId,
+        user_id: userId,
         eventId,
         userId,
         status,
@@ -109,6 +128,9 @@ export function useEventReminders() {
     setReminders(prev => ({
       ...prev,
       [eventId]: {
+        id: `reminder-${Date.now()}`,
+        event_id: eventId,
+        reminder_time: new Date(Date.now() + minutesBefore * 60 * 1000).toISOString(),
         eventId,
         minutesBefore,
       },

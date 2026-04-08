@@ -2237,6 +2237,7 @@ export default function DiscordPage() {
         onClose={() => setShowRestrictionPopup(false)}
         restriction={restriction}
         feature="discord"
+        restrictedFeatures={restriction ? ['discord'] : []}
       />
     </div>
   );

@@ -144,10 +144,12 @@ export default function PhotoGalleryPage() {
       const res = await galleryApi.getPosts(1, 50, filters);
       console.log("Gallery API response:", res.data);
       let loadedPosts: GalleryPost[] = [];
-      if (res?.data?.success && res?.data?.data?.posts) {
-        loadedPosts = res.data.data.posts || [];
-      } else if (res?.data?.posts) {
-        loadedPosts = res.data.posts || [];
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const resData = res as any;
+      if (resData?.data?.success && resData?.data?.data?.posts) {
+        loadedPosts = resData.data.data.posts || [];
+      } else if (resData?.data?.posts) {
+        loadedPosts = resData.data.posts || [];
       }
       setPosts(loadedPosts);
 
@@ -303,8 +305,10 @@ export default function PhotoGalleryPage() {
         throw new Error(uploadRes?.message || "Image upload failed");
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const uploadData = uploadRes as any;
       const imageUrls =
-        uploadRes.data?.images || uploadRes.data?.urls || uploadRes.urls || [];
+        uploadData.data?.images || uploadData.data?.urls || uploadData.urls || [];
       console.log("Image URLs:", imageUrls);
 
       if (imageUrls.length === 0) {
@@ -326,7 +330,6 @@ export default function PhotoGalleryPage() {
         title: title.trim(),
         location: location.trim() || undefined,
         tags: tags.length > 0 ? tags : undefined,
-        post_type: "gallery",
         visibility: "public",
       });
 
@@ -430,9 +433,7 @@ export default function PhotoGalleryPage() {
 
     try {
       setSubmittingComment(true);
-      const res = await galleryApi.addComment(selectedPost.id, {
-        content: commentInput.trim(),
-      });
+      const res = await galleryApi.addComment(selectedPost.id, commentInput.trim());
 
       if (res.success) {
         toast.success("Comment added");
@@ -441,9 +442,11 @@ export default function PhotoGalleryPage() {
         // Refresh post to get updated comments
         const postRes = await galleryApi.getPost(selectedPost.id);
         if (postRes.success && postRes.data) {
-          setSelectedPost(postRes.data);
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          setSelectedPost(postRes.data as any);
           setPosts((prev) =>
-            prev.map((p) => (p.id === selectedPost.id ? postRes.data! : p)),
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            prev.map((p) => (p.id === selectedPost.id ? (postRes.data as any) : p)),
           );
         }
       }
@@ -528,15 +531,19 @@ export default function PhotoGalleryPage() {
 
       let newImageUrls: string[] = [];
       if (editNewImages.length > 0) {
-        const uploadRes = await galleryApi.uploadImages(editNewImages);
+        const formData = new FormData();
+        editNewImages.forEach((file) => formData.append("images", file));
+        const uploadRes = await galleryApi.uploadImages(formData);
         console.log("Edit upload response:", uploadRes);
         if (!uploadRes?.success) {
           throw new Error(uploadRes?.message || "Image upload failed");
         }
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const uploadData = uploadRes as any;
         newImageUrls =
-          uploadRes.data?.images ||
-          uploadRes.data?.urls ||
-          uploadRes.urls ||
+          uploadData.data?.images ||
+          uploadData.data?.urls ||
+          uploadData.urls ||
           [];
         console.log("New image URLs:", newImageUrls);
       }

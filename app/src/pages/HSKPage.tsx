@@ -4267,7 +4267,8 @@ function QuizTab({
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
             {question.options.map((option: string, idx: number) => {
               const isSelected = answers[question.id] === option;
-              const isCorrect = option === question.correctAnswer;
+              const correctAnswerValue = question.correctAnswer || (question.correct_answer !== undefined ? question.options[question.correct_answer] : "");
+              const isCorrect = option === correctAnswerValue;
               const hasAnswered = answers[question.id] !== undefined;
 
               return (

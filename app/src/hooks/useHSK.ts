@@ -1,21 +1,34 @@
 import { useState, useEffect, useCallback } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { hskApi } from "@/lib/api";
-import type { HSKLevel, HSKProgress } from "@/types/hsk";
+import type {
+  HSKLevel,
+  HSKProgress,
+  HSKQuiz as TypesHSKQuiz,
+} from "@/types/hsk";
+
+export type HSKQuizQuestion = {
+  id: string;
+  word_id?: number;
+  word?: string;
+  pinyin: string;
+  english: string;
+  question?: string;
+  options: string[];
+  correct_answer?: number;
+  chinese?: string;
+  type?: "multiple_choice" | "pinyin" | "translation" | "fill_blank";
+  correctAnswer?: string;
+  points?: number;
+};
 
 export interface HSKQuiz {
   id: string;
   level: HSKLevel;
-  questions: Array<{
-    id: string;
-    word_id: number;
-    word: string;
-    pinyin: string;
-    english: string;
-    question: string;
-    options: string[];
-    correct_answer: number;
-  }>;
+  title?: string;
+  questions: HSKQuizQuestion[];
+  timeLimit?: number;
+  passingScore?: number;
 }
 
 export interface HSKQuizResult {
@@ -364,7 +377,12 @@ export function useHSKQuiz() {
 
     const answerDetails = currentQuiz.questions.map((q) => {
       const userAnswer = answers[q.id] || "";
-      const correctAnswer = q.options[q.correct_answer] || "";
+      let correctAnswer = "";
+      if (q.correct_answer !== undefined && q.options[q.correct_answer]) {
+        correctAnswer = q.options[q.correct_answer];
+      } else if (q.correctAnswer) {
+        correctAnswer = q.correctAnswer;
+      }
       const correct = userAnswer.toLowerCase() === correctAnswer.toLowerCase();
       if (correct) {
         correctAnswers++;

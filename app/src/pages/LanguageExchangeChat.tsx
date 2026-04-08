@@ -1218,6 +1218,7 @@ export default function LanguageExchangeChat() {
         onClose={() => setShowRestrictionPopup(false)}
         restriction={restriction}
         feature="language_exchange"
+        restrictedFeatures={restriction ? ["language_exchange"] : []}
       />
     </div>
   );

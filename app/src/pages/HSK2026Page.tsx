@@ -1578,7 +1578,7 @@ export default function HSK2026Page() {
                         setVocabulary(response.data as any);
                         console.log(
                           "Vocabulary set, length:",
-                          response.data.length,
+                          (response.data as any[])?.length,
                         );
                       }
                     } catch (error) {
