@@ -86,18 +86,10 @@ async function run(sql: string, params: unknown[] = []): Promise<DbResult> {
     const isInsert = /^\s*INSERT\s/i.test(transformed.sql);
     let result;
     if (isInsert && !transformed.sql.includes("RETURNING")) {
-      const returnSql = transformed.sql.replace(
-        /^(.*?)(\s+VALUES\s)/i,
-        "$1 RETURNING id$2",
+      result = await client.query(
+        transformed.sql + " RETURNING id",
+        transformed.params,
       );
-      if (returnSql !== transformed.sql) {
-        result = await client.query(returnSql, transformed.params);
-      } else {
-        result = await client.query(
-          transformed.sql + " RETURNING id",
-          transformed.params,
-        );
-      }
     } else {
       result = await client.query(transformed.sql, transformed.params);
     }
