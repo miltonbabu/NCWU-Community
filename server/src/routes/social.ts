@@ -507,7 +507,7 @@ router.post(
 
       const user = req.user!;
 
-      if (!user.is_admin && isFeatureRestricted(user.id, "social_post")) {
+      if (!user.is_admin && await isFeatureRestricted(user.id, "social_post")) {
         return res.status(403).json({
           success: false,
           message: "You are restricted from posting. Please contact admin.",
