@@ -290,7 +290,7 @@ export function downloadEventICS(event: CalendarEvent) {
 
 export function useEventFilters(events: CalendarEvent[]) {
   const [selectedCategory, setSelectedCategory] = useState<
-    EventCategory | "all"
+    EventCategoryType | "all"
   >("all");
   const [showPastEvents, setShowPastEvents] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");

@@ -330,7 +330,6 @@ export default function PhotoGalleryPage() {
         title: title.trim(),
         location: location.trim() || undefined,
         tags: tags.length > 0 ? tags : undefined,
-        visibility: "public",
       });
 
       toast.success("Post created successfully!");

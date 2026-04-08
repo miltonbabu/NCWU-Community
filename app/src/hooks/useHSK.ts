@@ -11,10 +11,10 @@ export type HSKQuizQuestion = {
   id: string;
   word_id?: number;
   word?: string;
-  pinyin: string;
+  pinyin?: string;
   english: string;
   question?: string;
-  options: string[];
+  options?: string[];
   correct_answer?: number;
   chinese?: string;
   type?: "multiple_choice" | "pinyin" | "translation" | "fill_blank";
@@ -69,7 +69,7 @@ export function useHSKProgress() {
           const progressMap: Record<number, HSKProgress> = {};
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (response.data as any[]).forEach((item: Record<string, unknown>) => {
-            const level = item.level as number;
+            const level = item.level as HSKLevel;
             progressMap[level] = {
               level: level,
               wordsLearned: item.words_learned as number,
