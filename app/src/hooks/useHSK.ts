@@ -4,7 +4,8 @@ import { hskApi } from "@/lib/api";
 import type {
   HSKLevel,
   HSKProgress,
-  HSKQuiz as TypesHSKQuiz,
+  HSKQuiz,
+  HSKQuizResult,
 } from "@/types/hsk";
 
 export type HSKQuizQuestion = {
@@ -38,6 +39,14 @@ export interface HSKQuizResult {
   total_questions: number;
   correct_answers: number;
   completed_at: string;
+}
+
+export interface WordList {
+  id?: string;
+  name: string;
+  level: HSKLevel;
+  words: string[];
+  completedAt?: string;
 }
 
 function getUserStorageKey(baseKey: string): string {
@@ -298,7 +307,7 @@ export function useHSKQuiz() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [startTime, setStartTime] = useState<number>(0);
-  const [quizResults, setQuizResults] = useState<any[]>([]);
+  const [quizResults, setQuizResults] = useState<HSKQuizResult[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -310,15 +319,15 @@ export function useHSKQuiz() {
         const response = await hskApi.getQuizResults();
         if (response.success && response.data) {
           setQuizResults(
-            (response.data as any[]).map((item: any) => ({
-              quizId: item.quiz_id,
-              score: item.score,
-              totalPoints: item.total_points,
-              correctAnswers: item.correct_answers,
-              totalQuestions: item.total_questions,
-              timeSpent: item.time_spent,
-              completedAt: item.completed_at,
-              answers: JSON.parse(item.answers || "[]"),
+            (response.data as Record<string, unknown>[]).map((item) => ({
+              quizId: item.quiz_id as string,
+              score: item.score as number,
+              totalPoints: item.total_points as number,
+              correctAnswers: item.correct_answers as number,
+              totalQuestions: item.total_questions as number,
+              timeSpent: item.time_spent as number,
+              completedAt: item.completed_at as string,
+              answers: JSON.parse((item.answers as string) || "[]"),
             })),
           );
         }
@@ -647,7 +656,7 @@ export function useLanguagePartners() {
 
 export function useWordListHistory() {
   const { isAuthenticated, user } = useAuth();
-  const [wordListHistory, setWordListHistory] = useState<any[]>([]);
+  const [wordListHistory, setWordListHistory] = useState<WordList[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -658,8 +667,7 @@ export function useWordListHistory() {
         setError(null);
         const response = await hskApi.getWordLists();
         if (response.success && response.data) {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          setWordListHistory(response.data as any[]);
+          setWordListHistory(response.data as WordList[]);
         }
       } catch (err) {
         setError("Failed to load word lists");
@@ -687,7 +695,7 @@ export function useWordListHistory() {
   }, [loadWordLists]);
 
   const addWordList = useCallback(
-    async (list: any) => {
+    async (list: WordList) => {
       setWordListHistory((prev) => [list, ...prev]);
 
       // Save to API if authenticated
