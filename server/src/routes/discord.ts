@@ -556,15 +556,6 @@ router.get(
 
       const isCurrentUserAdmin = user.is_admin;
 
-      // Get group info to check if it's All Students or CST 23
-      const group = await get<{ name: string }>(
-        "SELECT name FROM discord_groups WHERE id = ?",
-        [id],
-      );
-
-      const isVisibleGroup =
-        group && (group.name === "All Students" || group.name === "CST 2023");
-
       const members = await all<{
         user_id: string;
         joined_at: string;
@@ -579,7 +570,7 @@ router.get(
         display_student_id: number;
         is_admin: number;
       }>(
-        `SELECT 
+        `SELECT
         gm.user_id, gm.joined_at, gm.nickname, gm.display_student_id,
         u.full_name, u.student_id, u.avatar_url, u.department, u.current_year, u.is_admin,
         p.status, p.last_seen
@@ -591,11 +582,9 @@ router.get(
         [id],
       );
 
-      // Filter out admin users from results for non-admin users
-      // Except for All Students and CST 2023 groups where admins are visible
       const filteredMembers = isCurrentUserAdmin
         ? members
-        : members.filter((m) => m.is_admin !== 1 || isVisibleGroup);
+        : members.filter((m) => m.is_admin !== 1);
 
       const formattedMembers = filteredMembers.map((m) => ({
         ...m,
@@ -604,8 +593,7 @@ router.get(
           m.last_seen &&
           new Date(m.last_seen).getTime() > Date.now() - 5 * 60 * 1000,
         display_name: m.nickname || m.full_name,
-        // Only show admin badge if not in visible groups (All Students or CST 2023)
-        show_as_admin: m.is_admin === 1 && !isVisibleGroup,
+        show_as_admin: isCurrentUserAdmin && m.is_admin === 1,
       }));
 
       res.json({ success: true, data: formattedMembers });
@@ -640,15 +628,6 @@ router.get(
         whereClause += " AND m.created_at < ?";
         params.push(before);
       }
-
-      // Get group info to check if it's All Students or CST 2023
-      const group = await get<{ name: string }>(
-        "SELECT name FROM discord_groups WHERE id = ?",
-        [id],
-      );
-
-      const isVisibleGroup =
-        group && (group.name === "All Students" || group.name === "CST 2023");
 
       const messages = await all<{
         id: string;
@@ -707,16 +686,13 @@ router.get(
 
       const isCurrentUserAdmin = user.is_admin;
 
-      // Filter out admin messages for non-admin users
-      // Except for All Students and CST 2023 groups where admin messages are visible
       const filteredMessages = isCurrentUserAdmin
         ? messages
-        : messages.filter((msg) => msg.author_is_admin !== 1 || isVisibleGroup);
+        : messages.filter((msg) => msg.author_is_admin !== 1);
 
       const formattedMessages = filteredMessages.reverse().map((msg) => {
         let displayName = msg.author_full_name;
-        // Only show admin badge if not in visible groups (All Students or CST 2023)
-        let showAsAdmin = msg.author_is_admin === 1 && !isVisibleGroup;
+        let showAsAdmin = isCurrentUserAdmin && msg.author_is_admin === 1;
 
         if (msg.is_anonymous === 1) {
           displayName = "Anonymous";
@@ -1233,16 +1209,21 @@ router.get(
         student_id: string;
         avatar_url: string | null;
         department: string | null;
+        is_admin: number;
       }>(
-        `SELECT p.user_id, p.status, p.last_seen, u.full_name, u.student_id, u.avatar_url, u.department
+        `SELECT p.user_id, p.status, p.last_seen, u.full_name, u.student_id, u.avatar_url, u.department, u.is_admin
        FROM discord_user_presence p
        JOIN users u ON p.user_id = u.id
-       WHERE p.status = 'online' 
+       WHERE p.status = 'online'
          AND p.last_seen > datetime('now', '-5 minutes')
        ORDER BY u.full_name ASC`,
       );
 
-      res.json({ success: true, data: onlineUsers });
+      const filteredUsers = user.is_admin
+        ? onlineUsers
+        : onlineUsers.filter((u) => u.is_admin !== 1);
+
+      res.json({ success: true, data: filteredUsers });
     } catch (error) {
       console.error("Error fetching online users:", error);
       res
