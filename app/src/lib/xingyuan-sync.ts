@@ -3,6 +3,17 @@ import type { Chat, Message } from "./xingyuan-types";
 const SYNC_DEBOUNCE_MS = 500;
 const pendingSyncs = new Map<string, ReturnType<typeof setTimeout>>();
 
+function getApiUrl(path: string): string {
+  const envUrl = import.meta.env.VITE_API_URL;
+  if (envUrl && !envUrl.includes("localhost")) {
+    return `${envUrl}${path}`;
+  }
+  if (typeof window !== "undefined" && window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
+    return `https://ncwu-api.onrender.com${path}`;
+  }
+  return `/api${path}`;
+}
+
 function getAuthToken(): string | null {
   return localStorage.getItem("auth_token");
 }
@@ -22,7 +33,7 @@ export function syncChatToServer(chat: Chat): void {
     key,
     setTimeout(async () => {
       try {
-        const res = await fetch("/api/xingyuan/chat/sync", {
+        const res = await fetch(getApiUrl("/xingyuan/chat/sync"), {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -75,7 +86,7 @@ export async function addMessageToServer(
 ): Promise<void> {
   const token = getAuthToken();
   try {
-    const res = await fetch("/api/xingyuan/message/add", {
+    const res = await fetch(getApiUrl("/xingyuan/message/add"), {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -110,7 +121,7 @@ export async function softDeleteChatOnServer(chatId: string): Promise<void> {
   const token = getAuthToken();
   try {
     if (!token) return;
-    const res = await fetch("/api/xingyuan/chat/soft-delete", {
+    const res = await fetch(getApiUrl("/xingyuan/chat/soft-delete"), {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -133,7 +144,7 @@ export async function softDeleteMessageOnServer(
   const token = getAuthToken();
   try {
     if (!token) return;
-    const res = await fetch("/api/xingyuan/message/soft-delete", {
+    const res = await fetch(getApiUrl("/xingyuan/message/soft-delete"), {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
