@@ -13,6 +13,11 @@ services:
       - key: PORT
         value: "3001"
         sync: false
+      - key: JWT_SECRET
+        generateValue: true
+        sync: false
+      - key: DATABASE_URL
+        sync: false
     autoDeploy: true
 
   - type: web
