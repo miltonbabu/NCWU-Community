@@ -162,76 +162,125 @@ router.get("/groups", authenticate, async (req: AuthRequest, res: Response) => {
       description: string | null;
       icon_url: string | null;
       created_at: string;
-      member_count: number;
-      is_member: number;
     }>(
-      `SELECT g.*, 
-        (SELECT COUNT(*) FROM discord_group_members gm JOIN users u ON gm.user_id = u.id WHERE gm.group_id = g.id ${isAdmin ? "" : "AND (u.is_admin = 0 OR g.name = 'All Students' OR g.name = 'CST 2023')"}) as member_count,
-        (SELECT COUNT(*) FROM discord_group_members WHERE group_id = g.id AND user_id = ?) as is_member
+      `SELECT g.id, g.name, g.type, g.department, g.year, g.description, g.icon_url, g.created_at
        FROM discord_groups g
        ORDER BY 
          CASE WHEN g.type = 'all' THEN 0 ELSE 1 END,
          g.name ASC`,
-      [user.id],
     );
 
-    // Get unread counts and online counts for each group
+    if (!groups || groups.length === 0) {
+      return res.json({ success: true, data: [] });
+    }
+
+    const groupIds = groups.map((g) => g.id);
+
+    const memberships = await all<{ group_id: string; user_id: string }>(
+      "SELECT group_id, user_id FROM discord_group_members WHERE group_id IN (?) AND user_id = ?",
+      [groupIds.join(","), user.id],
+    );
+
+    const memberGroupIds = new Set(memberships.map((m) => m.group_id));
+
+    const memberCounts = await all<{ group_id: string; cnt: number }>(
+      "SELECT group_id, COUNT(*) as cnt FROM discord_group_members WHERE group_id IN (?) GROUP BY group_id",
+      [groupIds.join(",")],
+    );
+
+    const memberCountMap = new Map(
+      memberCounts.map((m) => [m.group_id, m.cnt]),
+    );
+
     const groupsWithCounts = await Promise.all(
       groups.map(async (g) => {
-        const readStatus = await get<{ last_read_message_id: string | null }>(
-          `SELECT last_read_message_id FROM discord_group_read_status 
-           WHERE user_id = ? AND group_id = ?`,
-          [user.id, g.id],
-        );
+        try {
+          let unreadCount = 0;
+          try {
+            const readStatus = await get<{
+              last_read_message_id: string | null;
+            }>(
+              `SELECT last_read_message_id FROM discord_group_read_status 
+               WHERE user_id = ? AND group_id = ?`,
+              [user.id, g.id],
+            );
 
-        let unreadCount = 0;
-        if (readStatus?.last_read_message_id) {
-          const count = await get<{ count: number }>(
-            `SELECT COUNT(*) as count FROM discord_messages 
-             WHERE group_id = ? AND id > ? AND deleted_at IS NULL`,
-            [g.id, readStatus.last_read_message_id],
-          );
-          unreadCount = count?.count || 0;
-        } else if (g.is_member) {
-          // If no read status but is member, count all messages
-          const count = await get<{ count: number }>(
-            `SELECT COUNT(*) as count FROM discord_messages 
-             WHERE group_id = ? AND deleted_at IS NULL`,
-            [g.id],
-          );
-          unreadCount = count?.count || 0;
+            if (readStatus?.last_read_message_id) {
+              const count = await get<{ count: number }>(
+                `SELECT COUNT(*) as count FROM discord_messages 
+                 WHERE group_id = ? AND id > ? AND deleted_at IS NULL`,
+                [g.id, readStatus.last_read_message_id],
+              );
+              unreadCount = count?.count || 0;
+            } else if (memberGroupIds.has(g.id)) {
+              const count = await get<{ count: number }>(
+                `SELECT COUNT(*) as count FROM discord_messages 
+                 WHERE group_id = ? AND deleted_at IS NULL`,
+                [g.id],
+              );
+              unreadCount = count?.count || 0;
+            }
+          } catch (unreadErr) {
+            console.error(
+              `[Discord] Unread count error for group ${g.id}:`,
+              unreadErr,
+            );
+          }
+
+          let onlineCount = 0;
+          try {
+            const onlineResult = await get<{ count: number }>(
+              `SELECT COUNT(*) as count FROM discord_group_members gm
+               JOIN discord_user_presence p ON gm.user_id = p.user_id
+               WHERE gm.group_id = ? 
+               AND p.status = 'online' 
+               AND p.last_seen > datetime('now', '-5 minutes')`,
+              [g.id],
+            );
+            onlineCount = onlineResult?.count || 0;
+          } catch (onlineErr) {
+            console.error(
+              `[Discord] Online count error for group ${g.id}:`,
+              onlineErr,
+            );
+          }
+
+          return {
+            ...g,
+            member_count: memberCountMap.get(g.id) || 0,
+            is_member: memberGroupIds.has(g.id) ? 1 : 0,
+            unread_count: unreadCount,
+            online_count: onlineCount,
+          };
+        } catch (groupErr) {
+          console.error(`[Discord] Error processing group ${g.id}:`, groupErr);
+          return {
+            ...g,
+            member_count: 0,
+            is_member: 0,
+            unread_count: 0,
+            online_count: 0,
+          };
         }
-
-        // Get online count for this group
-        const onlineCount = await get<{ count: number }>(
-          `SELECT COUNT(*) as count FROM discord_group_members gm
-           JOIN discord_user_presence p ON gm.user_id = p.user_id
-           JOIN users u ON gm.user_id = u.id
-           WHERE gm.group_id = ? 
-           AND p.status = 'online' 
-           AND p.last_seen > datetime('now', '-5 minutes')
-           ${isAdmin ? "" : "AND (u.is_admin = 0 OR ? IN ('All Students', 'CST 2023'))"}`,
-          isAdmin ? [g.id] : [g.id, g.name],
-        );
-
-        return {
-          ...g,
-          unread_count: unreadCount,
-          online_count: onlineCount?.count || 0,
-        };
       }),
     );
 
     const DEPARTMENT_ALIASES: Record<string, string> = {
       CST: "Computer Science & Technology",
+      "Computer Science & Technology": "Computer Science & Technology",
       Civil: "Civil Engineering",
+      "Civil Engineering": "Civil Engineering",
       Electrical: "Electrical Engineering",
+      "Electrical Engineering": "Electrical Engineering",
       Mechanical: "Mechanical Engineering",
+      "Mechanical Engineering": "Mechanical Engineering",
+      Economics: "Economics",
     };
 
     const normalizeDept = (dept: string | null): string | null => {
       if (!dept) return null;
-      return DEPARTMENT_ALIASES[dept] || dept;
+      const trimmed = dept.trim();
+      return DEPARTMENT_ALIASES[trimmed] || trimmed;
     };
 
     const userDepartment = normalizeDept(userData.department);
@@ -247,7 +296,9 @@ router.get("/groups", authenticate, async (req: AuthRequest, res: Response) => {
         if (!userDepartment) {
           return true;
         }
-        return g.department === userDepartment;
+        const groupDept = normalizeDept(g.department);
+        if (!groupDept) return true;
+        return groupDept.toLowerCase() === userDepartment.toLowerCase();
       }
       return false;
     });
@@ -259,7 +310,8 @@ router.get("/groups", authenticate, async (req: AuthRequest, res: Response) => {
         isAdmin ||
         g.type === "all" ||
         !userDepartment ||
-        g.department === userDepartment,
+        normalizeDept(g.department)?.toLowerCase() ===
+          userDepartment.toLowerCase(),
     }));
 
     res.json({ success: true, data: result });
@@ -282,8 +334,6 @@ router.get(
           .json({ success: false, message: "Unauthorized" });
       }
 
-      const isCurrentUserAdmin = user.is_admin;
-
       const group = await get<{
         id: string;
         name: string;
@@ -293,15 +343,9 @@ router.get(
         description: string | null;
         icon_url: string | null;
         created_at: string;
-        member_count: number;
-        is_member: number;
       }>(
-        `SELECT g.*, 
-        (SELECT COUNT(*) FROM discord_group_members gm JOIN users u ON gm.user_id = u.id WHERE gm.group_id = g.id ${isCurrentUserAdmin ? "" : "AND (u.is_admin = 0 OR g.name = 'All Students' OR g.name = 'CST 2023')"}) as member_count,
-        (SELECT COUNT(*) FROM discord_group_members WHERE group_id = g.id AND user_id = ?) as is_member
-       FROM discord_groups g
-       WHERE g.id = ?`,
-        [user.id, id],
+        "SELECT id, name, type, department, year, description, icon_url, created_at FROM discord_groups WHERE id = ?",
+        [id],
       );
 
       if (!group) {
@@ -310,11 +354,22 @@ router.get(
           .json({ success: false, message: "Group not found" });
       }
 
+      const memberCount = await get<{ cnt: number }>(
+        "SELECT COUNT(*) as cnt FROM discord_group_members WHERE group_id = ?",
+        [id],
+      );
+
+      const isMember = await get<{ id: string }>(
+        "SELECT id FROM discord_group_members WHERE group_id = ? AND user_id = ?",
+        [id, user.id],
+      );
+
       res.json({
         success: true,
         data: {
           ...group,
-          is_member: group.is_member > 0,
+          member_count: memberCount?.cnt || 0,
+          is_member: !!isMember,
         },
       });
     } catch (error) {
@@ -735,7 +790,7 @@ router.post(
           .json({ success: false, message: "Unauthorized" });
       }
 
-      if (!user.is_admin && await isFeatureRestricted(user.id, "discord")) {
+      if (!user.is_admin && (await isFeatureRestricted(user.id, "discord"))) {
         return res.status(403).json({
           success: false,
           message:
@@ -805,12 +860,35 @@ router.post(
       }
 
       const isAdmin = userData.is_admin === 1;
+
+      const DEPARTMENT_ALIASES: Record<string, string> = {
+        CST: "Computer Science & Technology",
+        "Computer Science & Technology": "Computer Science & Technology",
+        Civil: "Civil Engineering",
+        "Civil Engineering": "Civil Engineering",
+        Electrical: "Electrical Engineering",
+        "Electrical Engineering": "Electrical Engineering",
+        Mechanical: "Mechanical Engineering",
+        "Mechanical Engineering": "Mechanical Engineering",
+        Economics: "Economics",
+      };
+
+      const normalizeDept = (dept: string | null): string | null => {
+        if (!dept) return null;
+        const trimmed = dept.trim();
+        return DEPARTMENT_ALIASES[trimmed] || trimmed;
+      };
+
+      const userDepartment = normalizeDept(userData.department);
+      const groupDepartment = normalizeDept(group.department);
+
       const canSendMessage =
         isAdmin ||
         group.type === "all" ||
         (group.type === "department" &&
-          group.department === userData.department &&
-          group.year === userData.enrollment_year);
+          (!userDepartment ||
+            !groupDepartment ||
+            userDepartment.toLowerCase() === groupDepartment.toLowerCase()));
 
       if (!canSendMessage) {
         return res.status(403).json({
