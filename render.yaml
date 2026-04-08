@@ -13,3 +13,34 @@ services:
         value: "3001"
         sync: false
     autoDeploy: true
+
+  - type: static
+    name: ncwu-frontend
+    region: oregon
+    plan: free
+    buildCommand: npm run build
+    staticPublishPath: ./dist
+    spa: true
+    envVars:
+      - key: VITE_API_URL
+        value: https://ncwu-api.onrender.com/api
+        sync: false
+      - key: VITE_FIREBASE_API_KEY
+        value: AIzaSyCozP3dd1ceOVHgeQe9kBTB6MqsD9bcyrI
+        sync: false
+      - key: VITE_FIREBASE_AUTH_DOMAIN
+        value: ncwu-community.firebaseapp.com
+        sync: false
+      - key: VITE_FIREBASE_PROJECT_ID
+        value: ncwu-community
+        sync: false
+      - key: VITE_FIREBASE_STORAGE_BUCKET
+        value: ncwu-community.firebasestorage.app
+        sync: false
+      - key: VITE_FIREBASE_MESSAGING_SENDER_ID
+        value: "921961386134"
+        sync: false
+      - key: VITE_FIREBASE_APP_ID
+        value: "1:921961386134:web:06aadb44ab47a647ffb2b7"
+        sync: false
+    autoDeploy: true
