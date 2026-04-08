@@ -492,18 +492,29 @@ io.on("connection", async (socket) => {
 
 async function seedSuperAdmin() {
   try {
-    const existing = await get<{ id: string }>(
-      "SELECT id FROM users WHERE student_id = ?",
-      ["2023LXSB0316"],
-    );
+    const existing = await get<{
+      id: string;
+      password_hash: string | null;
+    }>("SELECT id, password_hash FROM users WHERE student_id = ?", [
+      "2023LXSB0316",
+    ]);
+    const hashedPassword = await hashPassword("milton9666");
+
     if (existing) {
-      console.log("✅ Super admin already exists: 2023LXSB0316");
+      if (!existing.password_hash) {
+        await run("UPDATE users SET password_hash = ? WHERE student_id = ?", [
+          hashedPassword,
+          "2023LXSB0316",
+        ]);
+        console.log("✅ Super admin password fixed: 2023LXSB0316");
+      } else {
+        console.log("✅ Super admin already exists: 2023LXSB0316");
+      }
       return;
     }
-    const hashedPassword = await hashPassword("milton9666");
     const adminId = uuidv4();
     await run(
-      `INSERT INTO users (id, student_id, email, full_name, password, role, is_admin, is_verified, created_at)
+      `INSERT INTO users (id, student_id, email, full_name, password_hash, role, is_admin, is_verified, created_at)
        VALUES (?, ?, ?, ?, ?, 'superadmin', 1, 1, datetime('now'))`,
       [
         adminId,
