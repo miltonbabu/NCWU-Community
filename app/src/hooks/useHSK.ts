@@ -12,7 +12,7 @@ export type HSKQuizQuestion = {
   word_id?: number;
   word?: string;
   pinyin?: string;
-  english: string;
+  english?: string;
   question?: string;
   options?: string[];
   correct_answer?: number;
@@ -409,6 +409,8 @@ export function useHSKQuiz() {
       timeSpent,
       completedAt: new Date().toISOString(),
       answers: answerDetails,
+      questionTypes: [],
+      wordRange: { start: 0, end: currentQuiz.questions.length },
     };
 
     setQuizResults((prev) => [...prev, result]);
