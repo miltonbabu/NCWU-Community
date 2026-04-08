@@ -1,4 +1,4 @@
-const GLM_API_URL = "/api/glm-chat";
+const GLM_API_URL = `${import.meta.env.VITE_API_URL || "/api"}/glm-chat`;
 const GLM_MODEL = "glm-4v-plus";
 
 const SYSTEM_PROMPT = [
