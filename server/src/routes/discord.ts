@@ -222,6 +222,20 @@ router.get("/groups", authenticate, async (req: AuthRequest, res: Response) => {
       }),
     );
 
+    const DEPARTMENT_ALIASES: Record<string, string> = {
+      CST: "Computer Science & Technology",
+      Civil: "Civil Engineering",
+      Electrical: "Electrical Engineering",
+      Mechanical: "Mechanical Engineering",
+    };
+
+    const normalizeDept = (dept: string | null): string | null => {
+      if (!dept) return null;
+      return DEPARTMENT_ALIASES[dept] || dept;
+    };
+
+    const userDepartment = normalizeDept(userData.department);
+
     const accessibleGroups = groupsWithCounts.filter((g) => {
       if (isAdmin) {
         return true;
@@ -230,10 +244,10 @@ router.get("/groups", authenticate, async (req: AuthRequest, res: Response) => {
         return true;
       }
       if (g.type === "department") {
-        if (!userData.department) {
+        if (!userDepartment) {
           return true;
         }
-        return g.department === userData.department;
+        return g.department === userDepartment;
       }
       return false;
     });
@@ -244,8 +258,8 @@ router.get("/groups", authenticate, async (req: AuthRequest, res: Response) => {
       can_send_message:
         isAdmin ||
         g.type === "all" ||
-        !userData.department ||
-        g.department === userData.department,
+        !userDepartment ||
+        g.department === userDepartment,
     }));
 
     res.json({ success: true, data: result });
