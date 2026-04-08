@@ -548,8 +548,7 @@ async function startServer() {
     console.log("Database initialized successfully");
   } catch (error) {
     console.error("Failed to initialize database:", error);
-    console.error("Server cannot start without database connection");
-    process.exit(1);
+    console.warn("Server will continue but database operations may fail");
   }
 
   // Ensure language exchange tables exist
