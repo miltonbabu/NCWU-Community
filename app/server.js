@@ -1,14 +1,18 @@
-const { createServer } = require("node:http");
-const { readFileSync, existsSync, readdirSync } = require("node:fs");
-const { join, extname } = require("node:path");
+const http = require("http");
+const fs = require("fs");
+const path = require("path");
 
-const dist = join(__dirname, "dist");
-const PORT = process.env.PORT || 3000;
+var dist = path.join(__dirname, "dist");
+var PORT = process.env.PORT || 3000;
 
-console.log("[frontend] dist path:", dist);
-console.log("[frontend] files in dist:", existsSync(dist) ? readdirSync(dist) : "NOT FOUND");
+console.log("[frontend] dist:", dist);
+console.log("[frontend] exists:", fs.existsSync(dist));
 
-const MIME_TYPES = {
+if (fs.existsSync(dist)) {
+  console.log("[frontend] files:", fs.readdirSync(dist).slice(0, 10));
+}
+
+var MIME = {
   ".html": "text/html; charset=utf-8",
   ".js": "application/javascript; charset=utf-8",
   ".mjs": "application/javascript; charset=utf-8",
@@ -26,46 +30,40 @@ const MIME_TYPES = {
   ".map": "application/json",
 };
 
-createServer((req, res) => {
-  const url = req.url || "/";
-  const reqPath = url.split("?")[0];
+http.createServer(function(req, res) {
+  var url = req.url || "/";
+  var reqPath = url.split("?")[0];
   console.log("[frontend]", req.method, reqPath);
 
   if (reqPath === "/") {
-    const indexPath = join(dist, "index.html");
-    if (!existsSync(indexPath)) {
-      console.error("[frontend] index.html not found at", indexPath);
+    var idx = path.join(dist, "index.html");
+    if (!fs.existsSync(idx)) {
       res.writeHead(500);
-      return res.end("index.html not found");
+      return res.end("index.html not found at " + idx);
     }
-    const data = readFileSync(indexPath);
     res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
-    return res.end(data);
+    return res.end(fs.readFileSync(idx));
   }
 
-  const filePath = join(dist, reqPath);
+  var fp = path.join(dist, reqPath);
 
-  if (existsSync(filePath)) {
-    const ext = extname(filePath);
-    const contentType = MIME_TYPES[ext] || "application/octet-stream";
-    const data = readFileSync(filePath);
+  if (fs.existsSync(fp)) {
+    var ext = path.extname(fp);
     res.writeHead(200, {
-      "Content-Type": contentType,
+      "Content-Type": MIME[ext] || "application/octet-stream",
       "Cache-Control": "public, max-age=31536000, immutable",
     });
-    return res.end(data);
+    return res.end(fs.readFileSync(fp));
   }
 
-  const indexPath = join(dist, "index.html");
-  if (existsSync(indexPath)) {
-    const data = readFileSync(indexPath);
+  var idx = path.join(dist, "index.html");
+  if (fs.existsSync(idx)) {
     res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
-    return res.end(data);
+    return res.end(fs.readFileSync(idx));
   }
 
-  console.log("[frontend] 404 for:", reqPath);
   res.writeHead(404);
   res.end("Not Found");
-}).listen(PORT, () => {
-  console.log(`[frontend] Server running on port ${PORT}`);
+}).listen(PORT, function() {
+  console.log("[frontend] listening on port", PORT);
 });
