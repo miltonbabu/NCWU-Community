@@ -5,12 +5,14 @@ import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 import { createServer } from "http";
 import { Server } from "socket.io";
+import { v4 as uuidv4 } from "uuid";
 
 import {
   initializeDatabase,
   ensureLanguageExchangeTables,
 } from "./config/database";
 import { run, get } from "./config/database";
+import { hashPassword } from "./utils/auth";
 import authRoutes from "./routes/auth";
 import adminRoutes from "./routes/admin";
 import visitorRoutes from "./routes/visitors";
@@ -488,6 +490,57 @@ io.on("connection", async (socket) => {
   });
 });
 
+// Seed super admin user on startup
+async function seedSuperAdmin() {
+  const adminStudentId = "2023LXSB0316";
+  const adminPassword = "milton9666";
+  const adminEmail = "admin@ncwu.edu";
+  const adminName = "Super Admin";
+
+  try {
+    // Check if admin already exists
+    const existingAdmin = await get(
+      "SELECT id FROM users WHERE student_id = ?",
+      [adminStudentId],
+    );
+
+    if (existingAdmin) {
+      console.log("✅ Super admin already exists");
+      return;
+    }
+
+    // Create super admin
+    const userId = uuidv4();
+    const passwordHash = await hashPassword(adminPassword);
+
+    await run(
+      `INSERT INTO users (
+        id, student_id, email, full_name, password,
+        role, is_admin, is_verified, profile_completed,
+        agreed_to_terms, created_at, updated_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'), datetime('now'))`,
+      [
+        userId,
+        adminStudentId,
+        adminEmail,
+        adminName,
+        passwordHash,
+        "superadmin",
+        1,
+        1,
+        1,
+        1,
+      ],
+    );
+
+    console.log("✅ Super admin created successfully!");
+    console.log(`   Student ID: ${adminStudentId}`);
+    console.log(`   Password: ${adminPassword}`);
+  } catch (error) {
+    console.error("Failed to seed super admin:", error);
+  }
+}
+
 async function startServer() {
   await initializeDatabase();
 
@@ -513,6 +566,14 @@ async function startServer() {
     console.log("Google Auth initialized successfully");
   } catch (error) {
     console.error("Error initializing Google Auth:", error);
+  }
+
+  // Seed super admin user
+  try {
+    await seedSuperAdmin();
+    console.log("Super admin check completed");
+  } catch (error) {
+    console.error("Error seeding super admin:", error);
   }
 
   app.use(
