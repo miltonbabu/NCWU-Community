@@ -1,5 +1,35 @@
-const API_BASE_URL =
-  import.meta.env.VITE_API_URL || "http://localhost:3001/api";
+function getApiBaseUrl(): string {
+  const envUrl = import.meta.env.VITE_API_URL;
+  const BACKEND_URL = "https://ncwu-api.onrender.com/api";
+
+  if (envUrl && !envUrl.includes("localhost")) {
+    try {
+      const envHost = new URL(envUrl).hostname;
+      const currentHost =
+        typeof window !== "undefined" ? window.location.hostname : "";
+      if (
+        envHost === currentHost ||
+        envHost.includes("vercel.app") ||
+        (envHost.includes("onrender.com") && !envHost.includes("ncwu-api"))
+      ) {
+        return BACKEND_URL;
+      }
+      return envUrl;
+    } catch {
+      return envUrl;
+    }
+  }
+  if (
+    typeof window !== "undefined" &&
+    window.location.hostname !== "localhost" &&
+    window.location.hostname !== "127.0.0.1"
+  ) {
+    return BACKEND_URL;
+  }
+  return envUrl || "http://localhost:3001/api";
+}
+
+const API_BASE_URL = getApiBaseUrl();
 
 interface ApiResponse<T = unknown> {
   success: boolean;
