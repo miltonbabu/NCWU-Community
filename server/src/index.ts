@@ -542,7 +542,15 @@ async function seedSuperAdmin() {
 }
 
 async function startServer() {
-  await initializeDatabase();
+  // Initialize database with error handling
+  try {
+    await initializeDatabase();
+    console.log("Database initialized successfully");
+  } catch (error) {
+    console.error("Failed to initialize database:", error);
+    console.error("Server cannot start without database connection");
+    process.exit(1);
+  }
 
   // Ensure language exchange tables exist
   try {
