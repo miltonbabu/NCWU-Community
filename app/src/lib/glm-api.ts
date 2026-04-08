@@ -238,6 +238,11 @@ async function streamChat(
 
   for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
     try {
+      const controller = new AbortController();
+      const connectTimer = setTimeout(() => {
+        controller.abort();
+      }, signal ? undefined : CONNECT_TIMEOUT_MS);
+
       const response = await fetch(GLM_API_URL, {
         method: "POST",
         headers: {
@@ -258,8 +263,10 @@ async function streamChat(
           top_p: useDeepThink ? 0.95 : 0.9,
           stream: true,
         }),
-        signal,
+        signal: signal || controller.signal,
       });
+
+      clearTimeout(connectTimer);
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
@@ -328,6 +335,18 @@ async function streamChat(
       return fullContent;
     } catch (error) {
       const msg = error instanceof Error ? error.message : "Unknown error";
+      if (msg === "The operation was aborted" || msg === "Request cancelled") {
+        if (signal?.aborted) throw error;
+        if (attempt < MAX_RETRIES) {
+          const waitTime = RETRY_DELAYS[attempt] || 6000;
+          onThinking?.(
+            `Server warming up... Retrying (${attempt + 1}/${MAX_RETRIES}) in ${waitTime / 1000}s...\n`,
+          );
+          await delay(waitTime);
+          continue;
+        }
+        throw new Error("AI service is taking too long to respond. Please try again.");
+      }
       if (isRetryableError(0, msg) && attempt < MAX_RETRIES) {
         const waitTime = RETRY_DELAYS[attempt] || 6000;
         onThinking?.(
@@ -347,8 +366,9 @@ function delay(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-const MAX_RETRIES = 2;
-const RETRY_DELAYS = [3000, 5000];
+const MAX_RETRIES = 3;
+const RETRY_DELAYS = [5000, 8000, 12000];
+const CONNECT_TIMEOUT_MS = 60000;
 const STREAM_TIMEOUT_MS = 120000;
 
 function isRetryableError(status: number, message: string): boolean {
@@ -357,7 +377,10 @@ function isRetryableError(status: number, message: string): boolean {
   if (
     message.includes("overloaded") ||
     message.includes("temporarily") ||
-    message.includes("busy")
+    message.includes("busy") ||
+    message.includes("Failed to fetch") ||
+    message.includes("NetworkError") ||
+    message.includes("Load failed")
   )
     return true;
   return false;
