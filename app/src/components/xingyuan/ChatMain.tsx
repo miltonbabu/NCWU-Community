@@ -272,7 +272,7 @@ export function ChatMain() {
               aiMessageId,
               useThinking ? accumulatedThinking || "" : "",
             );
-            updateThinking?.(chatId!, aiMessageId, `Connection issue... Retrying (${attempt}/${MAX_SEND_RETRIES}) in ${3 + attempt * 2}s...\n`);
+            dispatchUpdateThinking(chatId!, aiMessageId, `Connection issue... Retrying (${attempt}/${MAX_SEND_RETRIES}) in ${3 + attempt * 2}s...\n`);
             await new Promise((r) => setTimeout(r, (3 + attempt * 2) * 1000));
             streamedContent = "";
             accumulatedThinking = "";
