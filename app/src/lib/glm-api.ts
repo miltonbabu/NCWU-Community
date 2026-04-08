@@ -209,7 +209,7 @@ export async function sendGLMMessage(
   signal?: AbortSignal,
   userName?: string | null,
 ): Promise<string> {
-  let processedMessages = [...messages];
+  const processedMessages = [...messages];
 
   if (images && images.length > 0) {
     const lastUserMsgIndex = processedMessages
@@ -405,7 +405,6 @@ function delay(ms: number): Promise<void> {
 const MAX_RETRIES = 3;
 const RETRY_DELAYS = [5000, 8000, 12000];
 const CONNECT_TIMEOUT_MS = 60000;
-const STREAM_TIMEOUT_MS = 120000;
 
 function isRetryableError(status: number, message: string): boolean {
   if (status === 429) return false;

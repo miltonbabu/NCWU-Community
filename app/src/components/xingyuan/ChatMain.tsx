@@ -286,7 +286,7 @@ export function ChatMain() {
               historyMessages,
               sendImages,
               useThinking
-                ? (text) => {
+                ? (text: string) => {
                     if (attemptController.signal.aborted) return;
                     accumulatedThinking += text;
                     if (!hasAddedToChat) addToChat();
@@ -297,7 +297,7 @@ export function ChatMain() {
                     );
                   }
                 : undefined,
-              (delta) => {
+              (delta: string) => {
                 if (attemptController.signal.aborted) return;
                 streamedContent += delta;
                 if (!hasAddedToChat) addToChat();
@@ -431,7 +431,7 @@ export function ChatMain() {
           historyMessages,
           sendImages,
           useThinking
-            ? (text) => {
+            ? (text: string) => {
                 if (controller.signal.aborted) return;
                 accumulatedThinking += text;
                 if (!hasAddedToChat) addToChat();
@@ -442,7 +442,7 @@ export function ChatMain() {
                 );
               }
             : undefined,
-          (delta) => {
+          (delta: string) => {
             if (controller.signal.aborted) return;
             streamedContent += delta;
             if (!hasAddedToChat) addToChat();
@@ -562,7 +562,7 @@ export function ChatMain() {
           ],
           sendImages,
           useThinking
-            ? (text) => {
+            ? (text: string) => {
                 if (controller.signal.aborted) return;
                 accumulatedThinking += text;
                 if (!hasAddedToChat) addToChat();
@@ -573,7 +573,7 @@ export function ChatMain() {
                 );
               }
             : undefined,
-          (delta) => {
+          (delta: string) => {
             if (controller.signal.aborted) return;
             streamedContent += delta;
             if (!hasAddedToChat) addToChat();
@@ -652,7 +652,7 @@ export function ChatMain() {
       {hasMessages ? (
         <ScrollArea ref={scrollRef} className="flex-1 min-h-0">
           <div className="min-h-full max-w-3xl mx-auto w-full">
-            {currentChat!.messages.map((message) => (
+            {currentChat!.messages.map((message: Message) => (
               <ChatMessage
                 key={message.id}
                 message={message}
