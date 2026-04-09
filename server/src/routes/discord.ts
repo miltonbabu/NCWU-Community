@@ -944,6 +944,8 @@ router.post(
           ],
         );
 
+        console.log(`[Discord] Message flagged: ${messageId} words=${JSON.stringify(detectedWords)} user=${user.id} group=${id}`);
+
         createUserFlag(
           user.id,
           "discord",
@@ -953,17 +955,89 @@ router.post(
           3,
         );
 
-        scheduleContentDeletion("discord_message", messageId, 1);
+        const flaggedMessage = await get<{
+          id: string;
+          group_id: string;
+          user_id: string;
+          content: string;
+          is_anonymous: number;
+          reply_to: string | null;
+          image_url: string | null;
+          created_at: string;
+          author_id: string | null;
+          author_full_name: string | null;
+          author_student_id: string | null;
+          author_avatar_url: string | null;
+          author_department: string | null;
+          author_current_year: number | null;
+          author_is_admin: number;
+          author_nickname: string | null;
+          author_display_student_id: number;
+        }>(
+          `SELECT 
+          m.*,
+          CASE WHEN m.is_anonymous = 1 THEN NULL ELSE u.id END as author_id,
+          CASE WHEN m.is_anonymous = 1 THEN 'Anonymous' ELSE COALESCE(gm.nickname, u.full_name) END as author_full_name,
+          CASE WHEN m.is_anonymous = 1 THEN NULL ELSE u.student_id END as author_student_id,
+          CASE WHEN m.is_anonymous = 1 THEN NULL ELSE u.avatar_url END as author_avatar_url,
+          CASE WHEN m.is_anonymous = 1 THEN NULL ELSE u.department END as author_department,
+          CASE WHEN m.is_anonymous = 1 THEN NULL ELSE u.current_year END as author_current_year,
+          CASE WHEN m.is_anonymous = 1 THEN 0 ELSE u.is_admin END as author_is_admin,
+          CASE WHEN m.is_anonymous = 1 THEN NULL ELSE gm.nickname END as author_nickname,
+          CASE WHEN m.is_anonymous = 1 THEN 0 ELSE gm.display_student_id END as author_display_student_id
+         FROM discord_messages m
+         LEFT JOIN users u ON m.user_id = u.id
+         LEFT JOIN discord_group_members gm ON m.user_id = gm.user_id AND gm.group_id = m.group_id
+         WHERE m.id = ?`,
+          [messageId],
+        );
+
+        let displayName = flaggedMessage!.author_full_name;
+        let showAsAdmin = flaggedMessage!.author_is_admin === 1;
+
+        if (flaggedMessage!.is_anonymous === 1) {
+          displayName = "Anonymous";
+          showAsAdmin = false;
+        } else if (
+          flaggedMessage!.author_display_student_id === 1 &&
+          flaggedMessage!.author_student_id
+        ) {
+          displayName = flaggedMessage!.author_student_id;
+        }
+
+        const formattedFlaggedMessage = {
+          id: flaggedMessage!.id,
+          group_id: flaggedMessage!.group_id,
+          user_id: flaggedMessage!.user_id,
+          sender_id: flaggedMessage!.user_id,
+          content: flaggedMessage!.content,
+          is_anonymous: flaggedMessage!.is_anonymous === 1,
+          reply_to: flaggedMessage!.reply_to,
+          image_url: flaggedMessage!.image_url,
+          created_at: flaggedMessage!.created_at,
+          updated_at: null,
+          author: flaggedMessage!.author_id
+            ? {
+                id: flaggedMessage!.author_id,
+                full_name: flaggedMessage!.author_full_name,
+                display_name: displayName,
+                student_id: flaggedMessage!.author_student_id,
+                avatar_url: flaggedMessage!.author_avatar_url,
+                department: flaggedMessage!.author_department,
+                current_year: flaggedMessage!.author_current_year,
+                show_as_admin: showAsAdmin,
+              }
+            : null,
+          view_count: 0,
+          has_viewed: false,
+          flagged: true,
+        };
+
+        io.to(`group:${id}`).emit("new_message", formattedFlaggedMessage);
 
         return res.status(201).json({
           success: true,
-          message:
-            "Message sent but flagged for inappropriate content. It will be removed in 1 minute.",
-          data: {
-            id: messageId,
-            flagged: true,
-            detected_words: detectedWords,
-          },
+          data: formattedFlaggedMessage,
         });
       }
 
@@ -981,6 +1055,8 @@ router.post(
           image_url || null,
         ],
       );
+
+      console.log(`[Discord] Message saved: ${messageId} in group ${id} by user=${user.id}`);
 
       const message = await get<{
         id: string;
@@ -1061,6 +1137,8 @@ router.post(
       };
 
       io.to(`group:${id}`).emit("new_message", formattedMessage);
+
+      console.log(`[Discord] Emitted new_message to group:${id} (msg=${messageId})`);
 
       res.json({ success: true, data: formattedMessage });
     } catch (error) {
@@ -1266,4 +1344,5 @@ router.get(
 );
 
 export default router;
+ 
  

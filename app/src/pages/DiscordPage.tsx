@@ -239,6 +239,7 @@ export default function DiscordPage() {
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   const typingTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const viewedMessagesRef = useRef<Set<string>>(new Set());
+  const groupsLoadedRef = useRef(false);
 
   useEffect(() => {
     localStorage.setItem("discord-theme", JSON.stringify(theme));
@@ -279,7 +280,12 @@ export default function DiscordPage() {
       const response = await discordApi.getGroups();
       if (response.success) {
         setGroups(response.data);
-        if (response.data.length > 0 && !selectedGroup) {
+        if (
+          response.data.length > 0 &&
+          !selectedGroup &&
+          !groupsLoadedRef.current
+        ) {
+          groupsLoadedRef.current = true;
           setSelectedGroup(response.data[0]);
         }
       }
@@ -324,9 +330,7 @@ export default function DiscordPage() {
   }, [user, loadGroups]);
 
   useEffect(() => {
-    if (!selectedGroup || !socket || !isConnected) return;
-
-    joinGroup(selectedGroup.id);
+    if (!selectedGroup) return;
 
     loadMessages(selectedGroup.id);
     loadMembers(selectedGroup.id);
@@ -338,6 +342,12 @@ export default function DiscordPage() {
         ),
       );
     });
+  }, [selectedGroup, loadMessages, loadMembers]);
+
+  useEffect(() => {
+    if (!selectedGroup || !socket || !isConnected) return;
+
+    joinGroup(selectedGroup.id);
 
     socket.on("new_message", (message: DiscordMessage) => {
       if (message.group_id === selectedGroup.id) {
@@ -380,7 +390,6 @@ export default function DiscordPage() {
     joinGroup,
     leaveGroup,
     markViewed,
-    loadMessages,
     loadMembers,
     user,
   ]);
