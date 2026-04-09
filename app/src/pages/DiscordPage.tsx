@@ -279,13 +279,16 @@ export default function DiscordPage() {
       const response = await discordApi.getGroups();
       if (response.success) {
         setGroups(response.data);
+        if (response.data.length > 0 && !selectedGroup) {
+          setSelectedGroup(response.data[0]);
+        }
       }
     } catch {
       toast.error("Failed to load groups");
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [selectedGroup]);
 
   const loadMessages = useCallback(async (groupId: string) => {
     try {
@@ -338,8 +341,11 @@ export default function DiscordPage() {
 
     socket.on("new_message", (message: DiscordMessage) => {
       if (message.group_id === selectedGroup.id) {
-        setMessages((prev) => [...prev, message]);
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        setMessages((prev) => {
+          const exists = prev.some((m) => m.id === message.id);
+          if (exists) return prev;
+          return [...prev, message];
+        });
         markViewed(selectedGroup.id, [message.id]);
         setTimeout(() => scrollToBottom("smooth"), 100);
         if (message.user_id !== user?.id) {
@@ -376,6 +382,7 @@ export default function DiscordPage() {
     markViewed,
     loadMessages,
     loadMembers,
+    user,
   ]);
 
   useEffect(() => {
