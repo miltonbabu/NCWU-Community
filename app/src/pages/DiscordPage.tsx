@@ -332,6 +332,8 @@ export default function DiscordPage() {
   useEffect(() => {
     if (!selectedGroup) return;
 
+    joinGroup(selectedGroup.id);
+
     loadMessages(selectedGroup.id);
     loadMembers(selectedGroup.id);
 
@@ -342,12 +344,10 @@ export default function DiscordPage() {
         ),
       );
     });
-  }, [selectedGroup, loadMessages, loadMembers]);
+  }, [selectedGroup, loadMessages, loadMembers, joinGroup]);
 
   useEffect(() => {
-    if (!selectedGroup || !socket || !isConnected) return;
-
-    joinGroup(selectedGroup.id);
+    if (!selectedGroup || !socket) return;
 
     socket.on("new_message", (message: DiscordMessage) => {
       if (message.group_id === selectedGroup.id) {
@@ -383,16 +383,7 @@ export default function DiscordPage() {
       socket.off("user_joined");
       socket.off("user_left");
     };
-  }, [
-    selectedGroup,
-    socket,
-    isConnected,
-    joinGroup,
-    leaveGroup,
-    markViewed,
-    loadMembers,
-    user,
-  ]);
+  }, [selectedGroup, socket, leaveGroup, markViewed, loadMembers, user]);
 
   useEffect(() => {
     // Scroll to bottom when messages change, with a small delay to ensure DOM is updated
