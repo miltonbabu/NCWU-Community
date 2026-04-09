@@ -504,14 +504,12 @@ export default function DiscordPage() {
     try {
       let imageUrl = null;
 
-      // Upload image if selected
       if (selectedImage) {
         const formData = new FormData();
         formData.append("image", selectedImage);
 
         const token = localStorage.getItem("auth_token");
 
-        // Simulate progress during upload
         const progressInterval = setInterval(() => {
           setUploadProgress((prev) => {
             if (prev >= 90) {
@@ -536,17 +534,21 @@ export default function DiscordPage() {
         clearInterval(progressInterval);
         setUploadProgress(100);
 
-        if (uploadResponse.ok) {
-          const uploadData = await uploadResponse.json();
-          if (uploadData.success) {
-            imageUrl = uploadData.data.url;
-          }
-        } else {
+        if (!uploadResponse.ok) {
           toast.error("Failed to upload image");
           setIsUploading(false);
           setUploadProgress(0);
           return;
         }
+
+        const uploadData = await uploadResponse.json();
+        if (!uploadData.success || !uploadData.data?.url) {
+          toast.error(uploadData.message || "Image upload failed");
+          setIsUploading(false);
+          setUploadProgress(0);
+          return;
+        }
+        imageUrl = uploadData.data.url;
       }
 
       const response = await discordApi.sendMessage(
@@ -556,19 +558,29 @@ export default function DiscordPage() {
         replyingTo?.id,
         imageUrl,
       );
-      if (response.success) {
-        setMessageInput("");
-        setReplyingTo(null);
-        setSelectedImage(null);
-        setImagePreview(null);
-        stopTyping(selectedGroup.id);
 
-        if (response.data && !response.data.flagged) {
-          setMessages((prev) => [...prev, response.data]);
-          setTimeout(() => scrollToBottom("smooth"), 100);
-        }
+      if (!response.success) {
+        toast.error(response.message || "Failed to send message");
+        return;
       }
-    } catch {
+
+      setMessageInput("");
+      setReplyingTo(null);
+      setSelectedImage(null);
+      setImagePreview(null);
+      stopTyping(selectedGroup.id);
+
+      if (response.data?.flagged) {
+        toast.warning("Message was flagged for review");
+        return;
+      }
+
+      if (response.data?.id) {
+        setMessages((prev) => [...prev, response.data]);
+        setTimeout(() => scrollToBottom("smooth"), 100);
+      }
+    } catch (err) {
+      console.error("[Discord] Send message error:", err);
       toast.error("Failed to send message");
     } finally {
       setIsUploading(false);
@@ -2135,3 +2147,4 @@ export default function DiscordPage() {
     </div>
   );
 }
+ 

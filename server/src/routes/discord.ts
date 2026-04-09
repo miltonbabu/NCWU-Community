@@ -177,15 +177,15 @@ router.get("/groups", authenticate, async (req: AuthRequest, res: Response) => {
     const groupIds = groups.map((g) => g.id);
 
     const memberships = await all<{ group_id: string; user_id: string }>(
-      "SELECT group_id, user_id FROM discord_group_members WHERE group_id IN (?) AND user_id = ?",
-      [groupIds.join(","), user.id],
+      `SELECT group_id, user_id FROM discord_group_members WHERE group_id IN (${groupIds.map(() => "?").join(",")}) AND user_id = ?`,
+      [...groupIds, user.id],
     );
 
     const memberGroupIds = new Set(memberships.map((m) => m.group_id));
 
     const memberCounts = await all<{ group_id: string; cnt: number }>(
-      "SELECT group_id, COUNT(*) as cnt FROM discord_group_members WHERE group_id IN (?) GROUP BY group_id",
-      [groupIds.join(",")],
+      `SELECT group_id, COUNT(*) as cnt FROM discord_group_members WHERE group_id IN (${groupIds.map(() => "?").join(",")}) GROUP BY group_id`,
+      groupIds,
     );
 
     const memberCountMap = new Map(
@@ -338,7 +338,7 @@ router.get("/groups", authenticate, async (req: AuthRequest, res: Response) => {
 
     const result = accessibleGroups.map((g) => ({
       ...g,
-      is_member: memberGroupIds.has(g.id),
+      is_member: !!memberGroupIds.has(g.id),
       can_send_message:
         isAdmin ||
         g.type === "all" ||
@@ -1036,11 +1036,13 @@ router.post(
         id: message!.id,
         group_id: message!.group_id,
         user_id: message!.user_id,
+        sender_id: message!.user_id,
         content: message!.content,
         is_anonymous: message!.is_anonymous === 1,
         reply_to: message!.reply_to,
         image_url: message!.image_url,
         created_at: message!.created_at,
+        updated_at: null,
         author: message!.author_id
           ? {
               id: message!.author_id,
@@ -1055,6 +1057,7 @@ router.post(
           : null,
         view_count: 0,
         has_viewed: false,
+        flagged: false,
       };
 
       io.to(`group:${id}`).emit("new_message", formattedMessage);
@@ -1263,3 +1266,4 @@ router.get(
 );
 
 export default router;
+ 
