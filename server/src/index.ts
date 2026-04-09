@@ -44,6 +44,8 @@ const allowedOrigins = [
   "http://localhost:5175",
   "https://ncwu-frontend.onrender.com",
   "https://ncwu-community.vercel.app",
+  "https://ncwu.site",
+  "http://ncwu.site",
 ];
 
 const io = new Server(httpServer, {
