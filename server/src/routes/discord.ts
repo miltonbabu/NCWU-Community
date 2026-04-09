@@ -307,34 +307,38 @@ router.get("/groups", authenticate, async (req: AuthRequest, res: Response) => {
       return false;
     });
 
-    // Auto-join users to their department and all-students groups
-    for (const g of accessibleGroups) {
-      if (memberGroupIds.has(g.id)) continue;
+    // Auto-join users to their department and all-students groups (non-blocking)
+    try {
+      for (const g of accessibleGroups) {
+        if (memberGroupIds.has(g.id)) continue;
 
-      if (g.type === "all") {
-        await run(
-          "INSERT OR IGNORE INTO discord_group_members (id, group_id, user_id) VALUES (?, ?, ?)",
-          [uuidv4(), g.id, user.id],
-        );
-        memberGroupIds.add(g.id);
-      } else if (g.type === "department" && userDepartment && userYear) {
-        const groupDept = normalizeDept(g.department);
-        if (
-          groupDept?.toLowerCase() === userDepartment.toLowerCase() &&
-          g.year === userYear
-        ) {
+        if (g.type === "all") {
           await run(
             "INSERT OR IGNORE INTO discord_group_members (id, group_id, user_id) VALUES (?, ?, ?)",
             [uuidv4(), g.id, user.id],
           );
           memberGroupIds.add(g.id);
+        } else if (g.type === "department" && userDepartment && userYear) {
+          const groupDept = normalizeDept(g.department);
+          if (
+            groupDept?.toLowerCase() === userDepartment.toLowerCase() &&
+            g.year === userYear
+          ) {
+            await run(
+              "INSERT OR IGNORE INTO discord_group_members (id, group_id, user_id) VALUES (?, ?, ?)",
+              [uuidv4(), g.id, user.id],
+            );
+            memberGroupIds.add(g.id);
+          }
         }
       }
+    } catch (autoJoinErr) {
+      console.error("[Discord] Auto-join error (non-fatal):", autoJoinErr);
     }
 
     const result = accessibleGroups.map((g) => ({
       ...g,
-      is_member: g.is_member > 0,
+      is_member: memberGroupIds.has(g.id),
       can_send_message:
         isAdmin ||
         g.type === "all" ||
