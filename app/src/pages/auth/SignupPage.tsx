@@ -60,7 +60,7 @@ export default function SignupPage() {
   const from =
     (location.state as { from?: { pathname: string } })?.from?.pathname ||
     new URLSearchParams(location.search).get("redirect") ||
-    "/xingyuan-ai";
+    "/";
 
   const [formData, setFormData] = useState({
     student_id: "",
