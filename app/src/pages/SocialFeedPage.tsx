@@ -1177,7 +1177,7 @@ function CreatePostDialog({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        className={`sm:max-w-xl ${isDark ? "bg-slate-900 border-slate-700" : "bg-white"}`}
+        className={`sm:max-w-xl flex flex-col max-h-[85vh] ${isDark ? "bg-slate-900 border-slate-700" : "bg-white"}`}
       >
         <DialogHeader>
           <DialogTitle className="flex items-center gap-3">
@@ -1191,7 +1191,7 @@ function CreatePostDialog({
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-4 mt-4">
+        <div className="space-y-4 mt-4 overflow-y-auto flex-1 min-h-0">
           <div className="flex items-start gap-3">
             <Avatar className="w-10 h-10">
               <AvatarImage src={user?.avatar_url || undefined} />
@@ -1783,7 +1783,7 @@ function CreatePostDialog({
           </div>
         </div>
 
-        <DialogFooter className="mt-4">
+        <DialogFooter className="mt-4 flex-shrink-0">
           <Button
             variant="outline"
             onClick={() => onOpenChange(false)}
