@@ -670,7 +670,7 @@ export function Navigation() {
                 }`}
                 onClick={() => navigate("/login")}
               >
-                <LogIn className="w-5 h-5" />
+                <User className="w-5 h-5" />
               </button>
             )}
 
