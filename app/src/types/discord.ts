@@ -57,6 +57,7 @@ export interface DiscordMessage {
   } | null;
   view_count: number;
   has_viewed: boolean;
+  flagged?: boolean;
   reply_to_message?: {
     id: string;
     content: string;
@@ -126,3 +127,4 @@ export interface DiscordBan {
   group_name: string | null;
   admin_full_name: string;
 }
+ 
