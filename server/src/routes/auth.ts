@@ -16,6 +16,7 @@ import type {
   UpdateProfileRequest,
   ApiResponse,
 } from "../types/index.js";
+import { autoJoinUserToDiscordGroups } from "./discord.js";
 
 const router = express.Router();
 
@@ -89,10 +90,13 @@ async function logLoginAttempt(
   );
 }
 
-async function getLoginAttempt(userId: string): Promise<LoginAttempt | undefined> {
-  return await get<LoginAttempt>("SELECT * FROM login_attempts WHERE user_id = ?", [
-    userId,
-  ]);
+async function getLoginAttempt(
+  userId: string,
+): Promise<LoginAttempt | undefined> {
+  return await get<LoginAttempt>(
+    "SELECT * FROM login_attempts WHERE user_id = ?",
+    [userId],
+  );
 }
 
 async function recordFailedAttempt(
@@ -254,7 +258,9 @@ router.post(
         ],
       );
 
-      const user = await get<User>("SELECT * FROM users WHERE id = ?", [userId]);
+      const user = await get<User>("SELECT * FROM users WHERE id = ?", [
+        userId,
+      ]);
       if (!user) {
         return res.status(500).json({
           success: false,
@@ -269,6 +275,10 @@ router.post(
       });
 
       logLoginAttempt(userId, req, "success", "signup");
+
+      autoJoinUserToDiscordGroups(userId).catch((err) =>
+        console.error("[Auth] Discord auto-join on signup error:", err),
+      );
 
       res.status(201).json({
         success: true,
@@ -517,7 +527,13 @@ router.put(
         updateValues,
       );
 
-      const user = await get<User>("SELECT * FROM users WHERE id = ?", [userId]);
+      autoJoinUserToDiscordGroups(userId!).catch((err) =>
+        console.error("[Auth] Discord auto-join on profile update error:", err),
+      );
+
+      const user = await get<User>("SELECT * FROM users WHERE id = ?", [
+        userId,
+      ]);
 
       res.json({
         success: true,
@@ -599,51 +615,55 @@ router.post("/logout", authenticate, (req: Request, res: Response) => {
   } as ApiResponse);
 });
 
-router.get("/my-restrictions", authenticate, async (req: Request, res: Response) => {
-  try {
-    const user = req.user!;
+router.get(
+  "/my-restrictions",
+  authenticate,
+  async (req: Request, res: Response) => {
+    try {
+      const user = req.user!;
 
-    const flags = await all<{
-      id: string;
-      flag_type: string;
-      reason: string;
-      source: string;
-      restriction_type: string;
-      restriction_days: number;
-      restricted_features: string;
-      restricted_at: string;
-      restriction_ends_at: string | null;
-      is_active: number;
-      created_at: string;
-    }>(
-      `SELECT id, flag_type, reason, source, restriction_type, restriction_days,
+      const flags = await all<{
+        id: string;
+        flag_type: string;
+        reason: string;
+        source: string;
+        restriction_type: string;
+        restriction_days: number;
+        restricted_features: string;
+        restricted_at: string;
+        restriction_ends_at: string | null;
+        is_active: number;
+        created_at: string;
+      }>(
+        `SELECT id, flag_type, reason, source, restriction_type, restriction_days,
                 restricted_features, restricted_at, restriction_ends_at, is_active, created_at
          FROM user_flags 
          WHERE user_id = ? 
          ORDER BY created_at DESC`,
-      [user.id],
-    );
+        [user.id],
+      );
 
-    const formattedFlags = flags.map((f) => ({
-      ...f,
-      restricted_features: JSON.parse(f.restricted_features || "[]"),
-      is_expired: f.restriction_ends_at
-        ? new Date(f.restriction_ends_at) < new Date()
-        : false,
-    }));
+      const formattedFlags = flags.map((f) => ({
+        ...f,
+        restricted_features: JSON.parse(f.restricted_features || "[]"),
+        is_expired: f.restriction_ends_at
+          ? new Date(f.restriction_ends_at) < new Date()
+          : false,
+      }));
 
-    res.json({
-      success: true,
-      data: formattedFlags,
-    });
-  } catch (error) {
-    console.error("Get restrictions error:", error);
-    res.status(500).json({
-      success: false,
-      message: "Failed to get restrictions",
-    } as ApiResponse);
-  }
-});
+      res.json({
+        success: true,
+        data: formattedFlags,
+      });
+    } catch (error) {
+      console.error("Get restrictions error:", error);
+      res.status(500).json({
+        success: false,
+        message: "Failed to get restrictions",
+      } as ApiResponse);
+    }
+  },
+);
 
 router.post(
   "/appeal/:flagId",
@@ -662,10 +682,13 @@ router.post(
       }
 
       // Verify the flag belongs to the user
-      const flag = await get<{ id: string; user_id: string; appeal_status: string }>(
-        "SELECT id, user_id, appeal_status FROM user_flags WHERE id = ?",
-        [flagId],
-      );
+      const flag = await get<{
+        id: string;
+        user_id: string;
+        appeal_status: string;
+      }>("SELECT id, user_id, appeal_status FROM user_flags WHERE id = ?", [
+        flagId,
+      ]);
 
       if (!flag || flag.user_id !== user.id) {
         return res.status(404).json({
@@ -859,6 +882,10 @@ router.post("/google-login", async (req: Request, res: Response) => {
       }
 
       logLoginAttempt(userId, req, "success", "google");
+
+      autoJoinUserToDiscordGroups(userId).catch((err) =>
+        console.error("[Auth] Discord auto-join on google signup error:", err),
+      );
     } else {
       await run(
         `UPDATE users SET google_uid = ?, avatar_url = COALESCE(NULLIF(?,''), avatar_url), auth_provider = 'google', updated_at = datetime('now') WHERE id = ?`,

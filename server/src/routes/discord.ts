@@ -1463,5 +1463,82 @@ router.get(
   },
 );
 
+export async function autoJoinUserToDiscordGroups(userId: string) {
+  try {
+    const userData = await get<{
+      id: string;
+      department: string | null;
+      enrollment_year: number | null;
+    }>("SELECT id, department, enrollment_year FROM users WHERE id = ?", [
+      userId,
+    ]);
+
+    if (!userData) return;
+
+    const allStudentsGroup = await get<{ id: string }>(
+      "SELECT id FROM discord_groups WHERE type = 'all' LIMIT 1",
+    );
+
+    if (allStudentsGroup) {
+      const alreadyInAll = await get<{ id: string }>(
+        "SELECT id FROM discord_group_members WHERE group_id = ? AND user_id = ?",
+        [allStudentsGroup.id, userId],
+      );
+      if (!alreadyInAll) {
+        await run(
+          "INSERT OR IGNORE INTO discord_group_members (id, group_id, user_id) VALUES (?, ?, ?)",
+          [uuidv4(), allStudentsGroup.id, userId],
+        );
+        console.log(`[Discord] Auto-joined user ${userId} to All Students`);
+      }
+    }
+
+    const DEPARTMENT_ALIASES: Record<string, string> = {
+      CST: "Computer Science & Technology",
+      "Computer Science & Technology": "Computer Science & Technology",
+      Civil: "Civil Engineering",
+      "Civil Engineering": "Civil Engineering",
+      Electrical: "Electrical Engineering",
+      "Electrical Engineering": "Electrical Engineering",
+      Mechanical: "Mechanical Engineering",
+      "Mechanical Engineering": "Mechanical Engineering",
+      Economics: "Economics",
+    };
+
+    const normalizeDept = (dept: string | null): string | null => {
+      if (!dept) return null;
+      const trimmed = dept.trim();
+      return DEPARTMENT_ALIASES[trimmed] || trimmed;
+    };
+
+    const userDept = normalizeDept(userData.department);
+    const userYear = userData.enrollment_year;
+
+    if (userDept && userYear) {
+      const deptGroup = await get<{ id: string }>(
+        "SELECT id FROM discord_groups WHERE type = 'department' AND department = ? AND year = ? LIMIT 1",
+        [userDept, userYear],
+      );
+
+      if (deptGroup) {
+        const alreadyInDept = await get<{ id: string }>(
+          "SELECT id FROM discord_group_members WHERE group_id = ? AND user_id = ?",
+          [deptGroup.id, userId],
+        );
+        if (!alreadyInDept) {
+          await run(
+            "INSERT OR IGNORE INTO discord_group_members (id, group_id, user_id) VALUES (?, ?, ?)",
+            [uuidv4(), deptGroup.id, userId],
+          );
+          console.log(
+            `[Discord] Auto-joined user ${userId} to ${userDept} ${userYear}`,
+          );
+        }
+      }
+    }
+  } catch (err) {
+    console.error("[Discord] autoJoinUserToDiscordGroups error:", err);
+  }
+}
+
 export default router;
- 
