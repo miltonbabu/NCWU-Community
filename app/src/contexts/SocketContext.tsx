@@ -47,6 +47,7 @@ export function SocketProvider({ children }: { children: ReactNode }) {
   );
   const { user } = useAuth();
   const socketRef = useRef<Socket | null>(null);
+  const pendingJoinGroupRef = useRef<string | null>(null);
 
   useEffect(() => {
     if (!user) {
@@ -77,6 +78,10 @@ export function SocketProvider({ children }: { children: ReactNode }) {
     newSocket.on("connect", () => {
       console.log("Socket connected");
       setIsConnected(true);
+      if (pendingJoinGroupRef.current) {
+        console.log("[Socket] Auto-joining pending group:", pendingJoinGroupRef.current);
+        newSocket.emit("join_group", pendingJoinGroupRef.current);
+      }
     });
 
     newSocket.on("disconnect", (reason) => {
@@ -148,6 +153,9 @@ export function SocketProvider({ children }: { children: ReactNode }) {
     );
 
     socketRef.current = newSocket;
+    if (pendingJoinGroupRef.current) {
+      newSocket.emit("join_group", pendingJoinGroupRef.current);
+    }
     setSocket(newSocket);
 
     return () => {
@@ -156,12 +164,16 @@ export function SocketProvider({ children }: { children: ReactNode }) {
   }, [user]);
 
   const joinGroup = useCallback((groupId: string) => {
+    pendingJoinGroupRef.current = groupId;
     if (socketRef.current) {
       socketRef.current.emit("join_group", groupId);
     }
   }, []);
 
   const leaveGroup = useCallback((groupId: string) => {
+    if (pendingJoinGroupRef.current === groupId) {
+      pendingJoinGroupRef.current = null;
+    }
     if (socketRef.current) {
       socketRef.current.emit("leave_group", groupId);
     }
@@ -235,3 +247,4 @@ export function useSocket() {
   }
   return context;
 }
+ 
