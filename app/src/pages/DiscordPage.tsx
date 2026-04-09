@@ -317,8 +317,14 @@ export default function DiscordPage() {
       const response = await discordApi.getMembers(groupId);
       if (response.success) {
         setMembers(response.data);
+        console.log(
+          `[Discord] Loaded ${response.data.length} members for group ${groupId}`,
+        );
+      } else {
+        console.error("[Discord] loadMembers returned success:false", response);
       }
-    } catch {
+    } catch (err) {
+      console.error("[Discord] loadMembers error:", err);
       toast.error("Failed to load members");
     }
   }, []);
@@ -1016,7 +1022,6 @@ export default function DiscordPage() {
                   size="sm"
                   onClick={() => setShowMembers(!showMembers)}
                   className={cn(
-                    "hidden md:flex",
                     isDark
                       ? "text-slate-400 hover:text-white hover:bg-white/10"
                       : "text-slate-600 hover:text-slate-900 hover:bg-slate-200",
@@ -1603,7 +1608,7 @@ export default function DiscordPage() {
                 {showMembers && (
                   <div
                     className={cn(
-                      "w-64 backdrop-blur-xl border-l hidden md:flex flex-col",
+                      "w-60 md:w-64 backdrop-blur-xl border-l flex flex-col flex-shrink-0",
                       isDark ? "border-white/10" : "border-slate-200",
                       theme.background === "gradient"
                         ? isDark
@@ -1616,13 +1621,13 @@ export default function DiscordPage() {
                   >
                     <div
                       className={cn(
-                        "p-4 border-b flex-shrink-0",
+                        "p-3 border-b flex-shrink-0",
                         isDark ? "border-white/10" : "border-slate-200",
                       )}
                     >
                       <h3
                         className={cn(
-                          "font-semibold flex items-center gap-2",
+                          "font-semibold flex items-center gap-2 text-sm",
                           isDark ? "text-white" : "text-slate-900",
                         )}
                       >
@@ -1633,75 +1638,89 @@ export default function DiscordPage() {
 
                     <ScrollArea className="flex-1">
                       <div className="p-2 space-y-1">
-                        {members.map((member) => (
+                        {members.length === 0 ? (
                           <div
-                            key={member.user_id}
                             className={cn(
-                              "flex items-center gap-3 px-3 py-2 rounded-xl transition-colors",
-                              isDark
-                                ? "hover:bg-white/5"
-                                : "hover:bg-slate-100",
+                              "text-center py-8 text-xs",
+                              isDark ? "text-slate-500" : "text-slate-400",
                             )}
                           >
-                            <div className="relative">
-                              <Avatar
-                                className={cn(
-                                  "h-8 w-8 ring-2",
-                                  isDark ? "ring-white/10" : "ring-slate-200",
-                                )}
-                              >
-                                {member.avatar_url ? (
-                                  <AvatarImage src={member.avatar_url} />
-                                ) : (
-                                  <AvatarFallback
-                                    className={cn(
-                                      currentTheme.secondary,
-                                      currentTheme.accent,
-                                    )}
-                                  >
-                                    {member.full_name?.[0] || "?"}
-                                  </AvatarFallback>
-                                )}
-                              </Avatar>
-                              {member.is_online && (
-                                <div
-                                  className={cn(
-                                    "absolute -bottom-0.5 -right-0.5 h-3 w-3 bg-green-500 rounded-full border-2",
-                                    isDark
-                                      ? "border-slate-900"
-                                      : "border-white",
-                                  )}
-                                />
+                            No members yet
+                          </div>
+                        ) : (
+                          members.map((member) => (
+                            <div
+                              key={member.user_id}
+                              className={cn(
+                                "flex items-center gap-2 px-2 py-1.5 rounded-lg transition-colors",
+                                isDark
+                                  ? "hover:bg-white/5"
+                                  : "hover:bg-slate-100",
                               )}
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <div
-                                className={cn(
-                                  "text-sm font-medium truncate flex items-center gap-1",
-                                  isDark ? "text-white" : "text-slate-900",
-                                )}
-                              >
-                                {member.display_name || member.full_name}
-                                {member.show_as_admin && (
-                                  <Badge
-                                    variant="default"
+                            >
+                              <div className="relative flex-shrink-0">
+                                <Avatar
+                                  className={cn(
+                                    "h-7 w-7 ring-1.5",
+                                    isDark ? "ring-white/10" : "ring-slate-200",
+                                  )}
+                                >
+                                  {member.avatar_url ? (
+                                    <AvatarImage src={member.avatar_url} />
+                                  ) : (
+                                    <AvatarFallback
+                                      className={cn(
+                                        "text-xs",
+                                        currentTheme.secondary,
+                                        currentTheme.accent,
+                                      )}
+                                    >
+                                      {member.full_name?.[0] || "?"}
+                                    </AvatarFallback>
+                                  )}
+                                </Avatar>
+                                {member.is_online && (
+                                  <div
                                     className={cn(
-                                      "text-xs ml-1",
-                                      currentTheme.primary,
+                                      "absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 bg-green-500 rounded-full border-2",
+                                      isDark
+                                        ? "border-slate-900"
+                                        : "border-white",
                                     )}
-                                  >
-                                    <Shield className="h-3 w-3" />
-                                  </Badge>
+                                  />
                                 )}
                               </div>
-                              {member.is_online && (
-                                <div className="text-xs text-green-400">
-                                  Online
+                              <div className="flex-1 min-w-0">
+                                <div
+                                  className={cn(
+                                    "text-xs font-medium truncate flex items-center gap-1",
+                                    isDark ? "text-white" : "text-slate-900",
+                                  )}
+                                >
+                                  {member.display_name ||
+                                    member.full_name ||
+                                    "Unknown"}
+                                  {member.show_as_admin && (
+                                    <Badge
+                                      variant="default"
+                                      className={cn(
+                                        "text-[10px] ml-1 px-1 py-0",
+                                        currentTheme.primary,
+                                      )}
+                                    >
+                                      <Shield className="h-2.5 w-2.5" />
+                                    </Badge>
+                                  )}
                                 </div>
-                              )}
+                                {member.is_online && (
+                                  <div className="text-[10px] text-green-400">
+                                    Online
+                                  </div>
+                                )}
+                              </div>
                             </div>
-                          </div>
-                        ))}
+                          ))
+                        )}
                       </div>
                     </ScrollArea>
                   </div>
@@ -2154,4 +2173,3 @@ export default function DiscordPage() {
     </div>
   );
 }
- 
