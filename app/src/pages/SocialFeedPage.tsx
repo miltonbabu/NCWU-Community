@@ -472,7 +472,7 @@ function SocialFeedContent() {
 
   return (
     <div
-      className={`min-h-screen ${
+      className={`min-h-screen overflow-x-hidden ${
         isDark
           ? "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
           : "bg-gradient-to-br from-slate-100 via-white to-slate-100"
@@ -503,7 +503,7 @@ function SocialFeedContent() {
           </div>
         </div>
 
-        <div className="flex items-center gap-3 mb-4">
+        <div className="flex items-center gap-3 mb-4 flex-wrap">
           <div
             className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 ${
               isDark
