@@ -23,29 +23,62 @@ function sanitizeContent(content: string): string {
 }
 
 export async function ensureDefaultGroups() {
-  const existingGroups = await all<{ name: string }>(
-    "SELECT name FROM discord_groups",
-  );
+  const existingGroups = await all<{
+    id: string;
+    name: string;
+    type: string;
+    department: string | null;
+    year: number | null;
+  }>("SELECT id, name, type, department, year FROM discord_groups");
 
-  const existingNames = existingGroups.map((g) => g.name);
-  const requiredGroups = [
-    "All Students",
-    "Economics 2025",
-    "Economics 2023",
-    "CST 2023",
-    "Civil Engineering 2023",
-    "Civil Engineering 2024",
-    "Civil Engineering 2025",
-    "Electrical Engineering 2023",
-    "Electrical Engineering 2024",
-    "Electrical Engineering 2025",
-    "Mechanical Engineering 2023",
-    "Mechanical Engineering 2024",
-    "Mechanical Engineering 2025",
+  const existingNames = new Set(existingGroups.map((g) => g.name));
+  const requiredStaticGroups = [
+    {
+      name: "All Students",
+      type: "all",
+      department: null as const,
+      year: null as const,
+    },
+    {
+      name: "Economics 2025",
+      type: "department",
+      department: "Economics",
+      year: 2025,
+    },
+    {
+      name: "Economics 2023",
+      type: "department",
+      department: "Economics",
+      year: 2023,
+    },
+    {
+      name: "CST 2023",
+      type: "department",
+      department: "Computer Science & Technology",
+      year: 2023,
+    },
+    {
+      name: "Civil Engineering 2023-2025",
+      type: "department",
+      department: "Civil Engineering",
+      year: 2023,
+    },
+    {
+      name: "Electrical Engineering 2023-2025",
+      type: "department",
+      department: "Electrical Engineering",
+      year: 2023,
+    },
+    {
+      name: "Mechanical Engineering 2023-2025",
+      type: "department",
+      department: "Mechanical Engineering",
+      year: 2023,
+    },
   ];
 
-  const hasAllRequired = requiredGroups.every((name) =>
-    existingNames.includes(name),
+  const hasAllRequired = requiredStaticGroups.every((g) =>
+    existingNames.has(g.name),
   );
 
   if (!hasAllRequired) {
@@ -54,79 +87,160 @@ export async function ensureDefaultGroups() {
     await run("DELETE FROM discord_message_views");
     await run("DELETE FROM discord_groups");
 
-    await run(
-      `INSERT INTO discord_groups (id, name, type, description) VALUES (?, ?, ?, ?)`,
-      [uuidv4(), "All Students", "all", "Community group for all students"],
-    );
-
-    const specificGroups = [
-      { name: "Economics 2025", department: "Economics", year: 2025 },
-      { name: "Economics 2023", department: "Economics", year: 2023 },
-      {
-        name: "CST 2023",
-        department: "Computer Science & Technology",
-        year: 2023,
-      },
-      {
-        name: "Civil Engineering 2023",
-        department: "Civil Engineering",
-        year: 2023,
-      },
-      {
-        name: "Civil Engineering 2024",
-        department: "Civil Engineering",
-        year: 2024,
-      },
-      {
-        name: "Civil Engineering 2025",
-        department: "Civil Engineering",
-        year: 2025,
-      },
-      {
-        name: "Electrical Engineering 2023",
-        department: "Electrical Engineering",
-        year: 2023,
-      },
-      {
-        name: "Electrical Engineering 2024",
-        department: "Electrical Engineering",
-        year: 2024,
-      },
-      {
-        name: "Electrical Engineering 2025",
-        department: "Electrical Engineering",
-        year: 2025,
-      },
-      {
-        name: "Mechanical Engineering 2023",
-        department: "Mechanical Engineering",
-        year: 2023,
-      },
-      {
-        name: "Mechanical Engineering 2024",
-        department: "Mechanical Engineering",
-        year: 2024,
-      },
-      {
-        name: "Mechanical Engineering 2025",
-        department: "Mechanical Engineering",
-        year: 2025,
-      },
-    ];
-
-    for (const group of specificGroups) {
+    for (const group of requiredStaticGroups) {
       await run(
         `INSERT INTO discord_groups (id, name, type, department, year, description) VALUES (?, ?, ?, ?, ?, ?)`,
         [
           uuidv4(),
           group.name,
-          "department",
+          group.type,
           group.department,
           group.year,
-          `${group.department} - ${group.year} enrollment`,
+          group.type === "all"
+            ? "Community group for all students"
+            : `${group.department} - ${group.year} enrollment`,
         ],
       );
     }
+  }
+
+  const allDeptYearCombos = await all<{
+    department: string | null;
+    enrollment_year: number | null;
+  }>(
+    "SELECT DISTINCT department, enrollment_year FROM users WHERE department IS NOT NULL AND department != '' AND enrollment_year IS NOT NULL",
+  );
+
+  const currentGroups = await all<{
+    id: string;
+    name: string;
+    type: string;
+    department: string | null;
+    year: number | null;
+  }>("SELECT id, name, type, department, year FROM discord_groups");
+
+  const DEPARTMENT_ALIASES: Record<string, string> = {
+    CST: "Computer Science & Technology",
+    "Computer Science & Technology": "Computer Science & Technology",
+    Civil: "Civil Engineering",
+    "Civil Engineering": "Civil Engineering",
+    Electrical: "Electrical Engineering",
+    "Electrical Engineering": "Electrical Engineering",
+    Mechanical: "Mechanical Engineering",
+    "Mechanical Engineering": "Mechanical Engineering",
+    Economics: "Economics",
+  };
+
+  const normalizeDept = (dept: string | null): string | null => {
+    if (!dept) return null;
+    const trimmed = dept.trim();
+    return DEPARTMENT_ALIASES[trimmed] || trimmed;
+  };
+
+  const existingGroupKeys = new Set(
+    currentGroups
+      .filter((g) => g.type === "department")
+      .map((g) => `${normalizeDept(g.department)}|${g.year}`),
+  );
+
+  for (const combo of allDeptYearCombos) {
+    const normDept = normalizeDept(combo.department);
+    const key = `${normDept}|${combo.enrollment_year}`;
+    if (existingGroupKeys.has(key)) continue;
+
+    const shortName =
+      normDept === "Computer Science & Technology"
+        ? "CST"
+        : normDept.split(" ")[0];
+
+    const groupName = `${shortName} ${combo.enrollment_year}`;
+
+    await run(
+      `INSERT INTO discord_groups (id, name, type, department, year, description) VALUES (?, ?, ?, ?, ?, ?)`,
+      [
+        uuidv4(),
+        groupName,
+        "department",
+        normDept,
+        combo.enrollment_year,
+        `${normDept} - ${combo.enrollment_year} enrollment`,
+      ],
+    );
+    console.log(`[Discord] Auto-created group: ${groupName}`);
+  }
+
+  const allStudentsGroup = currentGroups.find((g) => g.type === "all");
+
+  if (allStudentsGroup) {
+    const nonMembers = await all<{ id: string }>(
+      `SELECT u.id FROM users u LEFT JOIN discord_group_members gm ON u.id = gm.user_id AND gm.group_id = ? WHERE u.id IS NOT NULL AND gm.id IS NULL`,
+      [allStudentsGroup.id],
+    );
+
+    for (const u of nonMembers) {
+      await run(
+        "INSERT OR IGNORE INTO discord_group_members (id, group_id, user_id) VALUES (?, ?, ?)",
+        [uuidv4(), allStudentsGroup.id, u.id],
+      );
+    }
+
+    if (nonMembers.length > 0) {
+      console.log(
+        `[Discord] Backfilled ${nonMembers.length} users into All Students`,
+      );
+    }
+  }
+
+  const deptGroups = (
+    await all<{
+      id: string;
+      department: string | null;
+      year: number | null;
+    }>(
+      "SELECT id, department, year FROM discord_groups WHERE type = 'department'",
+    )
+  ).map((g) => ({
+    ...g,
+    normalizedDept: normalizeDept(g.department),
+  }));
+
+  const allUsersWithDept = await all<{
+    id: string;
+    department: string | null;
+    enrollment_year: number | null;
+  }>(
+    "SELECT id, department, enrollment_year FROM users WHERE department IS NOT NULL AND department != '' AND enrollment_year IS NOT NULL",
+  );
+
+  let backfilledCount = 0;
+
+  for (const usr of allUsersWithDept) {
+    const userNormDept = normalizeDept(usr.department);
+
+    for (const dg of deptGroups) {
+      if (
+        dg.normalizedDept?.toLowerCase() === userNormDept?.toLowerCase() &&
+        dg.year === usr.enrollment_year
+      ) {
+        const alreadyMember = await get<{ id: string }>(
+          "SELECT id FROM discord_group_members WHERE group_id = ? AND user_id = ?",
+          [dg.id, usr.id],
+        );
+        if (!alreadyMember) {
+          await run(
+            "INSERT OR IGNORE INTO discord_group_members (id, group_id, user_id) VALUES (?, ?, ?)",
+            [uuidv4(), dg.id, usr.id],
+          );
+          backfilledCount++;
+        }
+      }
+    }
+  }
+
+  if (backfilledCount > 0) {
+    console.log(
+      `[Discord] Backfilled ${backfilledCount} users into department groups`,
+    );
   }
 }
 
@@ -944,7 +1058,9 @@ router.post(
           ],
         );
 
-        console.log(`[Discord] Message flagged: ${messageId} words=${JSON.stringify(detectedWords)} user=${user.id} group=${id}`);
+        console.log(
+          `[Discord] Message flagged: ${messageId} words=${JSON.stringify(detectedWords)} user=${user.id} group=${id}`,
+        );
 
         createUserFlag(
           user.id,
@@ -1056,7 +1172,9 @@ router.post(
         ],
       );
 
-      console.log(`[Discord] Message saved: ${messageId} in group ${id} by user=${user.id}`);
+      console.log(
+        `[Discord] Message saved: ${messageId} in group ${id} by user=${user.id}`,
+      );
 
       const message = await get<{
         id: string;
@@ -1138,7 +1256,9 @@ router.post(
 
       io.to(`group:${id}`).emit("new_message", formattedMessage);
 
-      console.log(`[Discord] Emitted new_message to group:${id} (msg=${messageId})`);
+      console.log(
+        `[Discord] Emitted new_message to group:${id} (msg=${messageId})`,
+      );
 
       res.json({ success: true, data: formattedMessage });
     } catch (error) {
@@ -1344,5 +1464,4 @@ router.get(
 );
 
 export default router;
- 
  
