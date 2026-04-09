@@ -462,12 +462,6 @@ export default function DiscordPage() {
     }
   };
 
-  useEffect(() => {
-    if (selectedGroup && !selectedGroup.is_member) {
-      handleJoinGroup(selectedGroup.id);
-    }
-  }, [selectedGroup?.id, selectedGroup?.is_member, handleJoinGroup]);
-
   const handleSaveNickname = async () => {
     if (!nicknameGroupId) return;
     try {
@@ -1029,646 +1023,582 @@ export default function DiscordPage() {
                   <Users className="h-4 w-4 mr-2" />
                   {members.length}
                 </Button>
-
-                {!selectedGroup.is_member && (
-                  <Button
-                    onClick={() => handleJoinGroup(selectedGroup.id)}
-                    className={cn(currentTheme.primary, "hover:opacity-90")}
-                  >
-                    <LogIn className="h-4 w-4 mr-2" />
-                    Join
-                  </Button>
-                )}
               </div>
 
               <div className="flex-1 flex overflow-hidden min-h-0">
                 <div className="flex-1 flex flex-col min-h-0">
-                  {selectedGroup.is_member ? (
-                    <>
-                      <div
-                        ref={messagesContainerRef}
-                        className={cn(
-                          "flex-1 p-4 overflow-y-auto min-h-0",
-                          theme.background === "gradient"
-                            ? "bg-transparent"
-                            : isDark
-                              ? "bg-slate-900/50"
-                              : "bg-white/50",
-                        )}
-                      >
-                        {messagesLoading ? (
-                          <div className="flex items-center justify-center h-full">
-                            <div className="animate-spin rounded-full h-8 w-8 border-2 border-blue-500 border-t-transparent"></div>
+                  <>
+                    <div
+                      ref={messagesContainerRef}
+                      className={cn(
+                        "flex-1 p-4 overflow-y-auto min-h-0",
+                        theme.background === "gradient"
+                          ? "bg-transparent"
+                          : isDark
+                            ? "bg-slate-900/50"
+                            : "bg-white/50",
+                      )}
+                    >
+                      {messagesLoading ? (
+                        <div className="flex items-center justify-center h-full">
+                          <div className="animate-spin rounded-full h-8 w-8 border-2 border-blue-500 border-t-transparent"></div>
+                        </div>
+                      ) : messages.length === 0 ? (
+                        <div className="flex flex-col items-center justify-center h-full text-center">
+                          <div
+                            className={cn(
+                              "p-4 rounded-2xl mb-4",
+                              currentTheme.secondary,
+                            )}
+                          >
+                            <Sparkles
+                              className={cn("h-12 w-12", currentTheme.accent)}
+                            />
                           </div>
-                        ) : messages.length === 0 ? (
-                          <div className="flex flex-col items-center justify-center h-full text-center">
+                          <h3
+                            className={cn(
+                              "text-lg font-semibold mb-2",
+                              isDark ? "text-white" : "text-slate-900",
+                            )}
+                          >
+                            Start the conversation!
+                          </h3>
+                          <p
+                            className={
+                              isDark ? "text-slate-400" : "text-slate-500"
+                            }
+                          >
+                            Be the first to send a message
+                          </p>
+                        </div>
+                      ) : (
+                        <div className="space-y-4">
+                          {hasMoreMessages && (
                             <div
                               className={cn(
-                                "p-4 rounded-2xl mb-4",
-                                currentTheme.secondary,
+                                "text-center text-sm py-2",
+                                isDark ? "text-slate-400" : "text-slate-500",
                               )}
                             >
-                              <Sparkles
-                                className={cn("h-12 w-12", currentTheme.accent)}
-                              />
+                              ↑ Scroll up for more messages
                             </div>
-                            <h3
+                          )}
+                          {messages.map((msg, index) => (
+                            <div
+                              key={msg.id}
+                              data-message-id={msg.id}
                               className={cn(
-                                "text-lg font-semibold mb-2",
-                                isDark ? "text-white" : "text-slate-900",
+                                "group flex gap-3 p-2 rounded-xl transition-colors",
+                                isDark
+                                  ? "hover:bg-white/5"
+                                  : "hover:bg-slate-100",
                               )}
                             >
-                              Start the conversation!
-                            </h3>
-                            <p
-                              className={
-                                isDark ? "text-slate-400" : "text-slate-500"
-                              }
-                            >
-                              Be the first to send a message
-                            </p>
-                          </div>
-                        ) : (
-                          <div className="space-y-4">
-                            {hasMoreMessages && (
-                              <div
+                              <Avatar
                                 className={cn(
-                                  "text-center text-sm py-2",
-                                  isDark ? "text-slate-400" : "text-slate-500",
+                                  "h-10 w-10 flex-shrink-0 ring-2",
+                                  isDark ? "ring-white/10" : "ring-slate-200",
                                 )}
                               >
-                                ↑ Scroll up for more messages
-                              </div>
-                            )}
-                            {messages.map((msg, index) => (
-                              <div
-                                key={msg.id}
-                                data-message-id={msg.id}
-                                className={cn(
-                                  "group flex gap-3 p-2 rounded-xl transition-colors",
-                                  isDark
-                                    ? "hover:bg-white/5"
-                                    : "hover:bg-slate-100",
+                                {msg.author?.avatar_url ? (
+                                  <AvatarImage src={msg.author.avatar_url} />
+                                ) : (
+                                  <AvatarFallback
+                                    className={cn(
+                                      currentTheme.secondary,
+                                      currentTheme.accent,
+                                    )}
+                                  >
+                                    {msg.author?.display_name?.[0] || "?"}
+                                  </AvatarFallback>
                                 )}
-                              >
-                                <Avatar
-                                  className={cn(
-                                    "h-10 w-10 flex-shrink-0 ring-2",
-                                    isDark ? "ring-white/10" : "ring-slate-200",
-                                  )}
-                                >
-                                  {msg.author?.avatar_url ? (
-                                    <AvatarImage src={msg.author.avatar_url} />
-                                  ) : (
-                                    <AvatarFallback
-                                      className={cn(
-                                        currentTheme.secondary,
-                                        currentTheme.accent,
-                                      )}
-                                    >
-                                      {msg.author?.display_name?.[0] || "?"}
-                                    </AvatarFallback>
-                                  )}
-                                </Avatar>
+                              </Avatar>
 
-                                <div className="flex-1 min-w-0">
-                                  <div className="flex items-center gap-2 mb-1 flex-wrap">
-                                    <span
-                                      className={cn(
-                                        "font-semibold text-sm flex items-center gap-1",
-                                        isDark
-                                          ? "text-white"
-                                          : "text-slate-900",
-                                      )}
-                                    >
-                                      {msg.author?.display_name || "Unknown"}
-                                      {msg.author?.show_as_admin && (
-                                        <Badge
-                                          variant="default"
-                                          className={cn(
-                                            "text-xs",
-                                            currentTheme.primary,
-                                          )}
-                                        >
-                                          <Shield className="h-3 w-3 mr-1" />
-                                          Verified
-                                        </Badge>
-                                      )}
-                                    </span>
-                                    <Tooltip>
-                                      <TooltipTrigger asChild>
-                                        <span
-                                          className={cn(
-                                            "text-xs cursor-help",
-                                            isDark
-                                              ? "text-slate-500"
-                                              : "text-slate-400",
-                                          )}
-                                        >
-                                          {formatTime(msg.created_at)}
-                                        </span>
-                                      </TooltipTrigger>
-                                      <TooltipContent>
-                                        {new Date(
-                                          msg.created_at,
-                                        ).toLocaleString()}
-                                      </TooltipContent>
-                                    </Tooltip>
-                                    {msg.is_anonymous && (
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center gap-2 mb-1 flex-wrap">
+                                  <span
+                                    className={cn(
+                                      "font-semibold text-sm flex items-center gap-1",
+                                      isDark ? "text-white" : "text-slate-900",
+                                    )}
+                                  >
+                                    {msg.author?.display_name || "Unknown"}
+                                    {msg.author?.show_as_admin && (
                                       <Badge
-                                        variant="secondary"
+                                        variant="default"
                                         className={cn(
-                                          "text-[10px] px-1.5 py-0 h-4 border-0",
-                                          isDark
-                                            ? "bg-indigo-500/20 text-indigo-300"
-                                            : "bg-indigo-100 text-indigo-600",
+                                          "text-xs",
+                                          currentTheme.primary,
                                         )}
                                       >
-                                        Anonymous
+                                        <Shield className="h-3 w-3 mr-1" />
+                                        Verified
                                       </Badge>
                                     )}
-                                    <div className="flex-1" />
-                                    <div className="opacity-0 group-hover:opacity-100 flex items-center gap-1 transition-opacity">
-                                      {msg.view_count > 0 && (
-                                        <Tooltip>
-                                          <TooltipTrigger>
-                                            <div
-                                              className={cn(
-                                                "flex items-center gap-1 text-xs",
-                                                isDark
-                                                  ? "text-slate-500"
-                                                  : "text-slate-400",
-                                              )}
-                                            >
-                                              <Eye className="h-3 w-3" />
-                                              {msg.view_count}
-                                            </div>
-                                          </TooltipTrigger>
-                                          <TooltipContent>
-                                            Viewed {msg.view_count} times
-                                          </TooltipContent>
-                                        </Tooltip>
-                                      )}
-                                      <Button
-                                        variant="ghost"
-                                        size="sm"
-                                        onClick={() => setReplyingTo(msg)}
-                                        className={cn(
-                                          "h-7 w-7 p-0",
-                                          isDark
-                                            ? "text-slate-400 hover:text-white hover:bg-white/10"
-                                            : "text-slate-500 hover:text-slate-900 hover:bg-slate-200",
-                                        )}
-                                      >
-                                        <Reply className="h-4 w-4" />
-                                      </Button>
-                                      {msg.author?.id === user.id && (
-                                        <DropdownMenu>
-                                          <DropdownMenuTrigger asChild>
-                                            <Button
-                                              variant="ghost"
-                                              size="sm"
-                                              className={cn(
-                                                "h-7 w-7 p-0",
-                                                isDark
-                                                  ? "text-slate-400 hover:text-white hover:bg-white/10"
-                                                  : "text-slate-500 hover:text-slate-900 hover:bg-slate-200",
-                                              )}
-                                            >
-                                              <MoreVertical className="h-4 w-4" />
-                                            </Button>
-                                          </DropdownMenuTrigger>
-                                          <DropdownMenuContent
-                                            align="end"
-                                            className="bg-slate-800 border-slate-700"
-                                          >
-                                            <DropdownMenuItem
-                                              onClick={() =>
-                                                handleDeleteMessage(msg.id)
-                                              }
-                                              className="text-red-400 focus:bg-red-500/20 focus:text-red-400"
-                                            >
-                                              <Trash2 className="h-4 w-4 mr-2" />
-                                              Delete
-                                            </DropdownMenuItem>
-                                          </DropdownMenuContent>
-                                        </DropdownMenu>
-                                      )}
-                                    </div>
-                                  </div>
-
-                                  {msg.reply_to_message && (
-                                    <div
-                                      className={cn(
-                                        "mb-2 pl-3 border-l-2 text-sm rounded-r py-1",
-                                        isDark
-                                          ? "border-slate-600 text-slate-400 bg-white/5"
-                                          : "border-slate-300 text-slate-500 bg-slate-100",
-                                      )}
-                                    >
+                                  </span>
+                                  <Tooltip>
+                                    <TooltipTrigger asChild>
                                       <span
                                         className={cn(
-                                          "font-medium",
+                                          "text-xs cursor-help",
                                           isDark
-                                            ? "text-slate-300"
-                                            : "text-slate-700",
+                                            ? "text-slate-500"
+                                            : "text-slate-400",
                                         )}
                                       >
-                                        {msg.reply_to_message.author?.full_name}
-                                        :
-                                      </span>{" "}
-                                      {msg.reply_to_message.content.slice(
-                                        0,
-                                        100,
-                                      )}
-                                      {msg.reply_to_message.content.length >
-                                        100 && "..."}
-                                    </div>
-                                  )}
-
-                                  {msg.content && (
-                                    <p
+                                        {formatTime(msg.created_at)}
+                                      </span>
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                      {new Date(
+                                        msg.created_at,
+                                      ).toLocaleString()}
+                                    </TooltipContent>
+                                  </Tooltip>
+                                  {msg.is_anonymous && (
+                                    <Badge
+                                      variant="secondary"
                                       className={cn(
-                                        "text-sm break-words mb-2",
+                                        "text-[10px] px-1.5 py-0 h-4 border-0",
+                                        isDark
+                                          ? "bg-indigo-500/20 text-indigo-300"
+                                          : "bg-indigo-100 text-indigo-600",
+                                      )}
+                                    >
+                                      Anonymous
+                                    </Badge>
+                                  )}
+                                  <div className="flex-1" />
+                                  <div className="opacity-0 group-hover:opacity-100 flex items-center gap-1 transition-opacity">
+                                    {msg.view_count > 0 && (
+                                      <Tooltip>
+                                        <TooltipTrigger>
+                                          <div
+                                            className={cn(
+                                              "flex items-center gap-1 text-xs",
+                                              isDark
+                                                ? "text-slate-500"
+                                                : "text-slate-400",
+                                            )}
+                                          >
+                                            <Eye className="h-3 w-3" />
+                                            {msg.view_count}
+                                          </div>
+                                        </TooltipTrigger>
+                                        <TooltipContent>
+                                          Viewed {msg.view_count} times
+                                        </TooltipContent>
+                                      </Tooltip>
+                                    )}
+                                    <Button
+                                      variant="ghost"
+                                      size="sm"
+                                      onClick={() => setReplyingTo(msg)}
+                                      className={cn(
+                                        "h-7 w-7 p-0",
+                                        isDark
+                                          ? "text-slate-400 hover:text-white hover:bg-white/10"
+                                          : "text-slate-500 hover:text-slate-900 hover:bg-slate-200",
+                                      )}
+                                    >
+                                      <Reply className="h-4 w-4" />
+                                    </Button>
+                                    {msg.author?.id === user.id && (
+                                      <DropdownMenu>
+                                        <DropdownMenuTrigger asChild>
+                                          <Button
+                                            variant="ghost"
+                                            size="sm"
+                                            className={cn(
+                                              "h-7 w-7 p-0",
+                                              isDark
+                                                ? "text-slate-400 hover:text-white hover:bg-white/10"
+                                                : "text-slate-500 hover:text-slate-900 hover:bg-slate-200",
+                                            )}
+                                          >
+                                            <MoreVertical className="h-4 w-4" />
+                                          </Button>
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent
+                                          align="end"
+                                          className="bg-slate-800 border-slate-700"
+                                        >
+                                          <DropdownMenuItem
+                                            onClick={() =>
+                                              handleDeleteMessage(msg.id)
+                                            }
+                                            className="text-red-400 focus:bg-red-500/20 focus:text-red-400"
+                                          >
+                                            <Trash2 className="h-4 w-4 mr-2" />
+                                            Delete
+                                          </DropdownMenuItem>
+                                        </DropdownMenuContent>
+                                      </DropdownMenu>
+                                    )}
+                                  </div>
+                                </div>
+
+                                {msg.reply_to_message && (
+                                  <div
+                                    className={cn(
+                                      "mb-2 pl-3 border-l-2 text-sm rounded-r py-1",
+                                      isDark
+                                        ? "border-slate-600 text-slate-400 bg-white/5"
+                                        : "border-slate-300 text-slate-500 bg-slate-100",
+                                    )}
+                                  >
+                                    <span
+                                      className={cn(
+                                        "font-medium",
                                         isDark
                                           ? "text-slate-300"
                                           : "text-slate-700",
                                       )}
                                     >
-                                      {parseContentWithLinks(msg.content).map(
-                                        (part, index) => {
-                                          if (part.isUrl && part.url) {
-                                            return (
-                                              <a
-                                                key={index}
-                                                href={part.url}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className={cn(
-                                                  "hover:underline break-all",
-                                                  isDark
-                                                    ? "text-blue-400 hover:text-blue-300"
-                                                    : "text-blue-600 hover:text-blue-700",
-                                                )}
-                                              >
-                                                {part.text}
-                                              </a>
-                                            );
-                                          }
-                                          return (
-                                            <span key={index}>{part.text}</span>
-                                          );
-                                        },
-                                      )}
-                                    </p>
-                                  )}
-                                  {msg.image_url && (
-                                    <div className="mt-2">
-                                      <img
-                                        src={msg.image_url}
-                                        alt="Shared image"
-                                        className="max-w-full max-h-80 rounded-lg cursor-pointer hover:opacity-95 transition-opacity"
-                                        onClick={() =>
-                                          setViewerImage(msg.image_url!)
-                                        }
-                                      />
-                                    </div>
-                                  )}
-                                </div>
-                              </div>
-                            ))}
-                            <div ref={messagesEndRef} />
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Input Area */}
-                      <div
-                        className={cn(
-                          "border-t p-4 backdrop-blur-xl flex-shrink-0",
-                          isDark ? "border-white/10" : "border-slate-200",
-                          theme.background === "gradient"
-                            ? isDark
-                              ? "bg-card/80"
-                              : "bg-white/80"
-                            : isDark
-                              ? "bg-slate-900/80"
-                              : "bg-white/80",
-                        )}
-                      >
-                        {(() => {
-                          const groupTypingUsers = selectedGroup
-                            ? typingUsers.get(selectedGroup.id)
-                            : null;
-                          if (!groupTypingUsers || groupTypingUsers.size === 0)
-                            return null;
-
-                          const typingNames = Array.from(groupTypingUsers)
-                            .filter((id) => id !== user?.id)
-                            .map((id) => {
-                              const member = members.find(
-                                (m) => m.user_id === id,
-                              );
-                              return (
-                                member?.display_name ||
-                                member?.full_name ||
-                                "Someone"
-                              );
-                            });
-
-                          if (typingNames.length === 0) return null;
-
-                          return (
-                            <div
-                              className={cn(
-                                "text-xs mb-2 flex items-center gap-2",
-                                isDark ? "text-slate-400" : "text-slate-500",
-                              )}
-                            >
-                              <Circle className="h-2 w-2 fill-current animate-pulse text-green-400" />
-                              {typingNames.join(", ")}{" "}
-                              {typingNames.length === 1 ? "is" : "are"}{" "}
-                              typing...
-                            </div>
-                          );
-                        })()}
-
-                        {replyingTo && (
-                          <div
-                            className={cn(
-                              "mb-2 p-2 rounded-lg flex items-center justify-between",
-                              isDark ? "bg-white/10" : "bg-slate-100",
-                            )}
-                          >
-                            <div className="text-sm">
-                              <span
-                                className={
-                                  isDark ? "text-slate-400" : "text-slate-500"
-                                }
-                              >
-                                Replying to:{" "}
-                              </span>
-                              <span
-                                className={cn(
-                                  "font-medium",
-                                  isDark ? "text-white" : "text-slate-900",
+                                      {msg.reply_to_message.author?.full_name}:
+                                    </span>{" "}
+                                    {msg.reply_to_message.content.slice(0, 100)}
+                                    {msg.reply_to_message.content.length >
+                                      100 && "..."}
+                                  </div>
                                 )}
-                              >
-                                {replyingTo.author?.display_name || "Unknown"}
-                              </span>
-                            </div>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => setReplyingTo(null)}
-                              className={cn(
-                                isDark
-                                  ? "text-slate-400 hover:text-white hover:bg-white/10"
-                                  : "text-slate-500 hover:text-slate-900 hover:bg-slate-200",
-                              )}
-                            >
-                              <X className="h-4 w-4" />
-                            </Button>
-                          </div>
-                        )}
 
-                        {/* Image Preview */}
-                        {imagePreview && (
-                          <div
-                            className={cn(
-                              "mb-3 p-3 rounded-lg",
-                              isDark ? "bg-white/10" : "bg-slate-100",
-                            )}
-                          >
-                            <div className="flex items-center gap-3 mb-3">
-                              <div className="relative">
-                                <img
-                                  src={imagePreview}
-                                  alt="Selected"
-                                  className="h-16 w-16 object-cover rounded-lg"
-                                />
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <p
-                                  className={cn(
-                                    "text-sm font-medium truncate",
-                                    isDark ? "text-white" : "text-slate-900",
-                                  )}
-                                >
-                                  {selectedImage?.name}
-                                </p>
-                                <p
-                                  className={cn(
-                                    "text-xs",
-                                    isDark
-                                      ? "text-slate-400"
-                                      : "text-slate-500",
-                                  )}
-                                >
-                                  {(selectedImage?.size || 0) / 1024 < 1024
-                                    ? `${Math.round((selectedImage?.size || 0) / 1024)} KB`
-                                    : `${((selectedImage?.size || 0) / (1024 * 1024)).toFixed(1)} MB`}
-                                </p>
-                              </div>
-                              {!isUploading && (
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                  onClick={handleRemoveImage}
-                                  className={cn(
-                                    isDark
-                                      ? "text-slate-400 hover:text-white hover:bg-white/10"
-                                      : "text-slate-500 hover:text-slate-900 hover:bg-slate-200",
-                                  )}
-                                >
-                                  <X className="h-4 w-4" />
-                                </Button>
-                              )}
-                            </div>
-
-                            {/* Upload Progress */}
-                            {isUploading && (
-                              <div className="space-y-2">
-                                <div className="flex items-center justify-between text-xs">
-                                  <span
+                                {msg.content && (
+                                  <p
                                     className={cn(
-                                      "font-medium",
+                                      "text-sm break-words mb-2",
                                       isDark
-                                        ? "text-indigo-400"
-                                        : "text-indigo-600",
+                                        ? "text-slate-300"
+                                        : "text-slate-700",
                                     )}
                                   >
-                                    Uploading image...
-                                  </span>
-                                  <span
-                                    className={cn(
-                                      isDark
-                                        ? "text-slate-400"
-                                        : "text-slate-500",
+                                    {parseContentWithLinks(msg.content).map(
+                                      (part, index) => {
+                                        if (part.isUrl && part.url) {
+                                          return (
+                                            <a
+                                              key={index}
+                                              href={part.url}
+                                              target="_blank"
+                                              rel="noopener noreferrer"
+                                              className={cn(
+                                                "hover:underline break-all",
+                                                isDark
+                                                  ? "text-blue-400 hover:text-blue-300"
+                                                  : "text-blue-600 hover:text-blue-700",
+                                              )}
+                                            >
+                                              {part.text}
+                                            </a>
+                                          );
+                                        }
+                                        return (
+                                          <span key={index}>{part.text}</span>
+                                        );
+                                      },
                                     )}
-                                  >
-                                    {uploadProgress}%
-                                  </span>
-                                </div>
-                                <div
-                                  className={cn(
-                                    "h-2 rounded-full overflow-hidden",
-                                    isDark ? "bg-white/20" : "bg-slate-200",
-                                  )}
-                                >
-                                  <div
-                                    className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 transition-all duration-300 ease-out"
-                                    style={{ width: `${uploadProgress}%` }}
-                                  />
-                                </div>
-                                <p
-                                  className={cn(
-                                    "text-xs text-center",
-                                    isDark
-                                      ? "text-slate-400"
-                                      : "text-slate-500",
-                                  )}
-                                >
-                                  Please wait a moment...
-                                </p>
+                                  </p>
+                                )}
+                                {msg.image_url && (
+                                  <div className="mt-2">
+                                    <img
+                                      src={msg.image_url}
+                                      alt="Shared image"
+                                      className="max-w-full max-h-80 rounded-lg cursor-pointer hover:opacity-95 transition-opacity"
+                                      onClick={() =>
+                                        setViewerImage(msg.image_url!)
+                                      }
+                                    />
+                                  </div>
+                                )}
                               </div>
-                            )}
-                          </div>
-                        )}
+                            </div>
+                          ))}
+                          <div ref={messagesEndRef} />
+                        </div>
+                      )}
+                    </div>
 
-                        <div className="flex gap-2 items-center">
+                    {/* Input Area */}
+                    <div
+                      className={cn(
+                        "border-t p-4 backdrop-blur-xl flex-shrink-0",
+                        isDark ? "border-white/10" : "border-slate-200",
+                        theme.background === "gradient"
+                          ? isDark
+                            ? "bg-card/80"
+                            : "bg-white/80"
+                          : isDark
+                            ? "bg-slate-900/80"
+                            : "bg-white/80",
+                      )}
+                    >
+                      {(() => {
+                        const groupTypingUsers = selectedGroup
+                          ? typingUsers.get(selectedGroup.id)
+                          : null;
+                        if (!groupTypingUsers || groupTypingUsers.size === 0)
+                          return null;
+
+                        const typingNames = Array.from(groupTypingUsers)
+                          .filter((id) => id !== user?.id)
+                          .map((id) => {
+                            const member = members.find(
+                              (m) => m.user_id === id,
+                            );
+                            return (
+                              member?.display_name ||
+                              member?.full_name ||
+                              "Someone"
+                            );
+                          });
+
+                        if (typingNames.length === 0) return null;
+
+                        return (
                           <div
                             className={cn(
-                              "flex items-center gap-1.5 rounded-full px-2.5 py-1 border",
-                              isDark
-                                ? "bg-white/10 border-white/10"
-                                : "bg-slate-100 border-slate-200",
+                              "text-xs mb-2 flex items-center gap-2",
+                              isDark ? "text-slate-400" : "text-slate-500",
                             )}
                           >
-                            <Switch
-                              checked={isAnonymous}
-                              onCheckedChange={setIsAnonymous}
-                              id="anonymous-mode"
-                              className="data-[state=checked]:bg-indigo-500 data-[state=unchecked]:bg-slate-600 scale-75"
-                            />
-                            <Label
-                              htmlFor="anonymous-mode"
+                            <Circle className="h-2 w-2 fill-current animate-pulse text-green-400" />
+                            {typingNames.join(", ")}{" "}
+                            {typingNames.length === 1 ? "is" : "are"} typing...
+                          </div>
+                        );
+                      })()}
+
+                      {replyingTo && (
+                        <div
+                          className={cn(
+                            "mb-2 p-2 rounded-lg flex items-center justify-between",
+                            isDark ? "bg-white/10" : "bg-slate-100",
+                          )}
+                        >
+                          <div className="text-sm">
+                            <span
+                              className={
+                                isDark ? "text-slate-400" : "text-slate-500"
+                              }
+                            >
+                              Replying to:{" "}
+                            </span>
+                            <span
                               className={cn(
-                                "text-xs font-medium cursor-pointer select-none",
-                                isDark ? "text-slate-300" : "text-slate-600",
+                                "font-medium",
+                                isDark ? "text-white" : "text-slate-900",
                               )}
                             >
-                              Anon
-                            </Label>
+                              {replyingTo.author?.display_name || "Unknown"}
+                            </span>
                           </div>
-
-                          {/* Image Upload Button */}
-                          <input
-                            type="file"
-                            ref={fileInputRef}
-                            onChange={handleImageSelect}
-                            accept="image/*"
-                            className="hidden"
-                          />
                           <Button
                             variant="ghost"
                             size="sm"
-                            onClick={() => fileInputRef.current?.click()}
+                            onClick={() => setReplyingTo(null)}
                             className={cn(
                               isDark
                                 ? "text-slate-400 hover:text-white hover:bg-white/10"
                                 : "text-slate-500 hover:text-slate-900 hover:bg-slate-200",
                             )}
-                            title="Add image"
                           >
-                            <Image className="h-5 w-5" />
-                          </Button>
-
-                          <Input
-                            value={messageInput}
-                            onChange={(e) => handleInputChange(e.target.value)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter" && !e.shiftKey) {
-                                e.preventDefault();
-                                handleSendMessage();
-                              }
-                            }}
-                            placeholder={`Message ${selectedGroup.name}`}
-                            className={cn(
-                              "flex-1",
-                              isDark
-                                ? "bg-white/10 border-white/10 text-white placeholder:text-slate-500 focus:border-white/20"
-                                : "bg-white border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-slate-300",
-                            )}
-                            maxLength={5000}
-                          />
-
-                          <Button
-                            onClick={handleSendMessage}
-                            disabled={
-                              (!messageInput.trim() && !selectedImage) ||
-                              isUploading
-                            }
-                            className={cn(
-                              currentTheme.primary,
-                              "hover:opacity-90",
-                            )}
-                          >
-                            {isUploading ? (
-                              <Loader2 className="h-4 w-4 animate-spin" />
-                            ) : (
-                              <Send className="h-4 w-4" />
-                            )}
+                            <X className="h-4 w-4" />
                           </Button>
                         </div>
-                      </div>
-                    </>
-                  ) : (
-                    <div className="flex-1 flex items-center justify-center min-h-0 overflow-auto">
-                      <div className="text-center p-4">
+                      )}
+
+                      {/* Image Preview */}
+                      {imagePreview && (
                         <div
                           className={cn(
-                            "p-4 rounded-2xl mb-4 inline-block",
-                            currentTheme.secondary,
+                            "mb-3 p-3 rounded-lg",
+                            isDark ? "bg-white/10" : "bg-slate-100",
                           )}
                         >
-                          <Hash
-                            className={cn("h-16 w-16", currentTheme.accent)}
-                          />
+                          <div className="flex items-center gap-3 mb-3">
+                            <div className="relative">
+                              <img
+                                src={imagePreview}
+                                alt="Selected"
+                                className="h-16 w-16 object-cover rounded-lg"
+                              />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p
+                                className={cn(
+                                  "text-sm font-medium truncate",
+                                  isDark ? "text-white" : "text-slate-900",
+                                )}
+                              >
+                                {selectedImage?.name}
+                              </p>
+                              <p
+                                className={cn(
+                                  "text-xs",
+                                  isDark ? "text-slate-400" : "text-slate-500",
+                                )}
+                              >
+                                {(selectedImage?.size || 0) / 1024 < 1024
+                                  ? `${Math.round((selectedImage?.size || 0) / 1024)} KB`
+                                  : `${((selectedImage?.size || 0) / (1024 * 1024)).toFixed(1)} MB`}
+                              </p>
+                            </div>
+                            {!isUploading && (
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={handleRemoveImage}
+                                className={cn(
+                                  isDark
+                                    ? "text-slate-400 hover:text-white hover:bg-white/10"
+                                    : "text-slate-500 hover:text-slate-900 hover:bg-slate-200",
+                                )}
+                              >
+                                <X className="h-4 w-4" />
+                              </Button>
+                            )}
+                          </div>
+
+                          {/* Upload Progress */}
+                          {isUploading && (
+                            <div className="space-y-2">
+                              <div className="flex items-center justify-between text-xs">
+                                <span
+                                  className={cn(
+                                    "font-medium",
+                                    isDark
+                                      ? "text-indigo-400"
+                                      : "text-indigo-600",
+                                  )}
+                                >
+                                  Uploading image...
+                                </span>
+                                <span
+                                  className={cn(
+                                    isDark
+                                      ? "text-slate-400"
+                                      : "text-slate-500",
+                                  )}
+                                >
+                                  {uploadProgress}%
+                                </span>
+                              </div>
+                              <div
+                                className={cn(
+                                  "h-2 rounded-full overflow-hidden",
+                                  isDark ? "bg-white/20" : "bg-slate-200",
+                                )}
+                              >
+                                <div
+                                  className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 transition-all duration-300 ease-out"
+                                  style={{ width: `${uploadProgress}%` }}
+                                />
+                              </div>
+                              <p
+                                className={cn(
+                                  "text-xs text-center",
+                                  isDark ? "text-slate-400" : "text-slate-500",
+                                )}
+                              >
+                                Please wait a moment...
+                              </p>
+                            </div>
+                          )}
                         </div>
-                        <h3
+                      )}
+
+                      <div className="flex gap-2 items-center">
+                        <div
                           className={cn(
-                            "text-xl font-semibold mb-2",
-                            isDark ? "text-white" : "text-slate-900",
+                            "flex items-center gap-1.5 rounded-full px-2.5 py-1 border",
+                            isDark
+                              ? "bg-white/10 border-white/10"
+                              : "bg-slate-100 border-slate-200",
                           )}
                         >
-                          Join {selectedGroup.name}
-                        </h3>
-                        <p
-                          className={cn(
-                            "mb-6",
-                            isDark ? "text-slate-400" : "text-slate-500",
-                          )}
-                        >
-                          Join this group to start messaging
-                        </p>
+                          <Switch
+                            checked={isAnonymous}
+                            onCheckedChange={setIsAnonymous}
+                            id="anonymous-mode"
+                            className="data-[state=checked]:bg-indigo-500 data-[state=unchecked]:bg-slate-600 scale-75"
+                          />
+                          <Label
+                            htmlFor="anonymous-mode"
+                            className={cn(
+                              "text-xs font-medium cursor-pointer select-none",
+                              isDark ? "text-slate-300" : "text-slate-600",
+                            )}
+                          >
+                            Anon
+                          </Label>
+                        </div>
+
+                        {/* Image Upload Button */}
+                        <input
+                          type="file"
+                          ref={fileInputRef}
+                          onChange={handleImageSelect}
+                          accept="image/*"
+                          className="hidden"
+                        />
                         <Button
-                          onClick={() => handleJoinGroup(selectedGroup.id)}
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => fileInputRef.current?.click()}
+                          className={cn(
+                            isDark
+                              ? "text-slate-400 hover:text-white hover:bg-white/10"
+                              : "text-slate-500 hover:text-slate-900 hover:bg-slate-200",
+                          )}
+                          title="Add image"
+                        >
+                          <Image className="h-5 w-5" />
+                        </Button>
+
+                        <Input
+                          value={messageInput}
+                          onChange={(e) => handleInputChange(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" && !e.shiftKey) {
+                              e.preventDefault();
+                              handleSendMessage();
+                            }
+                          }}
+                          placeholder={`Message ${selectedGroup.name}`}
+                          className={cn(
+                            "flex-1",
+                            isDark
+                              ? "bg-white/10 border-white/10 text-white placeholder:text-slate-500 focus:border-white/20"
+                              : "bg-white border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-slate-300",
+                          )}
+                          maxLength={5000}
+                        />
+
+                        <Button
+                          onClick={handleSendMessage}
+                          disabled={
+                            (!messageInput.trim() && !selectedImage) ||
+                            isUploading
+                          }
                           className={cn(
                             currentTheme.primary,
                             "hover:opacity-90",
                           )}
                         >
-                          <LogIn className="h-4 w-4 mr-2" />
-                          Join Group
+                          {isUploading ? (
+                            <Loader2 className="h-4 w-4 animate-spin" />
+                          ) : (
+                            <Send className="h-4 w-4" />
+                          )}
                         </Button>
                       </div>
                     </div>
-                  )}
+                  </>
                 </div>
 
                 {/* Members Sidebar */}
-                {showMembers && selectedGroup.is_member && (
+                {showMembers && (
                   <div
                     className={cn(
                       "w-64 backdrop-blur-xl border-l hidden md:flex flex-col",
@@ -2120,20 +2050,6 @@ export default function DiscordPage() {
                   <button
                     key={group.id}
                     onClick={async () => {
-                      if (!group.is_member) {
-                        const response = await discordApi.joinGroup(group.id);
-                        if (response.success) {
-                          setGroups((prev) =>
-                            prev.map((g) =>
-                              g.id === group.id ? { ...g, is_member: true } : g,
-                            ),
-                          );
-                        } else {
-                          toast.error("Failed to join group");
-                          return;
-                        }
-                      }
-
                       let imageUrl = null;
                       if (shareImages.length > 0) {
                         try {
@@ -2204,19 +2120,6 @@ export default function DiscordPage() {
                     <div className="flex-1 min-w-0">
                       <span className="font-medium truncate">{group.name}</span>
                     </div>
-                    {!group.is_member && (
-                      <Badge
-                        variant="secondary"
-                        className={cn(
-                          "text-xs",
-                          isDark
-                            ? "bg-slate-700 text-slate-300"
-                            : "bg-slate-200 text-slate-600",
-                        )}
-                      >
-                        Join & Share
-                      </Badge>
-                    )}
                   </button>
                 ))}
               </div>
@@ -2244,7 +2147,7 @@ export default function DiscordPage() {
         onClose={() => setShowRestrictionPopup(false)}
         restriction={restriction}
         feature="discord"
-        restrictedFeatures={restriction ? ['discord'] : []}
+        restrictedFeatures={restriction ? ["discord"] : []}
       />
     </div>
   );
