@@ -43,7 +43,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Circle,
-  LogIn,
   Shield,
   Home,
   User,
@@ -181,7 +180,9 @@ export default function DiscordPage() {
       gain2.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.28);
       osc2.start(ctx.currentTime + 0.1);
       osc2.stop(ctx.currentTime + 0.28);
-    } catch {}
+    } catch {
+      // ignore audio errors
+    }
   }, []);
   const [searchParams, setSearchParams] = useSearchParams();
   const { isRestricted, restriction, checkFeature } = useRestriction();
@@ -254,7 +255,7 @@ export default function DiscordPage() {
         try {
           const images = JSON.parse(decodeURIComponent(imagesParam));
           setShareImages(images);
-        } catch (e) {
+        } catch {
           setShareImages([]);
         }
       }
@@ -439,29 +440,6 @@ export default function DiscordPage() {
     }
   };
 
-  const handleJoinGroup = async (groupId: string) => {
-    try {
-      const response = await discordApi.joinGroup(groupId);
-      if (response.success) {
-        setGroups((prev) =>
-          prev.map((g) => (g.id === groupId ? { ...g, is_member: true } : g)),
-        );
-        const group = groups.find((g) => g.id === groupId);
-        setSelectedGroup(group ? { ...group, is_member: true } : null);
-
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        if ((response as any).showNicknamePrompt) {
-          setNicknameGroupId(groupId);
-          setShowNicknameDialog(true);
-        }
-
-        toast.success("Joined group successfully");
-      }
-    } catch (error) {
-      toast.error("Failed to join group");
-    }
-  };
-
   const handleSaveNickname = async () => {
     if (!nicknameGroupId) return;
     try {
@@ -478,7 +456,7 @@ export default function DiscordPage() {
       if (selectedGroup) {
         loadMembers(selectedGroup.id);
       }
-    } catch (error) {
+    } catch {
       toast.error("Failed to save settings");
     }
   };
@@ -585,7 +563,7 @@ export default function DiscordPage() {
         setImagePreview(null);
         stopTyping(selectedGroup.id);
       }
-    } catch (error) {
+    } catch {
       toast.error("Failed to send message");
     } finally {
       setIsUploading(false);
@@ -1083,7 +1061,7 @@ export default function DiscordPage() {
                               ↑ Scroll up for more messages
                             </div>
                           )}
-                          {messages.map((msg, index) => (
+                          {messages.map((msg) => (
                             <div
                               key={msg.id}
                               data-message-id={msg.id}
