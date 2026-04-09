@@ -323,6 +323,11 @@ export default function DiscordPage() {
     if (!selectedGroup || !socket || !isConnected) return;
 
     joinGroup(selectedGroup.id);
+
+    if (selectedGroup && !selectedGroup.is_member) {
+      handleJoinGroup(selectedGroup.id);
+    }
+
     loadMessages(selectedGroup.id);
     loadMembers(selectedGroup.id);
 
@@ -370,6 +375,7 @@ export default function DiscordPage() {
     socket,
     isConnected,
     joinGroup,
+    handleJoinGroup,
     leaveGroup,
     markViewed,
     loadMessages,
