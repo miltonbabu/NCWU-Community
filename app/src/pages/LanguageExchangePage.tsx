@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "@/components/ThemeProvider";
 import { useAuth } from "@/contexts/AuthContext";
+import { useSocket } from "@/contexts/SocketContext";
 import {
   Users,
   Search,
@@ -240,25 +241,13 @@ export default function LanguageExchangePage() {
   const [selectedLevel, setSelectedLevel] = useState<HSKLevel | null>(null);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const [showActiveOnly, setShowActiveOnly] = useState(false);
-  const [onlineUsers, setOnlineUsers] = useState<Set<string>>(new Set());
+  const { onlineUsers: socketOnlineUsers } = useSocket();
 
   useEffect(() => {
     fetchUsers();
     fetchRequests();
-    fetchOnlineUsers();
     fetchOwnProfile();
-
-    // Poll for online users every 30 seconds
-    const interval = setInterval(fetchOnlineUsers, 30000);
-    return () => clearInterval(interval);
   }, []);
-
-  // Refetch online users when users list changes
-  useEffect(() => {
-    if (users.length > 0) {
-      fetchOnlineUsers();
-    }
-  }, [users]);
 
   const fetchUsers = async () => {
     try {
@@ -478,7 +467,7 @@ export default function LanguageExchangePage() {
     }
 
     if (showActiveOnly) {
-      matchesActive = onlineUsers.has(user.user_id);
+      matchesActive = socketOnlineUsers.has(user.user_id);
     }
 
     return matchesSearch && matchesLevel && matchesActive;
@@ -763,7 +752,7 @@ export default function LanguageExchangePage() {
                         </span>
                       ),
                       label: "Online Now",
-                      value: onlineUsers.size,
+                      value: socketOnlineUsers.size,
                       highlight: true,
                     },
                   ]
@@ -1060,7 +1049,7 @@ export default function LanguageExchangePage() {
                     />
                   </div>
                   <span>Active</span>
-                  {onlineUsers.size > 0 && (
+                  {socketOnlineUsers.size > 0 && (
                     <span
                       className={`px-1 py-0.5 rounded text-[10px] font-bold ${
                         showActiveOnly
@@ -1070,7 +1059,7 @@ export default function LanguageExchangePage() {
                             : "bg-emerald-100 text-emerald-600"
                       }`}
                     >
-                      {onlineUsers.size}
+                      {socketOnlineUsers.size}
                     </span>
                   )}
                 </button>
@@ -1211,7 +1200,7 @@ export default function LanguageExchangePage() {
                               </span>
                             )}
                           </div>
-                          {isAuthenticated && onlineUsers.has(user.user_id) && (
+                          {isAuthenticated && socketOnlineUsers.has(user.user_id) && (
                             <div
                               className={`absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-green-500 border-2 ${isDark ? "border-slate-800" : "border-white"} animate-pulse`}
                             />
