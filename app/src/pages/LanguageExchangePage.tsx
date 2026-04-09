@@ -291,32 +291,6 @@ export default function LanguageExchangePage() {
     }
   };
 
-  const fetchOnlineUsers = async () => {
-    try {
-      const token = localStorage.getItem("auth_token");
-      if (!token) return;
-
-      const response = await fetch(
-        `${API_BASE_URL}/language-exchange/online-users`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        },
-      );
-
-      const data = await response.json();
-      if (data.success) {
-        // Filter online users to only include those who have joined language exchange
-        const languageExchangeUserIds = new Set(users.map((u) => u.user_id));
-        const onlineLanguageExchangeUsers = data.data.filter((userId: string) =>
-          languageExchangeUserIds.has(userId),
-        );
-        setOnlineUsers(new Set(onlineLanguageExchangeUsers));
-      }
-    } catch (error) {
-      console.error("Error fetching online users:", error);
-    }
-  };
-
   const fetchRequests = async () => {
     try {
       const token = localStorage.getItem("auth_token");

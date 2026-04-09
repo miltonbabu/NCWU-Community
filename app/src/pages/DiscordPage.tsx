@@ -324,10 +324,6 @@ export default function DiscordPage() {
 
     joinGroup(selectedGroup.id);
 
-    if (selectedGroup && !selectedGroup.is_member) {
-      handleJoinGroup(selectedGroup.id);
-    }
-
     loadMessages(selectedGroup.id);
     loadMembers(selectedGroup.id);
 
@@ -375,7 +371,6 @@ export default function DiscordPage() {
     socket,
     isConnected,
     joinGroup,
-    handleJoinGroup,
     leaveGroup,
     markViewed,
     loadMessages,
@@ -466,6 +461,12 @@ export default function DiscordPage() {
       toast.error("Failed to join group");
     }
   };
+
+  useEffect(() => {
+    if (selectedGroup && !selectedGroup.is_member) {
+      handleJoinGroup(selectedGroup.id);
+    }
+  }, [selectedGroup?.id, selectedGroup?.is_member, handleJoinGroup]);
 
   const handleSaveNickname = async () => {
     if (!nicknameGroupId) return;
