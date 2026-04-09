@@ -650,18 +650,28 @@ export function Navigation() {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <div className="hidden sm:flex items-center gap-2">
-                <Button
-                  size="sm"
-                  asChild
-                  className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600"
-                >
-                  <Link to="/login">
-                    <LogIn className="w-4 h-4 mr-1" />
-                    {t("nav.login", "Login")}
-                  </Link>
-                </Button>
-              </div>
+              <Button
+                size="sm"
+                asChild
+                className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600"
+              >
+                <Link to="/login" className="hidden sm:flex items-center gap-1">
+                  <LogIn className="w-4 h-4" />
+                  {t("nav.login", "Login")}
+                </Link>
+              </Button>
+            )}
+            {!isAuthenticated && (
+              <button
+                className={`sm:hidden p-2 rounded-lg transition-colors ${
+                  isDark
+                    ? "text-slate-300 hover:text-white hover:bg-slate-800"
+                    : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+                }`}
+                onClick={() => navigate("/login")}
+              >
+                <LogIn className="w-5 h-5" />
+              </button>
             )}
 
             <button
