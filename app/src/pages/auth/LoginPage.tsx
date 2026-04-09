@@ -376,7 +376,7 @@ export default function LoginPage() {
               </p>
               <Link
                 to="/signup"
-                state={{ from: { pathname: from === "/" ? "/xingyuan-ai" : from } }}
+                state={{ from: { pathname: from } }}
                 className={`inline-flex items-center justify-center gap-2 w-full py-3 px-6 rounded-xl font-semibold transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] ${
                   isDark
                     ? "bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white shadow-lg hover:shadow-indigo-500/30"
