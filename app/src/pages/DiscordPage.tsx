@@ -342,7 +342,7 @@ export default function DiscordPage() {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         markViewed(selectedGroup.id, [message.id]);
         setTimeout(() => scrollToBottom("smooth"), 100);
-        if (message.sender_id !== user?.id) {
+        if (message.user_id !== user?.id) {
           playNotificationSound();
         }
       }
@@ -562,6 +562,11 @@ export default function DiscordPage() {
         setSelectedImage(null);
         setImagePreview(null);
         stopTyping(selectedGroup.id);
+
+        if (response.data && !response.data.flagged) {
+          setMessages((prev) => [...prev, response.data]);
+          setTimeout(() => scrollToBottom("smooth"), 100);
+        }
       }
     } catch {
       toast.error("Failed to send message");
