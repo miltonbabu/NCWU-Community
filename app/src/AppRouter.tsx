@@ -14,6 +14,8 @@ import CSTPage from "./pages/CSTPage";
 import ClassSchedulePage from "./pages/ClassSchedulePage";
 import EconomicsPage from "./pages/EconomicsPage";
 import EconomicsSchedulePage from "./pages/EconomicsSchedulePage";
+import Economics2023Page from "./pages/Economics2023Page";
+import Economics2023SchedulePage from "./pages/Economics2023SchedulePage";
 import HSKPage from "./pages/HSKPage";
 import HSKGrammarPage from "./pages/HSKGrammarPage";
 import StudentGuidesPage from "./pages/StudentGuidesPage";
@@ -115,7 +117,9 @@ function AppRouterContent() {
           element={<EconomicsSchedulePage />}
         />
 
-        {/* Civil Engineering Routes */}
+                <Route path="/economics-2023" element={<Economics2023Page />} />
+        <Route path="/economics-2023/class-schedule" element={<Economics2023SchedulePage />} />
+{/* Civil Engineering Routes */}
         <Route
           path="/civil-engineering-2023"
           element={<CivilEngineering2023Page />}
