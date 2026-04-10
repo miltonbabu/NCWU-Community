@@ -76,6 +76,11 @@ function Economics2023PageContent() {
             </div>
             <h1 className={`text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 ${isDark ? "text-white" : "text-slate-900"}`}>Economics 2023 / 23 Batch</h1>
             <p className={`text-lg max-w-2xl mx-auto mb-6 ${isDark ? "text-white/70" : "text-slate-600"}`}>2026 Academic Year - Class schedules for Economics international students at NCWU (2023/23 batch).</p>
+            <Link to="/economics-2023/class-schedule" className="inline-flex items-center gap-2 text-sm font-medium px-5 py-2.5 rounded-xl transition-all duration-300 bg-red-500 hover:bg-red-600 text-white shadow-lg hover:shadow-xl hover:scale-105">
+              <Calendar className="w-4 h-4" />
+              View Class Schedule
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
 
           <div className="mb-12">
