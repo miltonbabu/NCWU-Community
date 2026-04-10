@@ -83,3 +83,9 @@ vite.config.ts.timestamp-*
 PERFORMANCE-EVALUATION-REPORT.md
 load-testing/
 quick-test-results-*.json
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
