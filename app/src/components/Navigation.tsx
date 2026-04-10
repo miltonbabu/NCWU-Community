@@ -107,21 +107,26 @@ export function Navigation() {
         },
         {
           label: t("nav.economics", "Economics"),
-          icon: Calendar,
+          icon: GraduationCap,
           children: [
             {
-              label: t("nav.economicsOverview", "Overview"),
-              icon: Calendar,
+              label: t("nav.economics2023", "2023 Batch / 23 Batch"),
+              icon: GraduationCap,
+              href: "/economics-2023",
+            },
+            {
+              label: t("nav.economics2024", "2024 Batch / 24 Batch"),
+              icon: GraduationCap,
               href: "/economics-2025",
             },
             {
-              label: t("nav.economicsSchedule", "Class Schedule"),
-              icon: Calendar,
-              href: "/economics-2025/class-schedule",
+              label: t("nav.economics2025", "2025 Batch / 25 Batch"),
+              icon: GraduationCap,
+              href: "/economics-2025",
             },
           ],
         },
-        {
+{
           label: t("nav.civilEngineering", "Civil Engineering"),
           icon: HardHat,
           children: [
