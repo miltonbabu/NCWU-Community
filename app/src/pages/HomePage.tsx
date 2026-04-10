@@ -278,6 +278,34 @@ function HomePageContent() {
       bgColor: isDark
         ? "bg-purple-600 hover:bg-purple-500 border-purple-400"
         : "bg-purple-500 hover:bg-purple-600 border-purple-400",
+    },
+    {
+      title: t("home.economics2023Title", "Economics 2023 / 23 Batch"),
+      description: t(
+        "home.economics2023Desc",
+        "Economics 2023 batch class schedules."
+      ),
+      icon: Calendar,
+      link: "/economics-2023",
+      color: "from-red-500 to-amber-500",
+      stats: "Undergraduate \u2022 2023",
+      bgColor: isDark
+        ? "bg-red-600 hover:bg-red-500 border-red-400"
+        : "bg-red-500 hover:bg-red-600 border-red-400",
+    },
+    {
+      title: t("home.economics2024Title", "Economics 2024 / 24 Batch"),
+      description: t(
+        "home.economics2024Desc",
+        "Economics 2024 batch class schedules."
+      ),
+      icon: Calendar,
+      link: "/economics-2024",
+      color: "from-violet-500 to-purple-500",
+      stats: "Undergraduate \u2022 2024",
+      bgColor: isDark
+        ? "bg-purple-600 hover:bg-purple-500 border-purple-400"
+        : "bg-purple-500 hover:bg-purple-600 border-purple-400",
     },    },
   ];
 
