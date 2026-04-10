@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { ThemeProvider, useTheme } from "@/components/ThemeProvider";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useRTL } from "@/hooks/useRTL";
-import { Calendar, BookOpen, ChevronRight, Home, Users, MapPin, TrendingUp, BarChart3, ArrowRight, Clock } from "lucide-react";
+import { Calendar, ChevronRight, Home, MapPin, TrendingUp, ArrowRight, Clock } from "lucide-react";
 import ncwuLogo from "@/assets/ncwu-logo.png";
 
 function Economics2023PageContent() {
@@ -16,13 +16,6 @@ function Economics2023PageContent() {
   useEffect(() => {
     document.title = `${t("economics2023.title", "Economics 2023")} - NCWU International`;
   }, [t]);
-
-  const features = [
-    { icon: Calendar, title: t("economics2023.classSchedule", "Class Schedule"), description: t("economics2023.classScheduleDesc", "View your weekly class timetable") },
-    { icon: BookOpen, title: t("economics2023.courseMaterials", "Course Materials"), description: t("economics2023.courseMaterialsDesc", "Access study resources and materials") },
-    { icon: TrendingUp, title: t("economics2023.economicAnalysis", "Economic Analysis"), description: t("economics2023.economicAnalysisDesc", "Learn economic theories and applications") },
-    { icon: BarChart3, title: t("economics2023.dataStatistics", "Data & Statistics"), description: t("economics2023.dataStatisticsDesc", "Work with economic data and models") },
-  ];
 
   const courses = [
     { code: "ECON301", name: "Econometrics", credits: 4, description: "Quantitative methods for economic analysis using statistical tools" },

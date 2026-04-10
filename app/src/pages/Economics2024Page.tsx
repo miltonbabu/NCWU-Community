@@ -6,13 +6,10 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { useRTL } from "@/hooks/useRTL";
 import {
   Calendar,
-  BookOpen,
   ChevronRight,
   Home,
-  Users,
   MapPin,
   TrendingUp,
-  BarChart3,
   ArrowRight,
   Clock,
 } from "lucide-react";
@@ -27,41 +24,6 @@ function Economics2024PageContent() {
   useEffect(() => {
     document.title = `${t("economics2024.title", "Economics 2024")} - NCWU International`;
   }, [t]);
-
-  const features = [
-    {
-      icon: Calendar,
-      title: t("economics2024.classSchedule", "Class Schedule"),
-      description: t(
-        "economics2024.classScheduleDesc",
-        "View your weekly class timetable",
-      ),
-    },
-    {
-      icon: BookOpen,
-      title: t("economics2024.courseMaterials", "Course Materials"),
-      description: t(
-        "economics2024.courseMaterialsDesc",
-        "Access study resources and materials",
-      ),
-    },
-    {
-      icon: TrendingUp,
-      title: t("economics2024.economicAnalysis", "Economic Analysis"),
-      description: t(
-        "economics2024.economicAnalysisDesc",
-        "Learn economic theories and applications",
-      ),
-    },
-    {
-      icon: BarChart3,
-      title: t("economics2024.dataStatistics", "Data & Statistics"),
-      description: t(
-        "economics2024.dataStatisticsDesc",
-        "Work with economic data and models",
-      ),
-    },
-  ];
 
   const courses = [
     {
