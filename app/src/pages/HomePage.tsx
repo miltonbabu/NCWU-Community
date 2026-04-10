@@ -332,14 +332,14 @@ function HomePageContent() {
           quinaryButtonLink="/discord"
           senaryButtonText={t("home.languageExchangeBtn", "Language Exchange")}
           senaryButtonLink="/language-exchange"
-          septenaryButtonText={t("home.socialBtn", "Social")}
-          septenaryButtonLink="/social"
-          octonaryButtonText={t("home.marketBtn", "Market")}
-          octonaryButtonLink="/market"
+          septenaryButtonText={t("home.econ23Btn", "Economics 23 Schedule")}
+          septenaryButtonLink="/economics-2023/class-schedule"
+          octonaryButtonText={t("home.econ24Btn", "Economics 24 Schedule")}
+          octonaryButtonLink="/economics-2024/class-schedule"
           nonaryButtonText={t("home.guidesBtn", "Student Guides")}
           nonaryButtonLink="/student-guides"
-          denaryButtonText={t("home.pdfToolsBtn", "PDF Tools")}
-          denaryButtonLink="/pdf-tools"
+          denaryButtonText={t("home.socialBtn", "Social")}
+          denaryButtonLink="/social"
         >
           <GlobalSearchBar />
         </HeroSection>
