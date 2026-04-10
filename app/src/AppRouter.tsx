@@ -121,6 +121,8 @@ function AppRouterContent() {
 
                 <Route path="/economics-2023" element={<Economics2023Page />} />
         <Route path="/economics-2023/class-schedule" element={<Economics2023SchedulePage />} />
+        <Route path="/economics-2024" element={<Economics2024Page />} />
+        <Route path="/economics-2024/class-schedule" element={<Economics2024SchedulePage />} />
 {/* Civil Engineering Routes */}
         <Route
           path="/civil-engineering-2023"
