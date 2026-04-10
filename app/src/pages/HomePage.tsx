@@ -264,7 +264,21 @@ function HomePageContent() {
         "Stay informed with the latest schedule changes",
       ),
       link: "/events",
-    },
+
+    {
+      title: t("home.economics2024Title", "Economics 2024 / 24 Batch"),
+      description: t(
+        "home.economics2024Desc",
+        "Economics 2024 batch class schedules with courses in Finance, International Economics, E-Commerce, Accounting, and more."
+      ),
+      icon: Calendar,
+      link: "/economics-2024",
+      color: "from-violet-500 to-purple-500",
+      stats: "Undergraduate • 2024",
+      bgColor: isDark
+        ? "bg-purple-600 hover:bg-purple-500 border-purple-400"
+        : "bg-purple-500 hover:bg-purple-600 border-purple-400",
+    },    },
   ];
 
   return (

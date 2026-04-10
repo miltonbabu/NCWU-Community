@@ -16,6 +16,8 @@ import EconomicsPage from "./pages/EconomicsPage";
 import EconomicsSchedulePage from "./pages/EconomicsSchedulePage";
 import Economics2023Page from "./pages/Economics2023Page";
 import Economics2023SchedulePage from "./pages/Economics2023SchedulePage";
+import Economics2024Page from "./pages/Economics2024Page";
+import Economics2024SchedulePage from "./pages/Economics2024SchedulePage";
 import HSKPage from "./pages/HSKPage";
 import HSKGrammarPage from "./pages/HSKGrammarPage";
 import StudentGuidesPage from "./pages/StudentGuidesPage";

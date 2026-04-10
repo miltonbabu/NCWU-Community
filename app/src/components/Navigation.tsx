@@ -117,7 +117,7 @@ export function Navigation() {
             {
               label: t("nav.economics2024", "2024 Batch / 24 Batch"),
               icon: GraduationCap,
-              href: "/economics-2025",
+              href: "/economics-2024",
             },
             {
               label: t("nav.economics2025", "2025 Batch / 25 Batch"),
