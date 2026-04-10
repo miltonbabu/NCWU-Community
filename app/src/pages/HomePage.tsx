@@ -27,6 +27,7 @@ import {
   Building2,
   Zap,
   Cog,
+  GraduationCap,
   ChevronDown,
   ChevronUp,
 } from "lucide-react";
@@ -212,21 +213,37 @@ function HomePageContent() {
         : "bg-stone-500 hover:bg-stone-600 border-stone-400",
       iconBg: "from-stone-400 to-warmGray-500",
     },
-
     {
-      title: t("home.economics2023Title", "Economics 2023 / 23 Batch"),
+      title: t("home.economics23Title", "Economics 2023"),
       description: t(
-        "home.economics2023Desc",
-        "Economics 2023 batch class schedules with courses in Econometrics, Digital Trade, International Trade Practice, HRM, and more."
+        "home.economics23Desc",
+        "Economics 2023 class schedules, courses, and department resources.",
       ),
-      icon: Calendar,
+      icon: GraduationCap,
       link: "/economics-2023",
-      color: "from-red-500 to-amber-500",
+      color: "from-red-500 to-amber-600",
       stats: "Undergraduate • 2023",
       bgColor: isDark
         ? "bg-red-600 hover:bg-red-500 border-red-400"
         : "bg-red-500 hover:bg-red-600 border-red-400",
-    },  ];
+      iconBg: "from-red-400 to-amber-500",
+    },
+    {
+      title: t("home.economics24Title", "Economics 2024"),
+      description: t(
+        "home.economics24Desc",
+        "Economics 2024 class schedules, courses, and department resources.",
+      ),
+      icon: GraduationCap,
+      link: "/economics-2024",
+      color: "from-purple-500 to-violet-600",
+      stats: "Undergraduate • 2024",
+      bgColor: isDark
+        ? "bg-purple-600 hover:bg-purple-500 border-purple-400"
+        : "bg-purple-500 hover:bg-purple-600 border-purple-400",
+      iconBg: "from-purple-400 to-violet-500",
+    },
+  ];
 
   const features = [
     {
@@ -264,49 +281,7 @@ function HomePageContent() {
         "Stay informed with the latest schedule changes",
       ),
       link: "/events",
-
-    {
-      title: t("home.economics2024Title", "Economics 2024 / 24 Batch"),
-      description: t(
-        "home.economics2024Desc",
-        "Economics 2024 batch class schedules with courses in Finance, International Economics, E-Commerce, Accounting, and more."
-      ),
-      icon: Calendar,
-      link: "/economics-2024",
-      color: "from-violet-500 to-purple-500",
-      stats: "Undergraduate • 2024",
-      bgColor: isDark
-        ? "bg-purple-600 hover:bg-purple-500 border-purple-400"
-        : "bg-purple-500 hover:bg-purple-600 border-purple-400",
     },
-    {
-      title: t("home.economics2023Title", "Economics 2023 / 23 Batch"),
-      description: t(
-        "home.economics2023Desc",
-        "Economics 2023 batch class schedules."
-      ),
-      icon: Calendar,
-      link: "/economics-2023",
-      color: "from-red-500 to-amber-500",
-      stats: "Undergraduate \u2022 2023",
-      bgColor: isDark
-        ? "bg-red-600 hover:bg-red-500 border-red-400"
-        : "bg-red-500 hover:bg-red-600 border-red-400",
-    },
-    {
-      title: t("home.economics2024Title", "Economics 2024 / 24 Batch"),
-      description: t(
-        "home.economics2024Desc",
-        "Economics 2024 batch class schedules."
-      ),
-      icon: Calendar,
-      link: "/economics-2024",
-      color: "from-violet-500 to-purple-500",
-      stats: "Undergraduate \u2022 2024",
-      bgColor: isDark
-        ? "bg-purple-600 hover:bg-purple-500 border-purple-400"
-        : "bg-purple-500 hover:bg-purple-600 border-purple-400",
-    },    },
   ];
 
   return (
