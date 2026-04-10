@@ -212,7 +212,21 @@ function HomePageContent() {
         : "bg-stone-500 hover:bg-stone-600 border-stone-400",
       iconBg: "from-stone-400 to-warmGray-500",
     },
-  ];
+
+    {
+      title: t("home.economics2023Title", "Economics 2023 / 23 Batch"),
+      description: t(
+        "home.economics2023Desc",
+        "Economics 2023 batch class schedules with courses in Econometrics, Digital Trade, International Trade Practice, HRM, and more."
+      ),
+      icon: Calendar,
+      link: "/economics-2023",
+      color: "from-red-500 to-amber-500",
+      stats: "Undergraduate • 2023",
+      bgColor: isDark
+        ? "bg-red-600 hover:bg-red-500 border-red-400"
+        : "bg-red-500 hover:bg-red-600 border-red-400",
+    },  ];
 
   const features = [
     {
