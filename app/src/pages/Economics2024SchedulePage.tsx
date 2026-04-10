@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ThemeProvider, useTheme } from "@/components/ThemeProvider";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -6,34 +6,17 @@ import { ChevronRight, Home } from "lucide-react";
 import { Toaster } from "sonner";
 import ncwuLogo from "@/assets/ncwu-logo.png";
 import Economics2024AppContentWrapper from "./Economics2024AppContentWrapper";
-import { EconomicsStudentVerification, isEconomicsStudentVerified } from "@/components/EconomicsStudentVerification";
-import { useAuth } from "@/contexts/AuthContext";
 
 function Economics2024SchedulePageContent() {
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark";
-  const { user, isAuthenticated, isLoading: authLoading } = useAuth();
-
-  const isAdmin = isAuthenticated && user && (user.role === 'admin' || user.role === 'superadmin' || user.is_admin);
-  const isEconomics2024Student = isAuthenticated && user && user.department === 'Economics' && user.enrollment_year === 2024;
-
-  const [isVerified, setIsVerified] = useState(() => (isAdmin || isEconomics2024Student || isEconomicsStudentVerified()));
-  const [isChecking, setIsChecking] = useState(true);
 
   useEffect(() => {
-    if (authLoading) return;
     document.title = "Economics 2024 Class Schedule - NCWU International";
-    setIsVerified(isAdmin || isEconomics2024Student || isEconomicsStudentVerified());
-    setIsChecking(false);
-  }, [isAuthenticated, user, authLoading, isAdmin, isEconomics2024Student]);
-
-  if (isChecking) {
-    return (<div className={`min-h-screen flex items-center justify-center ${isDark ? "bg-slate-950" : "bg-slate-50"}`}><div className="w-8 h-8 border-4 border-purple-500/30 border-t-purple-500 rounded-full animate-spin"/></div>);
-  }
+  }, []);
 
   return (
     <div className={`min-h-screen relative overflow-hidden chinese-pattern-bg ${isDark ? "bg-slate-900" : "bg-gradient-to-b from-slate-50 to-slate-100"}`}>
-      {!isVerified && <EconomicsStudentVerification isDark={isDark} onVerified={() => setIsVerified(true)} />}
       <Toaster position="top-center" toastOptions={{ style: { background: isDark ? "rgba(15,23,42,0.9)" : "rgba(255,255,255,0.9)", backdropFilter:"blur(12px)", color: isDark ? "#fff" : "#1e293b", border: isDark ? "1px solid rgba(147,51,234,0.2)" : "1px solid rgba(147,51,234,0.3)" }}} />
 
       <header className={`relative z-50 sticky top-0 backdrop-blur-xl ${isDark ? "bg-slate-950/80 border-purple-500/20" : "bg-white/80 border-purple-200"} border-b`}>
