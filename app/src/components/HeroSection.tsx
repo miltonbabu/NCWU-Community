@@ -37,6 +37,8 @@ interface HeroSectionProps {
   nonaryButtonLink?: string;
   denaryButtonText?: string;
   denaryButtonLink?: string;
+  undecimButtonText?: string;
+  undecimButtonLink?: string;
   backgroundImage?: string;
   backgroundImages?: string[];
   slideInterval?: number;
@@ -72,6 +74,8 @@ export function HeroSection({
   nonaryButtonLink,
   denaryButtonText,
   denaryButtonLink,
+  undecimButtonText,
+  undecimButtonLink,
   backgroundImage,
   backgroundImages,
   slideInterval = 3000,
@@ -199,7 +203,7 @@ export function HeroSection({
           {images.map((_, index) => (
             <button
               key={index}
-               onClick={() => {
+              onClick={() => {
                 setCurrentImageIndex(index);
               }}
               className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
@@ -264,7 +268,8 @@ export function HeroSection({
             septenaryButtonText ||
             octonaryButtonText ||
             nonaryButtonText ||
-            denaryButtonText) && (
+            denaryButtonText ||
+            undecimButtonText) && (
             <div className="flex flex-wrap gap-2 sm:gap-3 justify-center relative z-20">
               {primaryButtonText &&
                 primaryButtonLink &&
@@ -352,6 +357,15 @@ export function HeroSection({
                 renderButton(
                   denaryButtonText,
                   denaryButtonLink,
+                  "denary",
+                  <ExternalLink className="w-4 h-4 flex-shrink-0" />,
+                  true,
+                )}
+              {undecimButtonText &&
+                undecimButtonLink &&
+                renderButton(
+                  undecimButtonText,
+                  undecimButtonLink,
                   "denary",
                   <ExternalLink className="w-4 h-4 flex-shrink-0" />,
                   true,

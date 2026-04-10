@@ -340,6 +340,8 @@ function HomePageContent() {
           nonaryButtonLink="/student-guides"
           denaryButtonText={t("home.socialBtn", "Social")}
           denaryButtonLink="/social"
+          undecimButtonText={t("home.aiNcwuBtn", "AI NCWU")}
+          undecimButtonLink="https://ai.ncwu.site"
         >
           <GlobalSearchBar />
         </HeroSection>
