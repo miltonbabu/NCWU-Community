@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ThemeProvider, useTheme } from "@/components/ThemeProvider";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { ChevronRight, Home } from "lucide-react";
+import { ChevronRight, Home, ArrowLeft, Calendar } from "lucide-react";
 import { Toaster } from "sonner";
 import ncwuLogo from "@/assets/ncwu-logo.png";
 import Economics2024AppContentWrapper from "./Economics2024AppContentWrapper";
@@ -50,7 +50,25 @@ function Economics2024SchedulePageContent() {
         </div>
       </div>
 
-      <Economics2024AppContentWrapper />
+      <main className="relative z-10 dragon-phoenix-hero">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="text-center mb-8 animate-fade-in-up">
+            <h1 className={`text-2xl sm:text-3xl font-bold mb-2 ${isDark ? "text-white" : "text-slate-900"}`}>Economics 2024 / 24 Batch — Class Schedule</h1>
+            <p className={`text-sm max-w-xl mx-auto mb-5 ${isDark ? "text-white/60" : "text-slate-500"}`}>Weekly class timetable for Economics international students (2024/24 batch)</p>
+            <div className="flex items-center justify-center gap-3">
+              <Link to="/economics-2024" className="inline-flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-lg transition-all duration-300 bg-purple-500/10 hover:bg-purple-500/20 text-purple-600 dark:text-purple-400 border border-purple-500/20 hover:border-purple-500/40">
+                <ArrowLeft className="w-3.5 h-3.5" />
+                Back to Overview
+              </Link>
+              <span className={`inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg ${isDark ? "bg-purple-500/15 text-purple-300" : "bg-purple-100 text-purple-700"}`}>
+                <Calendar className="w-3 h-3" /> 24 Batch
+              </span>
+            </div>
+          </div>
+
+          <Economics2024AppContentWrapper />
+        </div>
+      </main>
 
       <footer className={`relative z-10 border-t ${isDark ? "border-purple-500/20 bg-purple-500/5" : "border-purple-200 bg-purple-50/50"} mt-12`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
